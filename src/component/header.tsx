@@ -23,7 +23,7 @@ export const Header = ()=> {
                         <NavLink to="/profile">Perfil</NavLink>
                     </nav>
                     <div className="user-money">
-                        <p>1000</p><img src={rupia} alt="" />  {/*habra que cambiarlo para que sea dinamico segun las rupias del usuario*/}
+                        <p>1,000</p><img src={rupia} alt="" />  {/*habra que cambiarlo para que sea dinamico segun las rupias del usuario*/}
                     </div>
                 </div>
         </header>  
