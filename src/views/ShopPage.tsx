@@ -1,5 +1,5 @@
 export const ShopPage = () => {
     return (
-        <div>Tienda</div>
+        <div></div>
     )
 }

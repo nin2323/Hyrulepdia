@@ -1,50 +1,136 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2.5rem 8rem;
-    margin-top: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 8rem;
+  margin: 4rem 2.7rem 0rem 2.7rem;
+ 
+  position: relative;
   }
-  
-  .header-logo {
-    font-size: 3.6rem;
-    text-decoration: none;
-    color: #E0CEA0;
-  }
-  
-  .header-content {
-    display: flex;
-    gap: 10px;
-  }
+ 
+/*  BORDES VERTICALES  */
 
-  .header-nav {
-    display: flex;
-    gap: 2.6rem;
-    margin-right: 10rem;
-    align-items: center;
-  }
-  
-  .header-nav a {
-    text-decoration: none;
-    color: #FFFFFF;
-    font-weight: 500;
-    font-size: 2rem;
-  }
-  
-  nav a:hover {
-    color: #0077cc;
-  }
+/* Izquierda: arriba */
+header::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 25%;
+  background-color: #7CD2FF;
+}
 
-  .user-money {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
+/* Izquierda: abajo */
+header::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 1px;
+  height: 25%;
+  background-color: #7CD2FF;
+}
 
-  .user-money p {
-    color: #FFFFFF;
-    font-size: 2rem;
-  }
-  
+/* Derecha: arriba y abajo */
+header .right-line-top,
+header .right-line-bottom {
+  position: absolute;
+  right: 0;
+  width: 1px;
+  height: 25%;
+  background-color: #7CD2FF;
+}
+
+header .right-line-top {
+  top: 0;
+}
+
+header .right-line-bottom {
+  bottom: 0;
+}
+
+/*  BORDES HORIZONTALES  */
+
+/* Top left */
+header .top-line-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 23%; /* no llega al centro */
+  height: 1px;
+  background-color: #7CD2FF;
+}
+
+/* Top right */
+header .top-line-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 23%;
+  height: 1px;
+  background-color: #7CD2FF;
+}
+
+/* Bottom left */
+header .bottom-line-left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 23%;
+  height: 1px;
+  background-color: #7CD2FF;
+}
+
+/* Bottom right */
+header .bottom-line-right {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 23%;
+  height: 1px;
+  background-color: #7CD2FF;
+}
+
+.header-logo {
+  font-size: 3.6rem;
+  text-decoration: none;
+  color: #E0CEA0;
+}
+
+.header-content {
+  display: flex;
+  gap: 10px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 2.6rem;
+  margin-right: 10rem;
+  align-items: center;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+nav a:hover {
+  filter: drop-shadow(0 0 1rem #FFFFFF );
+}
+
+.user-money {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.user-money p {
+  color: #FFFFFF;
+  font-size: 2rem;
+}
+
 
 
