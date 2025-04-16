@@ -6,9 +6,11 @@ button {
     background-color: white;
     border: none;
     background-color: transparent;
-    font-size: 30px;
     text-transform: uppercase;
     cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    font-size: 20px;
+
 }
 
 button::before {
@@ -24,10 +26,10 @@ button::before {
 .button-content {
     z-index: 1;
     position: inherit;
-    font-size: 20px;
     color: white;
     display: flex;
     justify-content: center;
+    transition: transform 0.3s ease; /* Asegura transición suave */
 }
 
 .button-corner {
@@ -37,51 +39,69 @@ button::before {
     z-index: 10;
     width: 17px;
     height: auto;
+    transition: transform 0.3s ease; /* Transición para el SVG */
+    transform-origin: top right;
 }
 
-/* .button-backgorund {
-    background-color: #275880;
-    height: 57px;
-    min-width: 245.9px;
-    display: inline-block; /* que se ajuste al contenido */
-    /* position: relative;
-    cursor: pointer; */
- 
 
-    button:hover::after {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: linear-gradient(45deg, transparent, #BAEFFB, transparent);
-        animation: glow 2s linear;
-        z-index: 1;
-        
-        /* Solo mostrarlo en los bordes usando máscara */
-        mask: 
-            linear-gradient(#fff 0 0) content-box, 
-            linear-gradient(#fff 0 0);
-        -webkit-mask: 
-            linear-gradient(#fff 0 0) content-box, 
-            linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        -webkit-mask-composite: destination-out;
-    
-        pointer-events: none;
-    }
-    
-    /* Animación del brillo */
-    @keyframes glow {
-        0% {
-            transform: translate(-100%, 100%) rotate(45deg);
-        }
-        100% {
-            transform: translate(100%, -100%) rotate(45deg);
-        }
-    }
-    
+button:not(.disabled):hover {
+    filter: drop-shadow(0 0 1rem #ffffff8e );
+    background-image: linear-gradient(45deg, transparent 0%, #BAEFFB 0% calc(100% - 22px), transparent calc(100% - 22px));
+}
+
+button:hover .button-corner {
+    transform: scale(1.5); /* Hace que el SVG crezca más que el botón */
+    filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.2)); /* Sombra en el SVG */
+}
+
+button:not(.disabled):hover::before {
+    background-image: linear-gradient(45deg, transparent 0%, #275880 0% calc(100% - 22px), transparent calc(100% - 22px));
+}
+
+.buttons-contain {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+/* Estilos color */
+
+.secondary::before {
+    background-image: linear-gradient(45deg, transparent 0%, #7eb4d1 0% calc(100% - 18px), transparent calc(100% - 18px));
+}
+
+/* Estilo disabled */
+
+.disabled::before {
+    cursor: not-allowed;
+    opacity: 0.6;
+    pointer-events: none; /*  Esto evita cualquier interacción */
+    filter: none; /* Elimina sombras, si tenés hover activo */
+    transform: none; /* Evita efectos de transformación */
+    background-image: linear-gradient(45deg, transparent 0%, #bcbcbc 0% calc(100% - 18px), transparent calc(100% - 18px));
+}
+
+.disabled:hover, 
+.disabled:hover .button-corner {
+    transform: none;
+    filter: none;
+}
+
+/* Estilos tamaño */
+
+.button.sm {
+    min-width: 180px;
+    padding: 12px 16px;
+    font-size: 12px;
+}
+
+.button.lg {
+    min-width: 346px;
+    padding: 28px 30px;
+    font-size: 24px;
+}
+
+
 
 
 
