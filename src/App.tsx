@@ -11,6 +11,7 @@ function App() {
       <Button disabled={true}>Mi colección</Button> 
       <Button size='sm'>Mi colección</Button> 
       <Button size='lg' color='secondary'>Mi colección</Button> 
+      <Button color='error'>Mi colección</Button> 
     </div>
     </>
   )

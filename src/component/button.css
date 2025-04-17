@@ -8,7 +8,7 @@ button {
     background-color: transparent;
     text-transform: uppercase;
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    transition: transform 0.1s ease, box-shadow 0.3s ease, filter 0.6s ease;
     font-size: 20px;
 
 }
@@ -41,6 +41,7 @@ button::before {
     height: auto;
     transition: transform 0.3s ease; /* Transición para el SVG */
     transform-origin: top right;
+    color: #BAEFFB;
 }
 
 
@@ -62,23 +63,54 @@ button:not(.disabled):hover::before {
     display: flex;
     gap: 24px;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center
 }
 
 /* Estilos color */
 
+
 .secondary::before {
-    background-image: linear-gradient(45deg, transparent 0%, #7eb4d1 0% calc(100% - 18px), transparent calc(100% - 18px));
+    background-image: linear-gradient(45deg, transparent 0%, #4A96D4 0% calc(100% - 18px), transparent calc(100% - 18px));
 }
+
+
+button.secondary:not(.disabled):hover {
+    filter: drop-shadow(0 0 1rem #ffffff8e );
+    background-image: linear-gradient(45deg, transparent 0%, #BAEFFB 0% calc(100% - 22px), transparent calc(100% - 22px));
+}
+
+button.secondary:hover .button-corner {
+    transform: scale(1.5); /* Hace que el SVG crezca más que el botón */
+    filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.2)); /* Sombra en el SVG */
+}
+
+button.secondary:not(.disabled):hover::before {
+    background-image: linear-gradient(45deg, transparent 0%, #4A96D4 0% calc(100% - 22px), transparent calc(100% - 22px));
+}
+
 
 /* Estilo disabled */
 
-.disabled::before {
+button.disabled .button-corner {
+    color: #555252;
+  }
+
+button.disabled .button-content {
+    color: #555252;
+}
+
+button.disabled {
+    background-image: linear-gradient(45deg, transparent 0%, #736F6F 0% calc(100% - 18px), transparent calc(100% - 18px));
+}
+
+button.disabled::before {
     cursor: not-allowed;
     opacity: 0.6;
     pointer-events: none; /*  Esto evita cualquier interacción */
     filter: none; /* Elimina sombras, si tenés hover activo */
     transform: none; /* Evita efectos de transformación */
-    background-image: linear-gradient(45deg, transparent 0%, #bcbcbc 0% calc(100% - 18px), transparent calc(100% - 18px));
+    background-image: linear-gradient(45deg, transparent 0%, #f5f3f3 0% calc(100% - 18px), transparent calc(100% - 18px));
 }
 
 .disabled:hover, 
@@ -101,8 +133,37 @@ button:not(.disabled):hover::before {
     font-size: 24px;
 }
 
+/* Estilos error */
 
+button.error .button-corner {
+    color: #FC0606;
+  }
 
+.error::before {
+    background-image: linear-gradient(45deg, transparent 0%, #FC0606 0% calc(100% - 18px), transparent calc(100% - 18px));
+}
+
+button.error .button-content .button-corner {
+    color: white;
+}
+
+button.error {
+    background-image: linear-gradient(45deg, transparent 0%, #000000 0% calc(100% - 18px), transparent calc(100% - 18px));
+    
+}
+
+button.error:hover {
+    filter: drop-shadow(0 0 1rem #ffffff8e );
+}
+
+button.error:hover .button-corner {
+    transform: scale(1.5); /* Hace que el SVG crezca más que el botón */
+    filter: drop-shadow(0px 0px 8px rgba(0, 0, 0, 0.2)); /* Sombra en el SVG */
+}
+
+button.error:hover::before {
+    background-image: linear-gradient(45deg, transparent 0%, #FC0606 0% calc(100% - 22px), transparent calc(100% - 22px));
+}
 
 
 
