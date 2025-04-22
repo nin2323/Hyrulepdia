@@ -3,10 +3,11 @@ import './button.css'
 
 interface ButtonProps {
     children?: ReactNode;
-    color?: 'primary' | 'secondary' | 'error';
+    color?: 'primary' | 'secondary' | 'error' | 'succes' | 'info' | 'warning';
     size?: 'sm' | 'md' | 'lg';
     disabled?: boolean; 
     onClick?: () => void;
+    className?: string; 
 }
 
 export const  Button = (props: ButtonProps) =>{
