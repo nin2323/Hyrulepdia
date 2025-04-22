@@ -39,7 +39,7 @@ const rarityFrame = (rarity : HyruleCardType['rarity']) => {
             return <img className='hyrule-card__content__frame' src={cardFramePurple} alt='card frame' />;
 
     }
-}
+};
 
 export const HyruleCard = ({
     id = 84,
