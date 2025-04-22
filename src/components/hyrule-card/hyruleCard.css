@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'title';
+    src: url('./TheWildBreath.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Patrick+Hand&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Irish+Grover&family=Patrick+Hand&display=swap');
+
+.hyrule-card__border {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 21rem; 
+    background-color: #f5e5c0;
+    border-radius: 0.7rem;
+    background: #E0CEA0;
+    background: radial-gradient(circle,rgba(224, 206, 160, 1) 68%, rgba(83, 71, 45, 1) 90%);
+
+}
+
+.hyrule-card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #f5e5c0;
+    /* border: 0.38rem solid #E0CEA0; */
+    width: 300px;
+    padding-block: 0.3rem;
+    border-radius: 0.5rem;  
+    width: 14.24rem;
+    height: 20.24rem; 
+    background-image: url(..\..\assets\backgrounds\card-background.png);
+    background-size:90% 90%;
+    background-color: #0d0d0d;    
+}
+
+.hyrule-card__header {
+    margin-inline: 0.95rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /*hace que el título y los puntos se alinen horizontalmente*/
+    font-family: 'title';
+    font-size: 0.82rem;
+    margin-bottom: 0.1rem;
+}
+
+.hyrule-card__type {
+    display: flex;
+    align-items: center;
+}
+
+.hyrule-card__icon {
+    padding-left: 0.2rem;
+    width: 1.4rem;
+    height: auto;
+}
+
+.hyrule-card__header h2 {
+    margin-block: 0;
+}
+
+.hyrule-card__points {
+    font-family: 'title';
+    font-weight: 100;
+}
+
+.hyrule-card__image img {
+    width: 87%;
+    margin-inline: 0.95rem;
+    border-radius: 0.35rem;
+    max-height: 8rem;
+    object-fit: cover;
+    outline: 0.12rem solid #B99F65;
+}
+
+.hyrule-card__content {
+    padding-inline:  0rem;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+
+.hyrule-card__content__frame {
+    width: 13rem;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    bottom: 1;
+    right: 0;
+    left: 0;
+    z-index: 0; /* Fondo */
+}
+
+.hyrule-card__content__info {
+    width: 11rem;
+    position: absolute;
+    margin: auto;
+    margin-top: 0.68rem;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.hyrule-card__description {
+    font-size: 0.7rem;
+    font-family: "Inknut Antiqua", serif;
+    color: #97DCFF;
+    text-align: center;
+    text-shadow: 0px 0px 3px #5BB3FB;
+    font-style: normal;
+    line-height: 0.8rem;
+}
+
+.hyrule-card__description p {
+    margin-block: 0.2rem;
+    font-size: 0.6rem;
+}
+
+.hyrule-card__section h3 {
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: 'title';
+    margin: 0;
+    line-height: 1rem;
+    padding-top: 0.5rem;
+}
+
+.hyrule-card__section {
+    margin: 0;
+}
+.hyrule-card__section p {
+    font-size: 0.6rem;
+    font-family: "Inknut Antiqua", serif;
+    color: #97DCFF;
+    text-align: center;
+    text-shadow: 0px 0px 3px #5BB3FB;
+    font-style: normal;
+    line-height: 0.8rem;
+    margin: 0;
+}
+
+.hyrule-card__footer {
+    text-align: center;
+    font-size: 0.45rem;
+    color: #B99F65;
+    font-family: 'title';
+    padding-top: 0.8rem;
+    font-family: "Irish Grover";
+    font-weight: 600;
+    font-style: normal;
+    line-height: 0.3;
+}
