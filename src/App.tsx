@@ -8,8 +8,8 @@ function App() {
     <div className='buttons-contain'>
       <Button color='primary' size='md'>Mi colección</Button>
       <Button color='secondary' size='md'>Mi colección</Button>
-      <Button disabled={true} size='md'>Mi colección</Button> 
-      <Button size='sm'>Mi colección</Button> 
+      <Button color='primary' disabled={true} size='md'>Mi colección</Button> 
+      <Button color='primary' size='sm'>Mi colección</Button> 
       <Button size='lg' color='secondary'>Mi colección</Button> 
       <Button color='error' size='md'>Mi colección</Button>
       <Button color='succes' size='md'>Mi colección</Button>
