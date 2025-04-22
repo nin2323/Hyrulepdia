@@ -15,11 +15,22 @@
     align-items: center;
     width: 15rem;
     height: 21rem; 
-    background-color: #f5e5c0;
     border-radius: 0.7rem;
-    background: #E0CEA0;
-    background: radial-gradient(circle,rgba(224, 206, 160, 1) 68%, rgba(83, 71, 45, 1) 90%);
+}
 
+.common {
+    background-color: #f5e5c0;
+    background: radial-gradient(circle,rgba(224, 206, 160, 1) 68%, rgba(83, 71, 45, 1) 90%);
+}
+
+.rare {
+    background-color: #7CD2FF;
+    background: radial-gradient(circle,#7CD2FF 68%, #275880 90%);
+}
+
+.epic {
+    background-color: #BA6ED5;
+    background: radial-gradient(circle,#BA6ED5 68%, #653277 90%);
 }
 
 .hyrule-card {
@@ -75,7 +86,19 @@
     border-radius: 0.35rem;
     max-height: 8rem;
     object-fit: cover;
+    
+}
+
+.common-frame img{
     outline: 0.12rem solid #B99F65;
+}
+
+.rare-frame img{
+    outline: 0.12rem solid #7CD2FF;
+}
+
+.epic-frame img{
+    outline: 0.12rem solid #BA6ED5;
 }
 
 .hyrule-card__content {
