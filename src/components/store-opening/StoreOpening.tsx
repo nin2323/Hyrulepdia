@@ -1,3 +1,4 @@
+import  './StoreOpening.css'
 import { useEffect, useState } from "react";
 import { getRandomHyruleData } from "../../services/hyrule-card.service"; // Ajustá la ruta si cambia
 import { HyruleCardType } from "../../types/hyrule.types";
