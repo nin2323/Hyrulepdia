@@ -46,7 +46,7 @@ export const HyruleCard = ({
     name ='CHUCHU' , 
     points = 200, 
     rarity = 'common', 
-    image = '../../assets/images/chuchu.png' , 
+    image = 'chuchu' , 
     description = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna', 
     location = 'Lorem ipsum dolor sit amet,', 
     items = 'Lorem ipsum dolor sit amet,', 
@@ -64,7 +64,7 @@ export const HyruleCard = ({
                     </div>
                 </div>
                 <div className={`hyrule-card__image ${rarity}-frame`}>
-                    <img src={chuchu} alt='chuchu'></img>
+                    <img src={image == 'chuchu' ? chuchu : image} alt={name}></img>
                 </div>
                 <div className='hyrule-card__content'>
                 {rarityFrame(rarity)}
