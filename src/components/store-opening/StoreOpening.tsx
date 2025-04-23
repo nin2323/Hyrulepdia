@@ -17,12 +17,22 @@ export const StoreOpening = () => {
     }, []);
 
     return (
-        <div className="cards-container">
-        {cards.length === 0 ? (
-        <p>Loading cards...</p>
-        ) : (
-        cards.map((card) => <HyruleCard key={card.id} {...card} />)
-        )}
-    </div>
+    <>
+        <div className="hyrule-cards-container">
+            {cards.length === 0 ? (
+            <p>Loading cards...</p>
+            ) : (
+            cards.map((card) => <HyruleCard key={card.id} {...card} />)
+            )}
+        </div>
+            <div>
+                <p>Cards are savd automaticaly. You'll find your cards in your <span>COLLECTION</span></p>
+                <div>
+                    <button>MY CARDS</button>
+                    <button>UNLOCK CHESTS</button>
+                </div>
+                
+        </div>
+    </>
     )
 }
