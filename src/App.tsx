@@ -1,5 +1,6 @@
 import './App.css'
 import { Button } from './component/button'
+import './styles/variables.css'
 
 function App() {
 
