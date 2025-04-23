@@ -7,3 +7,8 @@ html {
     justify-content: center;
     align-items: center;
 }
+
+@font-face {
+  font-family: "The Wild Breath of Zelda";
+  src: url("./fonts/the-wild-breath-of-zelda.ttf");
+}

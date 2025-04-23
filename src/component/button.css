@@ -34,6 +34,7 @@ button::before {
     display: flex;
     justify-content: center;
     transition: transform 0.3s ease;
+    font-family: "The Wild Breath of Zelda";
 }
 
 .button-corner {
@@ -128,7 +129,7 @@ button.secondary {
     }
 
     & .button-content {
-        color: #000000;   
+        color: white;   
     }
 
     &:not(.disabled):hover {
