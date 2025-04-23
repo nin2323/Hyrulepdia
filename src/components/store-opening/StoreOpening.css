@@ -1,8 +1,32 @@
-.hyrule-cards-container {
+.hyrule-cards-wrapper {
+    position: relative;
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
     justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.hyrule-cards-background {
+    position: absolute;
+    top: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+    z-index: -1;
+    pointer-events: none; /* para que no bloquee clicks */
+}
+
+.hyrule-cards-container {
+    position: relative;
+    z-index: 0;
+    display: flex;
+    gap: 1rem;
     flex-wrap: wrap;
-    margin-top: 2rem;
+    justify-content: center;
+}
+
+.hyrule-cards__textbox {
+    margin-top: 4.5rem;
 }

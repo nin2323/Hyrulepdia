@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getRandomHyruleData } from "../../services/hyrule-card.service"; // Ajustá la ruta si cambia
 import { HyruleCardType } from "../../types/hyrule.types";
 import { HyruleCard } from "../hyrule-card/HyruleCard";
+import HyruleCardsContainer from '../../assets/decorations/hyrule-cards-container.svg';
 
 
 export const StoreOpening = () => {
@@ -18,14 +19,18 @@ export const StoreOpening = () => {
 
     return (
     <>
-        <div className="hyrule-cards-container">
-            {cards.length === 0 ? (
-            <p>Loading cards...</p>
-            ) : (
-            cards.map((card) => <HyruleCard key={card.id} {...card} />)
-            )}
+        <div className="hyrule-cards-wrapper">
+            <img className="hyrule-cards-background" src={HyruleCardsContainer} alt="cards background" />
+
+            <div className="hyrule-cards-container">
+                {cards.length === 0 ? (
+                <p>Loading cards...</p>
+                ) : (
+                cards.map((card) => <HyruleCard key={card.id} {...card} />)
+                )}
+            </div>
         </div>
-            <div>
+            <div className='hyrule-cards__textbox'>
                 <p>Cards are savd automaticaly. You'll find your cards in your <span>COLLECTION</span></p>
                 <div>
                     <button>MY CARDS</button>
