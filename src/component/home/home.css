@@ -1,0 +1,21 @@
+.home-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px 30px;
+    background-color: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .home-container h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
+  .home-container p {
+    font-size: 1.1rem;
+    color: #555;
+  }
