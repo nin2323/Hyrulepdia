@@ -1,16 +1,37 @@
-import React from 'react';
-import { CardContent } from './assets/CardContainer/CardContainer.tsx';
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { HyruleCard } from './components/hyrule-card/HyruleCard.tsx'
 
 function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <CardContent>
-      <h2>Hola mundo</h2>
-      <p>Este es el contenido de la tarjeta.</p>{' '}
+    <>
       <div>
-        <strong>SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS</strong>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
       </div>
-    </CardContent>
-  );
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+      <HyruleCard />
+    </>
+  )
 }
 
-export default App;
+export default App
