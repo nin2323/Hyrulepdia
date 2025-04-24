@@ -10,29 +10,32 @@ interface CardContainerProps {
 
 //Children representa cualquier contenido entre las etiquetas del componente.
 //En typescript estoy usando CardContainerProps como tipo
-export const CardContent = ({ children }: CardContainerProps) => {
+export const CardContainer = ({ children }: CardContainerProps) => {
   return (
+    //CONTENEDOR CARTA
     <div className='card'>
+      {/* imagen y color contenedor */}
       <div className='bg-image'></div>
       <div className='bg-overlay'></div>
-
+      {/* Esquinas svg contenedor */}
       <img src='assets/Fill-10.svg' className='svg-corner top-left' />
       <img src='assets/Fill-10.svg' className='svg-corner top-right' />
       <img src='assets/Fill-10.svg' className='svg-corner bottom-left' />
       <img src='assets/Fill-10.svg' className='svg-corner bottom-right' />
-
+      {/* vertices linea */}
       <span className='corner-bottom-left'></span>
       <span className='corner-bottom-right'></span>
-
+      {/* lados */}
       <div className='left-top-line'></div>
       <div className='left-bottom-line'></div>
       <div className='right-top-line'></div>
       <div className='right-bottom-line'></div>
-
       <div className='top-left-line'></div>
       <div className='top-right-line'></div>
       <div className='bottom-left-line'></div>
       <div className='bottom-right-line'></div>
+      {/* lo que se le meta dentro de app */}
+      <div>{children}</div>
     </div>
   );
 };
