@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/authContext';
 import { LoginForm } from './component/login/LoginForm';
@@ -9,7 +9,7 @@ import './component/login/LoginForm.css'
 import './component/register/registerForm.css'
 import './component/home/home.css'
 
-const App: React.FC = () => {
+const App: FC = () => {
   return (
     <AuthProvider>
       <Router>
