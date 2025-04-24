@@ -45,11 +45,16 @@ export const getRandomHyruleData = async( num : number = 3 ) : Promise< HyruleCa
     const selected: HyruleCardType[] =  shuffled.slice(0, num).map((item) => { //el map se usa para transformar cada elemento del array original en un nuvo objeto con una forma diferente: HyruleCardType.
         const rarity = getRandomRarity();
 
+        //para que los textos tengan máximo 130 caracteres incluyendo espacios y signos
+        const trimmedDescription = item.description.length > 130
+            ? item.description.slice(0, 120) + '...'
+            : item.description;
+
         return {
             id: item.id,
             name: item.name,
             image: item.image,
-            description: item.description,
+            description: trimmedDescription,
             location: item.common_locations?.join(', ') || "Unknown",
             items: item.drops?.join(', ') || "None",
             category: item.category as HyruleCardType['category'],
