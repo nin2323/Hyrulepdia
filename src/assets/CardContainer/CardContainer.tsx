@@ -5,7 +5,7 @@ import './CardContainer.css';
 //Estos props pueden ser cualquier cosa mientras esten dentro del componente
 //CardContainer ej:<h1> HOLA {string dentro del tsx} </h1>
 interface CardContainerProps {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 //Children representa cualquier contenido entre las etiquetas del componente.
@@ -35,7 +35,7 @@ export const CardContainer = ({ children }: CardContainerProps) => {
       <div className='bottom-left-line'></div>
       <div className='bottom-right-line'></div>
       {/* lo que se le meta dentro de app */}
-      <div>{children}</div>
+      <div className='container'>{children}</div>
     </div>
   );
 };
