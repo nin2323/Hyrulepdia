@@ -67,7 +67,7 @@ button::before {
 
 .button.md {
     --cut-size: var(--cut-size-md);
-    height: 56px;
+    height: 48px;
     padding: 0 24px;
     font-size: 20px;
 }
