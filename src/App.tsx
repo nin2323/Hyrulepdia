@@ -1,16 +1,12 @@
-import { Link, NavLink } from 'react-router-dom'
 import './App.css'
-import { Button } from './component/button'
-import './styles/variables.css'
+import { Header } from './component/header'
+import { Outlet } from 'react-router-dom'
 
-export function App() {
-
+export const App = () => {
   return (
     <>
-    <div className='buttons-contain'>
-      <Button component={NavLink} to='/Home'>My Collection</Button>
-      <Button>My Collection</Button>
-    </div>
+      <Header/>
+      <Outlet />
     </>
   )
 };

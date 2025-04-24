@@ -1,3 +1,27 @@
+html{
+    font-size: 62.5%;
+    font-family: 'Geist-Mono', sans-serif;
+}
+
+.header-logo,h1,h2,h3,h4,h5 {
+    font-family: 'The Wild Breath of Zelda';
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: radial-gradient(#1C4362, #000000);
+  }
+
+  @font-face {
+    font-family: "The Wild Breath of Zelda";
+    src: url("./fonts/the-wild-breath-of-zelda.ttf");
+  }
+
+  h1,h2,h3,h4,h5,p,span {
+    margin: 0;
+  }
 html {
     margin: 0;
     padding: 0;
