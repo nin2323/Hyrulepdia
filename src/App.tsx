@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'; // Cambios en las importaciones
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/authContext';
 import { LoginForm } from './component/login/LoginForm';
 import { RegisterForm } from './component/register/registerForm';
-import { Home } from './component/home/home'; // Asegúrate de tener este componente
-import {PrivateRoute} from './component/privateRoute/privateRoute'; // Asegúrate de que PrivateRoute también se actualice
+import { Home } from './component/home/home'; 
+import {PrivateRoute} from './component/privateRoute/privateRoute'; 
 import './component/login/LoginForm.css'
 import './component/register/registerForm.css'
 import './component/home/home.css'
@@ -14,7 +14,6 @@ const App: React.FC = () => {
     <AuthProvider>
       <Router>
         <Routes>
-          {/* Las rutas ahora usan `element` en lugar de `component` */}
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/login" element={<LoginForm />} />
           
