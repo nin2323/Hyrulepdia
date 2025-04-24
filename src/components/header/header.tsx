@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom"
 import "./header.css"
-import rupia from '../assets/rupia-icon.png'
+import rupia from '../../assets/rupia-icon.png'
 
 
 export const Header = ()=> {
