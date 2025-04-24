@@ -17,11 +17,20 @@ export const CardContainer = ({ children }: CardContainerProps) => {
       {/* imagen y color contenedor */}
       <div className='bg-image'></div>
       <div className='bg-overlay'></div>
-      {/* Esquinas svg contenedor */}
-      <img src='assets/Fill-10.svg' className='svg-corner top-left' />
-      <img src='assets/Fill-10.svg' className='svg-corner top-right' />
-      <img src='assets/Fill-10.svg' className='svg-corner bottom-left' />
-      <img src='assets/Fill-10.svg' className='svg-corner bottom-right' />
+      {/*<!-- SVGs en cada esquina -->*/}
+      <div className='svg-wrapper top-left'>
+        <img src='assets/Fill-10.svg' className='svg-icon' />
+      </div>
+      <div className='svg-wrapper top-right'>
+        <img src='assets/Fill-10.svg' className='svg-icon' />
+      </div>
+      <div className='svg-wrapper bottom-left'>
+        <img src='assets/Fill-10.svg' className='svg-icon' />
+      </div>
+      <div className='svg-wrapper bottom-right'>
+        <img src='assets/Fill-10.svg' className='svg-icon' />
+      </div>
+
       {/* vertices linea */}
       <span className='corner-bottom-left'></span>
       <span className='corner-bottom-right'></span>
@@ -35,7 +44,7 @@ export const CardContainer = ({ children }: CardContainerProps) => {
       <div className='bottom-left-line'></div>
       <div className='bottom-right-line'></div>
       {/* lo que se le meta dentro de app */}
-      <div className='container'>{children}</div>
+      <div className='card-content'>{children}</div>
     </div>
   );
 };
