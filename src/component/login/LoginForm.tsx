@@ -1,38 +1,47 @@
 import React, { useState } from 'react';
+import { FormEvent } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import './loginForm.css';
-import { Link } from 'react-router-dom';
+
+
+interface LocationState {
+  message?: string;
+}
 
 export const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const navigate = useNavigate();
 
-  // Obtener el estado del mensaje desde la redirección
   const location = useLocation();
-  const message = location.state?.message;
+  const state = location.state as LocationState;
+  const message = state?.message;
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('Usuario autenticado');
-      navigate('/home'); // Redirige a Home después de iniciar sesión
-    } catch (err: any) {
-      setError('Error al iniciar sesión: ' + err.message);
+      navigate('/home');
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError('Error al iniciar sesión: ' + err.message);
+      } else {
+        setError('Ocurrió un error desconocido');
+      }
     }
   };
 
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
-      {error && <p className="error-message">{error}</p>}
-      {/* Mostrar el mensaje de bienvenida si está presente */}
-      {message && <p className="success-message">{message}</p>}
+        {error && <p className="error-message">{error}</p>}
+        {message && <p className="success-message">{message}</p>}
+
         <div className="input-group">
           <label htmlFor="email">Correo electrónico:</label>
           <input

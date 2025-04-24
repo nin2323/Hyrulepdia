@@ -1,34 +1,39 @@
-import React, { useState } from 'react';
+import { useState, FormEvent, ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import './registerForm.css';
 
-export const RegisterForm: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+export const RegisterForm: FC = () => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [confirmPassword, setConfirmPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Verificar si las contraseñas coinciden
     if (password !== confirmPassword) {
       setError('Las contraseñas no coinciden');
       return;
     }
 
     try {
-      // Crear una nueva cuenta con el email y la contraseña
       await createUserWithEmailAndPassword(auth, email, password);
       console.log('Cuenta creada con éxito');
-      navigate('/login', { state: { message: 'Cuenta creada con éxito. Ahora, por favor, inicia sesión.' } }); // Redirige al login con mensaje
+      navigate('/login', {
+        state: {
+          message: 'Cuenta creada con éxito. Ahora, por favor, inicia sesión.',
+        },
+      });
     } catch (err: any) {
       setError('Error al crear la cuenta: ' + err.message);
     }
   };
+
+  const handleChange = (setter: Dispatch<SetStateAction<string>>) =>
+    (e: ChangeEvent<HTMLInputElement>) => setter(e.target.value);
 
   return (
     <div className="register-container">
@@ -41,7 +46,7 @@ export const RegisterForm: React.FC = () => {
             type="email"
             id="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={handleChange(setEmail)}
             required
           />
         </div>
@@ -52,7 +57,7 @@ export const RegisterForm: React.FC = () => {
             type="password"
             id="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={handleChange(setPassword)}
             required
           />
         </div>
@@ -63,7 +68,7 @@ export const RegisterForm: React.FC = () => {
             type="password"
             id="confirmPassword"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={handleChange(setConfirmPassword)}
             required
           />
         </div>
