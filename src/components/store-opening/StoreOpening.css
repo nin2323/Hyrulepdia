@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+
+.store-opening {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
 .hyrule-cards-wrapper {
     position: relative;
     width: 100%;
@@ -28,5 +37,24 @@
 }
 
 .hyrule-cards__textbox {
-    margin-top: 4.5rem;
+    margin-top: 3rem;
+}
+
+.hyrule-cards__textbox p {
+    align-items: center;
+    color: #7CD2FF;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 1.5rem;
+    font-weight: medium;
+    font-style: normal;
+    line-height: 2.2rem;
+}
+
+.hyrule-cards__textbox button {
+    margin-inline: 1rem;
+}
+
+.hyrule-cards__textbox span {
+    color:#ffffff;
 }

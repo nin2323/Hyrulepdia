@@ -19,24 +19,25 @@ export const StoreOpening = () => {
 
     return (
     <>
-        <div className="hyrule-cards-wrapper">
-            <img className="hyrule-cards-background" src={HyruleCardsContainer} alt="cards background" />
+        <div className='store-opening'>
+            <div className="hyrule-cards-wrapper">
+                <img className="hyrule-cards-background" src={HyruleCardsContainer} alt="cards background" />
 
-            <div className="hyrule-cards-container">
-                {cards.length === 0 ? (
-                <p>Loading cards...</p>
-                ) : (
-                cards.map((card) => <HyruleCard key={card.id} {...card} />)
-                )}
+                <div className="hyrule-cards-container">
+                    {cards.length === 0 ? (
+                    <p>Loading cards...</p>
+                    ) : (
+                    cards.map((card) => <HyruleCard key={card.id} {...card} />)
+                    )}
+                </div>
             </div>
-        </div>
             <div className='hyrule-cards__textbox'>
-                <p>Cards are savd automaticaly. You'll find your cards in your <span>COLLECTION</span></p>
+                <p>Cards are savd automaticaly. <br></br>You'll find your cards in your <span>COLLECTION</span></p>
                 <div>
                     <button>MY CARDS</button>
                     <button>UNLOCK CHESTS</button>
                 </div>
-                
+            </div>
         </div>
     </>
     )
