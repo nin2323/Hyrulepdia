@@ -1,0 +1,187 @@
+/*=== Contenedor ===*/
+.card {
+  position: relative;
+  width: clamp(280px, 90%, 500px);
+  min-height: 200px;
+  min-width: 1000px;
+  overflow: visible;
+}
+.card > div:last-child {
+  position: relative;
+  z-index: 2;
+  padding: 1.5rem;
+}
+.card-content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+  min-height: 100px;
+  box-sizing: border-box;
+}
+
+/* Fondo de imagen */
+.bg-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('images/black-background.jpg') center/cover ;
+  background-size:cover;
+  opacity: 0.2; /* Opacidad de la imagen */
+  z-index: 0;
+}
+/* Overlay de color con opacidad */
+.bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(21, 40, 55, 0.2); /* Color dorado al 20% */
+  z-index: 1;
+}
+
+/* === ESQUINAS === */
+
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  width: 1px;
+  height: 2px;
+  background-color: #e0cea0;
+}
+.card::before {
+  top: 0;
+  left: 0;
+}
+.card::after {
+  top: 0;
+  right: 0;
+}
+.corner-bottom-left,
+.corner-bottom-right {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: #e0cea0;
+}
+.corner-bottom-left {
+  bottom: 0;
+  left: 0;
+}
+.corner-bottom-right {
+  bottom: 0;
+  right: 0;
+}
+
+/* === LÍNEAS HORIZONTALES PARTIDAS === */
+
+.top-left-line,
+.top-right-line,
+.bottom-left-line,
+.bottom-right-line {
+  position: absolute;
+  height: 2px;
+  background-color: #e0cea0;
+}
+.top-left-line {
+  top: 0;
+  left: 0;
+  width: calc(50% - 50px);
+}
+.top-right-line {
+  top: 0;
+  right: 0;
+  width: calc(50% - 50px);
+}
+.bottom-left-line {
+  bottom: 0;
+  left: 0;
+  width: calc(50% - 50px);
+}
+
+.bottom-right-line {
+  bottom: 0;
+  right: 0;
+  width: calc(50% - 50px);
+}
+
+/* === LÍNEAS VERTICALES PARTIDAS === */
+
+.left-top-line,
+.left-bottom-line,
+.right-top-line,
+.right-bottom-line {
+  position: absolute;
+  width: 2px;
+  background-color: #e0cea0;
+}
+.left-top-line {
+  left: 0;
+  top: 0;
+  height: calc(50% - 50px);
+}
+.left-bottom-line {
+  left: 0;
+  bottom: 0;
+  height: calc(50% - 50px);
+}
+.right-top-line {
+  right: 0;
+  top: 0;
+  height: calc(50% - 50px);
+}
+.right-bottom-line {
+  right: 0;
+  bottom: 0;
+  height: calc(50% - 50px);
+}
+
+/* === SVG === */
+
+/* SVGs, líneas, contenido en z-index superiores */
+.svg-wrapper {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.svg-icon {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.svg-wrapper.top-left {
+  top: -10px;
+  left: -10px;
+  transform: rotate(90deg);
+}
+
+.svg-wrapper.top-right {
+  top: -10px;
+  right: -10px;
+  transform: rotate(180deg);
+}
+
+.svg-wrapper.bottom-left {
+  bottom: -10px;
+  left: -10px;
+  transform: rotate(0deg);
+}
+
+.svg-wrapper.bottom-right {
+  bottom: -10px;
+  right: -10px;
+  transform: rotate(270deg);
+}

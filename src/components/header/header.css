@@ -1,0 +1,53 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.5rem 8rem;
+  margin: 4rem 2.7rem 0rem 2.7rem;
+  background: rgba(39, 88, 128, 0.1); 
+  position: relative;
+}
+ 
+.header-logo {
+  font-size: 3.6rem;
+  text-decoration: none;
+  color: #E0CEA0;
+}
+
+.header-content {
+  display: flex;
+  gap: 10px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 2.6rem;
+  margin-right: 10rem;
+  align-items: center;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: #FFFFFF;
+  font-weight: 500;
+  font-size: 2rem;
+  font-family: 'the wild breath of Zelda';
+}
+
+nav a:hover {
+  filter: drop-shadow(0 0 1rem #FFFFFF );
+}
+
+.user-money {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.user-money p {
+  color: #FFFFFF;
+  font-size: 2rem;
+}
+
+
+
