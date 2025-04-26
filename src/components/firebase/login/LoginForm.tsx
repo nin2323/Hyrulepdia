@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { FormEvent } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig';
+import { auth } from '../../../firebaseConfig/firebaseConfig';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import './loginForm.css';
+import { Button } from '../../button/button';
+
 
 
 interface LocationState {
@@ -26,7 +28,7 @@ export const LoginForm: React.FC = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log('Usuario autenticado');
-      navigate('/home');
+      navigate('/');
     } catch (err: unknown) {
       if (err instanceof Error) {
         setError('Error al iniciar sesión: ' + err.message);
@@ -39,6 +41,7 @@ export const LoginForm: React.FC = () => {
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
         {error && <p className="error-message">{error}</p>}
         {message && <p className="success-message">{message}</p>}
 
@@ -64,7 +67,7 @@ export const LoginForm: React.FC = () => {
           />
         </div>
 
-        <button type="submit" className="login-button">Iniciar sesión</button>
+        <Button>Iniciar sesión</Button>
         <p className="switch-form">
           ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
         </p>

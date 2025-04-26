@@ -1,8 +1,9 @@
 import { useState, FormEvent, ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseConfig';
+import { auth } from '../../../firebaseConfig/firebaseConfig';
 import { useNavigate } from 'react-router-dom';
 import './registerForm.css';
+import { Button } from '../../button/button';
 
 export const RegisterForm: FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -38,7 +39,7 @@ export const RegisterForm: FC = () => {
   return (
     <div className="register-container">
       <form className="register-form" onSubmit={handleSubmit}>
-        <h2>Crear cuenta</h2>
+        <h2>Register</h2>
 
         <div className="input-group">
           <label htmlFor="email">Correo electrónico:</label>
@@ -75,7 +76,7 @@ export const RegisterForm: FC = () => {
 
         {error && <p className="error-message">{error}</p>}
 
-        <button type="submit" className="register-button">Crear cuenta</button>
+        <Button>Crear cuenta</Button>
       </form>
     </div>
   );

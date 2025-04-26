@@ -13,7 +13,7 @@ import { getAuth } from "firebase/auth";
 };
 
 // Inicializar la app
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
 // Exportar servicios
 export const db = getFirestore(app);
