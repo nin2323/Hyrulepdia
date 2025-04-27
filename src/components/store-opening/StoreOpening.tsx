@@ -26,7 +26,7 @@ export const StoreOpening = () => {
 
                 <div className="hyrule-cards-container">
                     {cards.length === 0 ? (
-                    <p>Loading cards...</p>
+                    <p className='hyrule-cards-container__loading-info'>Loading cards...</p>
                     ) : (
                     cards.map((card) => <HyruleCard key={card.id} {...card} />)
                     )}

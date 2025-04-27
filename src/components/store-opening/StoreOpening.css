@@ -38,6 +38,12 @@
     justify-content: center;
 }
 
+.hyrule-cards-container__loading-info {
+    color: #f5e5c0;
+    font-family: "Geist", sans-serif;
+    font-size: 1.8rem;
+}
+
 .hyrule-cards__textbox {
     margin-top: 1rem;
     text-align: center;
