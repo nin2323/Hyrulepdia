@@ -20,3 +20,8 @@ export interface HyruleDataType {
     image: string;
     name: string;
 }
+
+export interface ChestButtonType {
+    rarity: 'common' | 'rare' | 'epic';
+    price: number;
+}

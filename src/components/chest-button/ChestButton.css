@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
+.chest-button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 23.375rem;
+    height: 40.5rem;
+}
+
+.chest-button h1, h2{
+    color: #ffffff;
+    text-align: center;
+    font-weight: 200;
+    letter-spacing: 0.05rem;
+    font-size: 2rem;
+}
+
+.chest-button__span {
+    color: #f5e5c0;
+    text-align: center;
+}
+
+.chest-button__img {
+    width: 25rem;
+    height: 25rem;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    object-fit: cover;
+}
+
+.chest-button__text h3 {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 400;
+    color: #ffffff;
+    font-family: "Geist", sans-serif;
+}
+
+.chest-button__text__common {
+    color: #f5e5c0;
+}
+
+.chest-button__text__rare {
+    color: #7CD2FF;
+}
+
+.chest-button__text__epic {
+    color: #BA6ED5;
+}
