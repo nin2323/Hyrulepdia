@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { ChestButtonType } from "../../types/hyrule.types"
 import { Button } from "../button/button"
 import { ChestButton } from "../chest-button/ChestButton"
@@ -12,14 +13,13 @@ type StorePurchaseProps = {
 };
 
 export const StorePurchase = ({selectedChest, onOpen}: StorePurchaseProps) => {
+    const navigate = useNavigate();
     if (!selectedChest) return null
     const {rarity, price} = selectedChest;
-
-    
     
     return (
             <div className="store-purchase">
-                <Button>BACK</Button>
+                <Button onClick={() => navigate(-1)}>BACK</Button>
                 <Button color='secondary' onClick={onOpen}>OPEN</Button>
                 {/* Pasamos los datos al ChestButton */}
                 <ChestButton rarity={rarity} price={price} />
