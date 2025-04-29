@@ -4,7 +4,7 @@ import { App } from './App.tsx'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import { CollectionPage } from './views/CollectionPage.tsx';
 import { PorfilePage } from './views/ProfilePage.tsx';
-import { ShopPage } from './views/ShopPage.tsx';
+import { ShopPage } from './views/StorePage/ShopPage.tsx';
 import { HomePage } from './views/HomePage.tsx';
 import { AuthProvider } from './context/authContext.tsx';
 import { LoginForm } from './components/firebase/login/LoginForm.tsx';

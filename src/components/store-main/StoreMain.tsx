@@ -11,8 +11,8 @@ export const StoreMain = () => {
                 <ChestButton rarity="epic" price={500} />
             </div>
             <div className='store-main__textbox'>
-                <p className='store-main__text'>Select a chest to continue...</p>
-                <div className='hyrule-cards__textbox__buttons'>
+                <p className='store-main__textbox__text'>Select a chest to continue...</p>
+                <div className='store-main__textbox__buttons'>
                     <Button>COLLECTION</Button>
                     <Button>MORE GEMS</Button>
                 </div>
