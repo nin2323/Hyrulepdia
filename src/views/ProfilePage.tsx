@@ -1,5 +1,5 @@
-export const PorfilePage = () => {
-    return (
-        <div></div>
-    )
-}
+import { Footer } from '../components/footer/footer';
+
+export const ProfilePage = () => {
+  return <div></div>;
+};

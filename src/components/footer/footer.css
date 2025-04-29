@@ -1,0 +1,38 @@
+/*ELEMENTOS NECESARIOS PARA QUE EL FOOTER ESTE ABAJO*/
+/* {
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Geist;
+}
+body {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  min-height: 100vh;
+}*/
+.footer {
+  color: white;
+  width: 100%;
+  position: relative;
+  padding: 25px 4vw 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 52.76vw; /* espacio entre copyright y bloque de links */
+}
+
+/* Espacio entre cada link dentro del bloque */
+.footerLinks {
+  display: flex;
+  gap: 1.354vw;
+}
+
+.footerLink {
+  font-size: 16px;
+  text-decoration: none;
+  color: white;
+}
+
+.copyRight {
+  font-size: 16px;
+}
