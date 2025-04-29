@@ -19,7 +19,7 @@ export const StorePurchase = ({selectedChest, onOpen}: StorePurchaseProps) => {
     
     return (
             <div className="store-purchase">
-                <Button onClick={() => navigate(-1)}>BACK</Button>
+                <Button onClick={() => navigate('/shop')}>BACK</Button>
                 <Button color='secondary' onClick={onOpen}>OPEN</Button>
                 {/* Pasamos los datos al ChestButton */}
                 <ChestButton rarity={rarity} price={price} />

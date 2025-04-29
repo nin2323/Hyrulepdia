@@ -3,11 +3,10 @@ import { useLocation } from "react-router-dom"
 
 export const ShopOpening = () => {
     const location = useLocation();
-    const chest : 'common' | 'rare' | 'epic' = location.state.rarity; 
 
     return (
         <>
-            <StoreOpening rarity={chest}/>
+            <StoreOpening cards={location.state}/>
         </>
     )
 }

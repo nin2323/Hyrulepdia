@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StorePurchase } from "../../components/store-purchase/StorePurchase"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useLocation, useNavigate} from "react-router-dom"
+import { getRandomHyruleData } from "../../services/hyrule-card.service";
 
 export const ShopPurchase = () =>{
+    const [loading, setLoading] = useState<boolean>(false)
     const location = useLocation();
     const navigate = useNavigate();
     const selectedChest = location.state; //aqui es donde se guarda rarity y price de StoreMain
@@ -11,13 +13,18 @@ export const ShopPurchase = () =>{
     useEffect( () =>{
         if (!selectedChest) navigate('/shop')
     }, [] )
-    
 
-    const handleOpen = () => { //esta función hace que te lleve a ShopOpening
-        navigate('/opening', {state: selectedChest});
+    const handleOpen = async() => { //esta función hace que te lleve a ShopOpening
+        setLoading(true);
+        const result = await getRandomHyruleData(3, selectedChest.rarity);
+        if (result) {
+            navigate('/opening', { state: result });
+        }
     };
 
         return (
-                <StorePurchase selectedChest={selectedChest} onOpen={handleOpen}/>
+            <>
+                { !loading && <StorePurchase selectedChest={selectedChest} onOpen={handleOpen}/>}
+            </>
         );
 };
