@@ -6,13 +6,16 @@ import { HyruleCard } from "../hyrule-card/HyruleCard";
 import { CardContainer } from '../CardContainer/CardContainer';
 import { Button } from '../button/button';
 
+type ChestRarity = {
+    rarity: 'common' | 'rare' | 'epic';
+}
 
-export const StoreOpening = () => {
+export const StoreOpening = ({rarity}: ChestRarity) => {
     const [cards, setCards] = useState<HyruleCardType[]>([]);
 
     useEffect(() => { //se ejecuta una vez al mostrarse el componente, el array de dependencias está vacío
         const fetchCards = async () => { //la función fetchCards, asíncrona se encarga de llamar a la api y guardar los datos en el estado cards
-            const result = await getRandomHyruleData(3);
+            const result = await getRandomHyruleData(3, rarity );
             if (result) setCards(result); //si la función devuelve algo, guardamos las cartas en el estado
         };
         fetchCards();

@@ -1,11 +1,21 @@
 import { HyruleDataType, HyruleCardType } from "../types/hyrule.types"
 
 //Esta función se usa para que se le asigne un tipo de rareza a cada carta
-const getRandomRarity = () : 'common' | 'rare' | 'epic' => {
+const getRandomRarity = (chestRarity : 'common' | 'rare' | 'epic' ) : 'common' | 'rare' | 'epic' => {
     const rand = Math.random();
-    if(rand < 0.05) return 'epic'; //5%
-    if (rand < 0.30) return 'rare'; //25%
-    return 'common'; //70%
+    if (chestRarity === 'common') {
+        if(rand < 0.80) return 'common'; //80%
+        if (rand < 0.95) return 'rare'; //15%
+        return 'epic'; //5%
+    } else if (chestRarity === 'rare') {
+        if(rand < 0.70) return 'common'; //70%
+        if (rand < 0.95) return 'rare'; //25%
+        return 'epic'; //5%
+    } else {
+        if(rand < 0.55) return 'common'; //55%
+        if (rand < 0.80) return 'rare'; //25%
+        return 'epic'; //15%
+    }
 }
 
 //Esta función asigna puntos según la rareza
@@ -33,8 +43,8 @@ const getAllHyruleData = async() : Promise<HyruleDataType[] | undefined> => {
     }
 };
 
-//Esta función baraja los objetos que devuelve la api y devuelve 3 aleatorios
-export const getRandomHyruleData = async( num : number = 3 ) : Promise< HyruleCardType[] | undefined> => {
+//Esta función baraja los objetos que devuelve la api y devuelve 3 aleatorios, se le pasa chestRarity para saber que tipo de probabilidades debe sacar
+export const getRandomHyruleData = async( num : number = 3, chestRarity: 'common' | 'rare' | 'epic' ) : Promise< HyruleCardType[] | undefined> => {
     const allData = await getAllHyruleData();
     if (!allData) return;
 
@@ -43,7 +53,7 @@ export const getRandomHyruleData = async( num : number = 3 ) : Promise< HyruleCa
 
      // Seleccionamos los primeros `num` elementos
     const selected: HyruleCardType[] =  shuffled.slice(0, num).map((item) => { //el map se usa para transformar cada elemento del array original en un nuvo objeto con una forma diferente: HyruleCardType.
-        const rarity = getRandomRarity();
+        const rarity = getRandomRarity(chestRarity);
 
         //para que los textos tengan máximo 130 caracteres incluyendo espacios y signos
         const trimmedDescription = item.description.length > 130
@@ -55,7 +65,7 @@ export const getRandomHyruleData = async( num : number = 3 ) : Promise< HyruleCa
             name: item.name,
             image: item.image,
             description: trimmedDescription,
-            location: item.common_locations?.join(', ') || "Unknown",
+            location: item.common_locations?.join(', ') || "Unknown", //une las locations, si no hay pone unknown
             items: item.drops?.join(', ') || "None",
             category: item.category as HyruleCardType['category'],
             rarity,
