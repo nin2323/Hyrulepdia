@@ -1,10 +1,10 @@
 /*=== Contenedor ===*/
 .card {
   position: relative;
-  width: clamp(280px, 90%, 500px);
+  width: clamp(280px, 90%, 1000px);
   min-height: 200px;
-  min-width: 1000px;
   overflow: visible;
+  border-radius: 6px; /* opcional suavizado */
 }
 .card > div:last-child {
   position: relative;
@@ -14,15 +14,14 @@
 .card-content {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
   padding: 1rem;
   position: relative;
   z-index: 2;
-  min-height: 100px;
   box-sizing: border-box;
+  min-height: 100px;
 }
 
 /* Fondo de imagen */

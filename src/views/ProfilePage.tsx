@@ -1,5 +1,9 @@
+import { CardContainer } from '../components/CardContainer/CardContainer';
+
 export const PorfilePage = () => {
-    return (
-        <div></div>
-    )
-}
+  return (
+    <div>
+      <CardContainer />
+    </div>
+  );
+};
