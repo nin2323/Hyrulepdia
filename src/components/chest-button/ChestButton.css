@@ -12,8 +12,17 @@
 }
 
 .chest-button:hover {
-    transform: scale(1.1);
+    transform: scale(1.06);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.chest-button__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .chest-button h1, h2{

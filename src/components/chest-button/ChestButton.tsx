@@ -4,6 +4,7 @@ import commonChest from '../../assets/chests/chest-common.svg'
 import rareChest from '../../assets/chests/chest-rare.svg'
 import epicChest from '../../assets/chests/chest-epic.svg'
 import rupiaIcon from '../../assets/rupia-icon.png'
+import { CardContainer } from "../CardContainer/CardContainer"
 
 //para que cambie la descripción según el tipo de cofre
 const displayDescription = (rarity: ChestButtonType['rarity']) => {
@@ -49,19 +50,20 @@ export const ChestButton = ({
     console.log(rarity, price)
 
     return (
-        <div className="chest-button">
-            <h1>
-                CHEST
-                <br />
-                {displayRarity(rarity)}
-            </h1>
-            {displayChestType(rarity)}
-            <h2>{price} <span><img src={rupiaIcon} alt={rupiaIcon}></img></span></h2>
-            <div className="chest-button__text">
-                {displayDescription(rarity)}
+        <CardContainer className='chest-button'>
+            <div className='chset-button__contnt'>
+                <h1>
+                    CHEST
+                    <br />
+                    {displayRarity(rarity)}
+                </h1>
+                {displayChestType(rarity)}
+                <h2>{price} <span><img src={rupiaIcon} alt={rupiaIcon}></img></span></h2>
+                <div className="chest-button__text">
+                    {displayDescription(rarity)}
+                </div>
             </div>
-        </div>
-
+        </CardContainer>
     );
     
 }
