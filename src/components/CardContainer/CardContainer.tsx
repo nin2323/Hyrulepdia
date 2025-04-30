@@ -6,14 +6,16 @@ import './CardContainer.css';
 //CardContainer ej:<h1> HOLA {string dentro del tsx} </h1>
 interface CardContainerProps {
   children?: React.ReactNode;
+  className?: string;
+  colorClass?: string;
 }
 
 //Children representa cualquier contenido entre las etiquetas del componente.
 //En typescript estoy usando CardContainerProps como tipo
-export const CardContainer = ({ children }: CardContainerProps) => {
+export const CardContainer = ({ children, className }: CardContainerProps) => {
   return (
     //CONTENEDOR CARTA
-    <div className='card'>
+    <div className={`card ${className}`}>
       {/* imagen y color contenedor */}
       <div className='bg-image'></div>
       <div className='bg-overlay'></div>
