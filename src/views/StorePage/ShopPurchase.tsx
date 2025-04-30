@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { StorePurchase } from "../../components/store-purchase/StorePurchase"
 import { useLocation, useNavigate} from "react-router-dom"
 import { getRandomHyruleData } from "../../services/hyrule-card.service";
+import './ShopPurchase.css'
 
 export const ShopPurchase = () =>{
     const [loading, setLoading] = useState<boolean>(false)
@@ -24,7 +25,9 @@ export const ShopPurchase = () =>{
 
         return (
             <>
-                { !loading && <StorePurchase selectedChest={selectedChest} onOpen={handleOpen}/>}
+                { loading 
+                ? <h1 className='loading-text'>Loading cards...</h1>
+                : <StorePurchase selectedChest={selectedChest} onOpen={handleOpen}/>}
             </>
         );
 };
