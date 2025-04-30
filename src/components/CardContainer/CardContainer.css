@@ -1,10 +1,10 @@
 /*=== Contenedor ===*/
 .card {
   position: relative;
-  width: clamp(280px, 90%, 500px);
+  width: clamp(280px, 90%, 1000px);
   min-height: 200px;
-  min-width: 1000px;
   overflow: visible;
+  border-radius: 6px; /* opcional suavizado */
 }
 .card > div:last-child {
   position: relative;
@@ -14,15 +14,14 @@
 .card-content {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
   justify-content: flex-start;
   align-items: flex-start;
   gap: 1rem;
   padding: 1rem;
   position: relative;
   z-index: 2;
-  min-height: 100px;
   box-sizing: border-box;
+  min-height: 100px;
 }
 
 /* Fondo de imagen */
@@ -95,23 +94,23 @@
 .top-left-line {
   top: 0;
   left: 0;
-  width: calc(50% - 50px);
+  width: calc(50% - 100px);
 }
 .top-right-line {
   top: 0;
   right: 0;
-  width: calc(50% - 50px);
+  width: calc(50% - 100px);
 }
 .bottom-left-line {
   bottom: 0;
   left: 0;
-  width: calc(50% - 50px);
+  width: calc(50% - 100px);
 }
 
 .bottom-right-line {
   bottom: 0;
   right: 0;
-  width: calc(50% - 50px);
+  width: calc(50% - 100px);
 }
 
 /* === LÍNEAS VERTICALES PARTIDAS === */
@@ -127,22 +126,22 @@
 .left-top-line {
   left: 0;
   top: 0;
-  height: calc(50% - 50px);
+  height: calc(50% - 25px);
 }
 .left-bottom-line {
   left: 0;
   bottom: 0;
-  height: calc(50% - 50px);
+  height: calc(50% - 25px);
 }
 .right-top-line {
   right: 0;
   top: 0;
-  height: calc(50% - 50px);
+  height: calc(50% - 25px);
 }
 .right-bottom-line {
   right: 0;
   bottom: 0;
-  height: calc(50% - 50px);
+  height: calc(50% - 25px);
 }
 
 /* === SVG === */
@@ -150,8 +149,8 @@
 /* SVGs, líneas, contenido en z-index superiores */
 .svg-wrapper {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   z-index: 3;
   pointer-events: none;
 }

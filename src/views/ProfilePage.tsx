@@ -1,9 +1,9 @@
-import './ProfilePage.css'
-
+import { CardContainer } from '../components/CardContainer/CardContainer';
 
 export const PorfilePage = () => {
-    return (
-        <>
-        </>
-    )
-}
+  return (
+    <div>
+      <CardContainer />
+    </div>
+  );
+};
