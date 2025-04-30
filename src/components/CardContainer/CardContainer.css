@@ -93,23 +93,23 @@
 .top-left-line {
   top: 0;
   left: 0;
-  width: calc(50% - 50px);
+  width: calc(50% - 100px);
 }
 .top-right-line {
   top: 0;
   right: 0;
-  width: calc(50% - 50px);
+  width: calc(50% - 100px);
 }
 .bottom-left-line {
   bottom: 0;
   left: 0;
-  width: calc(50% - 50px);
+  width: calc(50% - 100px);
 }
 
 .bottom-right-line {
   bottom: 0;
   right: 0;
-  width: calc(50% - 50px);
+  width: calc(50% - 100px);
 }
 
 /* === LÍNEAS VERTICALES PARTIDAS === */
@@ -125,22 +125,22 @@
 .left-top-line {
   left: 0;
   top: 0;
-  height: calc(50% - 50px);
+  height: calc(50% - 25px);
 }
 .left-bottom-line {
   left: 0;
   bottom: 0;
-  height: calc(50% - 50px);
+  height: calc(50% - 25px);
 }
 .right-top-line {
   right: 0;
   top: 0;
-  height: calc(50% - 50px);
+  height: calc(50% - 25px);
 }
 .right-bottom-line {
   right: 0;
   bottom: 0;
-  height: calc(50% - 50px);
+  height: calc(50% - 25px);
 }
 
 /* === SVG === */
@@ -148,8 +148,8 @@
 /* SVGs, líneas, contenido en z-index superiores */
 .svg-wrapper {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   z-index: 3;
   pointer-events: none;
 }
