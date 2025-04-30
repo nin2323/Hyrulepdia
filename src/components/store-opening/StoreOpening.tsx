@@ -31,7 +31,7 @@ export const StoreOpening = ({cards}: storeOpening) => {
                 <p>Cards are savd automaticaly. <br></br>You'll find your cards in your <span>COLLECTION</span></p>
                 <div className='hyrule-cards__textbox__buttons'>
                     <Button onClick={() => navigate('/collection')}>MY CARDS</Button>
-                    <Button>UNLOCK CHESTS</Button>
+                    <Button onClick={() => navigate('/shop')}>UNLOCK CHESTS</Button>
                 </div>
             </div>
         </div>
