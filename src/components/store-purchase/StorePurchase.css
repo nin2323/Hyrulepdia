@@ -7,7 +7,13 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 3rem
+    gap: 3.5rem
+}
+
+/* sobrescribe el ancho y alto definidos en ChestButton.css (width: 23.375rem; height: 40.5rem) solo en esta pantalla, sin afectar otras. */
+.store-purchase__chest .chest-button {
+    width: 25rem;
+    height: 41rem;
 }
 
 .store-purchase__info {
