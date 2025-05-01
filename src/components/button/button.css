@@ -304,3 +304,119 @@
 .button-container:has(.button.disabled) {
     cursor: not-allowed;
 }
+
+/* Button-collection */
+
+.button.outlined::before {
+    background-image: none;
+}
+
+.button.outlined {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.26);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/*  BORDES VERTICALES  */
+  
+/* Derecha: arriba y abajo */
+.button.outlined .right-line-top,
+.button.outlined .right-line-bottom {
+    position: absolute;
+    right: 0;
+    width: 1px;
+    height: 25%;
+    background-color: #7CD2FF;
+}
+
+.button.outlined .left-line-top,
+.button.outlined .left-line-bottom {
+    position: absolute;
+    left: 0;
+    width: 1px;
+    height: 25%;
+    background-color: #7CD2FF;
+}
+
+.button.outlined .right-line-top, 
+.button.outlined .left-line-top {
+    top: 0;
+}
+
+.button.outlined .right-line-bottom,
+.button.outlined .left-line-bottom  {
+    bottom: 0;
+}
+
+/*  BORDES HORIZONTALES  */
+
+/* Top left */
+.button.outlined .top-line-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 18%; /* no llega al centro */
+    height: 1px;
+    background-color: #7CD2FF;
+}
+
+/* Top right */
+.button.outlined .top-line-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 18%;
+    height: 1px;
+    background-color: #7CD2FF;
+}
+
+/* Bottom left */
+.button.outlined .bottom-line-left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 18%;
+    height: 1px;
+    background-color: #7CD2FF;
+}
+
+/* Bottom right */
+.button.outlined .bottom-line-right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 18%;
+    height: 1px;
+    background-color: #7CD2FF;
+}
+
+.button.outlined:hover {
+    box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.7);
+}
+
+.bottom-line-right,
+.bottom-line-left,
+.top-line-right,
+.top-line-left,
+.right-line-top,
+.right-line-bottom,
+.left-line-top,
+.left-line-bottom {
+  transition: width 0.3s ease-in-out, height 0.3s ease-in-out;
+}
+
+  .button.outlined:hover .bottom-line-right,
+  .button.outlined:hover .bottom-line-left,
+  .button.outlined:hover .top-line-right,
+  .button.outlined:hover .top-line-left {
+    width: 50%;
+    box-shadow: white;
+  }
+
+
+  .button.outlined:hover .right-line-top,
+  .button.outlined:hover .right-line-bottom,
+  .button.outlined:hover .left-line-top,
+  .button.outlined:hover .left-line-bottom {
+    height: 50%;
+  }

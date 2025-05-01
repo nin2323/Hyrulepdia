@@ -7,9 +7,7 @@ import { NavLink } from "react-router-dom"
 export const HomePage = () => {
     return (
         <div>
-            <Button size="lg">Button Bigger</Button>
-            <Button>Button</Button>
-            <Button component={NavLink} size="sm" to="/shop">Go to Store</Button>
+            <Button color="outlined">Button Bigger</Button>
         </div>
     )
 }
