@@ -1,5 +1,5 @@
 import { CollectionAll } from "../components/collectionAll/CollectionAll"
-import '../components/collectionAll/collectionAll.css'
+import '../components/collectionAll/collection-all.css'
 
 export const CollectionPage = () => {
     return (
