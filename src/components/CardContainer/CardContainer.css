@@ -46,6 +46,16 @@
   z-index: 1;
 }
 
+/* === TEMA: DORADO === (por defecto en .card) */
+.card {
+  --line-color: #e0cea0;
+}
+
+/* === TEMA: AZUL === */
+.card.blue-theme {
+  --line-color: #00aaff;
+}
+
 /* === ESQUINAS === */
 
 .card::before,
@@ -54,7 +64,7 @@
   position: absolute;
   width: 1px;
   height: 2px;
-  background-color: #e0cea0;
+  background-color: var(--line-color);
 }
 .card::before {
   top: 0;
@@ -69,7 +79,7 @@
   position: absolute;
   width: 2px;
   height: 2px;
-  background-color: #e0cea0;
+  background-color: var(--line-color);
 }
 .corner-bottom-left {
   bottom: 0;
@@ -88,7 +98,7 @@
 .bottom-right-line {
   position: absolute;
   height: 2px;
-  background-color: #e0cea0;
+  background-color: var(--line-color);
 }
 .top-left-line {
   top: 0;
@@ -120,7 +130,7 @@
 .right-bottom-line {
   position: absolute;
   width: 2px;
-  background-color: #e0cea0;
+  background-color: var(--line-color);
 }
 .left-top-line {
   left: 0;
