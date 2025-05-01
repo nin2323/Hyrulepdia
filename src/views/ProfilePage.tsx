@@ -1,4 +1,3 @@
-import { CardContainer } from '../components/CardContainer/CardContainer';
 import { UserProfileEditor } from '../components/firebase/user-profile/UserProfileEditor';
 export const PorfilePage = () => {
   return (
