@@ -1,0 +1,12 @@
+.collection-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-items: center;
+    gap: 6rem;
+    padding: 44px;
+}
+
+.hyrule-card__border:hover {
+    cursor: pointer;
+}

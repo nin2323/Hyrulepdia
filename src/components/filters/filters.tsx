@@ -15,7 +15,7 @@ export type Props = {
     onFilterCategoriaChange: (categoria: Category | "") => void;
 };
 
-export const ClaseList: FC<Props> = ({ onFilterRarityChange, onFilterCategoriaChange }) => {
+export const Filters: FC<Props> = ({ onFilterRarityChange, onFilterCategoriaChange }) => {
   return (
     <>
     <div className="">

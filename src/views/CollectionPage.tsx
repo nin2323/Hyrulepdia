@@ -1,5 +1,10 @@
+import { CollectionAll } from "../components/collectionAll/CollectionAll"
+import '../components/collectionAll/collectionAll.css'
+
 export const CollectionPage = () => {
     return (
-        <div></div>
+        <div>
+            <CollectionAll/>
+        </div>
     )
 }
