@@ -1,0 +1,32 @@
+.popup-gems-info {
+    position:fixed;
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    background-color: #3333336d;
+}
+
+.popup-gems-info__content {
+    font-family: Arial, sans-serif; 
+    font-size: 1.5rem;
+    background: none;
+    color: #7CD2FF;
+    border-radius: 8px;
+    margin-inline: 0.2rem;
+    background-color: rgba(19, 22, 27, 1);
+    padding: 4rem;
+    align-items: center;
+    box-shadow: 0px 0px 150.2px 0px rgba(83, 172, 255, 0.70);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto; /* como en position absolute no se puede alinear al top y al bottom a la vez, lo centra */
+    min-height: 40%;
+    height: auto;
+    max-width: 50%;
+    line-height: 80px;
+    height: fit-content; /* para centrar si no tiene ninguna etiqueta dentro del div */
+}
