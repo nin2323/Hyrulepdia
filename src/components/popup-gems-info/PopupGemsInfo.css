@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
+
 .popup-gems-info {
     position:fixed;
     top: 0;
@@ -8,6 +10,12 @@
 }
 
 .popup-gems-info__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
     font-family: Arial, sans-serif; 
     font-size: 1.5rem;
     background: none;
@@ -25,8 +33,55 @@
     right: 0;
     margin: auto; /* como en position absolute no se puede alinear al top y al bottom a la vez, lo centra */
     min-height: 40%;
+    max-height: 70%;
     height: auto;
-    max-width: 50%;
+    min-width: 50%;
+    max-width: 70%;
     line-height: 80px;
     height: fit-content; /* para centrar si no tiene ninguna etiqueta dentro del div */
+}
+
+.popup-gems-info__gem-guide {
+    display: flex;
+    gap: 4rem;
+    flex-direction: row;
+}
+
+.popup-gems-info__content h1 {
+    font-weight: 200;
+    line-height: 3.2rem;
+    color: #275880;
+}
+
+.popup-gems-info__content span {
+    font-weight: 200;
+    line-height: 3.2rem;
+    color: #f5e5c0;
+}
+
+.popup-gems-info__content h2 {
+    line-height: 3.5rem;
+    color: #275880;
+    font-size: 2.1rem;
+}
+
+.popup-gems-info__content p {
+    font-family: "Geist", sans-serif;
+    font-size: 1.4rem;
+}
+
+.popup-gems-info__gem-guide p {
+    line-height: 2rem;
+}
+
+.popup-gems-info__gem-guide__quests h2 {
+    color: #f5e5c0;
+}
+
+.popup-gems-info__gem-guide__battel {
+    margin-top: 1.5rem;
+}
+
+.popup-gems-info__gem-guide__battel p {
+    line-height: 2rem;
 }
