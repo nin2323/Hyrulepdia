@@ -5,6 +5,7 @@ export const PorfilePage = () => {
     <div>
       <h1>Perfil</h1>
       <UserProfileEditor />
+      <CardContainer className='blue-theme'></CardContainer>
     </div>
   );
 };
