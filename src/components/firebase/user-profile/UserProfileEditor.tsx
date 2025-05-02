@@ -13,7 +13,7 @@ export const UserProfileEditor = () => {
   const [displayName, setDisplayName] = useState('');
   const [photoURL, setPhotoURL] = useState('');
   const [oneLiner, setOneLiner] = useState('');
-  const [coins, setCoins] = useState(0);
+  const [gems, setGems] = useState(0);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState(''); // Mensaje de éxito o error
@@ -34,7 +34,7 @@ export const UserProfileEditor = () => {
       if (snapshot.exists()) {
         const data = snapshot.data();
         setOneLiner(data.oneLiner || '');
-        setCoins(data.coins || 0);
+        setGems(data.gems || 0);
       }
     };
 
@@ -66,7 +66,7 @@ export const UserProfileEditor = () => {
 
       // Actualizamos los datos en Firestore
       const docRef = doc(db, 'users', user.uid);
-      await updateDoc(docRef, { oneLiner, coins });
+      await updateDoc(docRef, { oneLiner, gems });
 
       // Mostramos mensaje de éxito
       setMessage('Perfil actualizado correctamente ✅');
@@ -104,11 +104,14 @@ export const UserProfileEditor = () => {
       <label>One-liner:</label>
       <input value={oneLiner} onChange={(e) => setOneLiner(e.target.value)} />
 
-      <label>Coins:</label>
+      <label>gems:</label>
       <input
         type='number'
-        value={coins}
-        onChange={(e) => setCoins(parseInt(e.target.value, 10))}
+        value={gems}
+        onChange={(e) => {
+          const value = e.target.value;
+          setGems(value === '' ? 0 : parseInt(value, 10));
+        }}
       />
 
       <button type='submit'>Guardar cambios</button>
