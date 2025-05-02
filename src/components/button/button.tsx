@@ -2,7 +2,7 @@ import { ComponentType, ReactNode, ButtonHTMLAttributes, JSX } from "react";
 import './button.css'
 import classNames from "classnames";
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children?: ReactNode;
     color?: 'primary' | 'secondary' | 'error' | 'succes' | 'info' | 'warning' | 'outlined';
     size?: 'sm' | 'md' | 'lg';
