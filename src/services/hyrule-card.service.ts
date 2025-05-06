@@ -1,4 +1,6 @@
 import { HyruleDataType, HyruleCardType } from "../types/hyrule.types"
+import { auth, db } from "../firebaseConfig/firebaseConfig";
+import { collection, addDoc, doc } from "firebase/firestore";
 
 //Esta función se usa para que se le asigne un tipo de rareza a cada carta
 const getRandomRarity = (chestRarity : 'common' | 'rare' | 'epic' ) : 'common' | 'rare' | 'epic' => {
@@ -86,6 +88,17 @@ export const getRandomHyruleData = async( num : number = 3, chestRarity: 'common
             points: getPointsByRarity(rarity),
         };
     });
+
+    //guardar en firestore bajo el usuario autenticado
+    const user = auth.currentUser;
+    if (user) {
+    const userCardsRef = collection(doc(db, "users", user.uid), "hyrule_cards");
+    for (const card of selected) {
+        await addDoc(userCardsRef, card);
+    }
+    } else {
+    console.warn("Unauthenticated user. No cards saved.");
+    }
 
     return selected;
 };
