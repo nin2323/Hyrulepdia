@@ -7,7 +7,7 @@ export const PorfilePage = () => {
   return (
     <div>
       <h1>Perfil</h1>
-      <PoputContainer />
+      <UserProfileEditor />
     </div>
   );
 };
