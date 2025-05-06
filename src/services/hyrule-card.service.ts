@@ -61,14 +61,14 @@ export const getRandomHyruleData = async( num : number = 3, chestRarity: 'common
             : item.description;
 
         //Para acortar locations si hay mas de 4
-        const trimmedLocations = item.common_locations
+        const trimmedLocations = item.common_locations && item.common_locations.length > 0
             ? item.common_locations.length > 3
                 ? item.common_locations.slice(0, 3).join(', ') + ', ...'
                 : item.common_locations.join(', ')
             : 'Unknown';
 
         //para acortar drop items si hay más de 4
-        const trimmedDrops = item.drops
+        const trimmedDrops = item.drops && item.drops.length > 0
             ? item.drops.length > 3
                 ? item.drops.slice(0, 3).join(', ') + ', ...'
                 : item.drops.join(', ')
