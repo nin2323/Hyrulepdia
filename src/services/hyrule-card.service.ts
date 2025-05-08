@@ -90,14 +90,14 @@ export const getRandomHyruleData = async( num : number = 3, chestRarity: 'common
     });
 
     //guardar en firestore bajo el usuario autenticado
-    const user = auth.currentUser;
-    if (user) {
-    const userCardsRef = collection(doc(db, "users", user.uid), "hyrule_cards");
-    for (const card of selected) {
-        await addDoc(userCardsRef, card);
+    const user = auth.currentUser; //Accede al usuario actualmente autenticado mediante Firebase Authentication
+    if (user) { //si existe un usuario autenticado siguie con el guardado, si no lanza un warn
+    const userCardsRef = collection(doc(db, "users", user.uid), "hyrule_cards"); //doc(db, "users", user.uid)accede al documento del usuario actual dentro de la colección users, collection(..., "hyrule_cards") Dentro del documento del usuario, accede o crea una subcolección llamada hyrule_cards.
+    for (const card of selected) { //Recorre el array selected (las cartas generadas). Por cada carta añadae la carta como un nuevo doc dentro de la colección hyrule_cards. 
+        await addDoc(userCardsRef, card); //Espera a que cada documento se guarde antes de seguir con la siguiente.
     }
     } else {
-    console.warn("Unauthenticated user. No cards saved.");
+    console.warn("Unauthenticated user. No cards saved."); //Si no hay un usuario autenticado, muestra un mensaje de advertencia 
     }
 
     return selected;
