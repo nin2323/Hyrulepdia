@@ -83,6 +83,7 @@
     height: 68px;
     padding: 0 30px;
     font-size: 24px;
+    min-width: 280px;
 
     & .button-corner {
         width: 24px;
@@ -313,7 +314,7 @@
 
 .button.outlined {
     color: white;
-    background-color: rgba(0, 0, 0, 0.26);
+    background-color: #111e2c;
     transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -436,7 +437,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 6px; 
-    margin-top: 16px;
     opacity: 0;
     transform: translateY(-10px);
     visibility: hidden;
@@ -458,6 +458,7 @@
     border: 1px solid #7CD2FF; 
     color: white; 
     padding: 8px 16px; 
+    margin-top: 16px;
     text-align: center;
     font-size: 14px; 
     cursor: pointer;
@@ -477,3 +478,4 @@
   .dropdown-icon {
     margin-left: 10px;
   }
+

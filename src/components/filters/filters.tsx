@@ -1,47 +1,43 @@
-import { FC } from "react";
+import { Button } from "../button/button";
+import { DropDownButton } from "../button/DropDownButton";
+import { SearchBar } from "../searchBar/SearchBar";
+import './filters.css'
 
 export type Rareza = "common" | "rare" | "epic";
 export type Category = "creatures" | "equipment" | "materials" | "monsters" | "treasure" | "";
 
-export interface HyruleCardTypeFilters {
-    id: string;
-    name: string;
-    rarity: "common" | "rare" | "epic";
-    category: Category;
+interface FiltersProps {
+  onFilterTypesChange?: (rarity: string) => void;
+  onFilterCategoryChange?: (category: string) => void;
+  onSearchChange: (query: string) => void; 
+  setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export type Props = {
-    onFilterRarityChange: (rareza: Rareza) => void;
-    onFilterCategoriaChange: (categoria: Category | "") => void;
-};
+export const Filters = ({ onFilterTypesChange, onFilterCategoryChange, onSearchChange, setIsReversed }: FiltersProps) => {
+  const types = ['common', 'rare', 'epic' ];
+  const categories = ['creatures', 'equipment', 'materials', 'monsters', 'treasure'];
 
-export const Filters: FC<Props> = ({ onFilterRarityChange, onFilterCategoriaChange }) => {
+
   return (
     <>
-    <div className="">
-      <label className="">Filtrar por rareza:</label>
-      <select
-        onChange={(e) => onFilterRarityChange(e.target.value as Rareza)} 
-        className="">
-        <option value="">Todas</option>
-        <option value="common">Común</option>
-        <option value="rare">Rara</option>
-        <option value="epic">Épica</option>
-      </select>
-    </div>
-    <div>
-        <label className="mr-2 font-medium">Filtrar por categoría:</label>
-        <select
-          onChange={(e) => onFilterCategoriaChange(e.target.value as Category)}
-          className="border px-3 py-1 rounded">
-          <option value="">Todas</option>
-          <option value="creatures">Creatures</option>
-          <option value="equipment">Equipment</option>
-          <option value="materials">Materials</option>
-          <option value="monsters">Monsters</option>
-          <option value="treasure">Treasure</option>
-        </select>
-    </div>
+      <div className="filters">
+        <SearchBar onSearch={onSearchChange}/>
+        <div  className="filters-buttons">
+          <Button color="outlined" onClick={() => setIsReversed(prev => !prev)}>Card Nº</Button>
+          <Button color="outlined">Favorites</Button>
+          <DropDownButton 
+            options={types}
+            onSelect={onFilterTypesChange}
+            >
+              Types
+            </DropDownButton>
+          <DropDownButton  
+            options={categories}
+            onSelect={onFilterCategoryChange}>
+              Categories
+            </DropDownButton>
+        </div>
+      </div>
     </>
   );
 };

@@ -10,6 +10,7 @@ interface CardContainerProps {
   children?: React.ReactNode;
   className?: string;
   colorClass?: string;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 //Children representa cualquier contenido entre las etiquetas del componente.
@@ -18,10 +19,11 @@ export const CardContainer = ({
   children,
   className,
   colorClass,
+  onClick
 }: CardContainerProps) => {
   return (
     //CONTENEDOR CARTA
-    <div className={`card ${className} ${colorClass}`}>
+    <div className={`card ${className} ${colorClass}`} onClick={onClick}>
       {/* imagen y color contenedor */}
       <div className='bg-image'></div>
       <div className='bg-overlay'></div>
@@ -30,8 +32,8 @@ export const CardContainer = ({
         <img
           src={
             colorClass === 'blue-theme'
-              ? 'assets/Fill-10-blue.svg'
-              : 'assets/Fill-10.svg'
+              ? 'src/assets/Fill-10-blue.svg'
+              : 'src/assets/Fill-10.svg'
           }
           className='svg-icon'
         />
@@ -40,8 +42,8 @@ export const CardContainer = ({
         <img
           src={
             colorClass === 'blue-theme'
-              ? 'assets/Fill-10-blue.svg'
-              : 'assets/Fill-10.svg'
+              ? 'src/assets/Fill-10-blue.svg'
+              : 'src/assets/Fill-10.svg'
           }
           className='svg-icon'
         />
@@ -50,8 +52,8 @@ export const CardContainer = ({
         <img
           src={
             colorClass === 'blue-theme'
-              ? 'assets/Fill-10-blue.svg'
-              : 'assets/Fill-10.svg'
+              ? 'src/assets/Fill-10-blue.svg'
+              : 'src/assets/Fill-10.svg'
           }
           className='svg-icon'
         />
@@ -60,8 +62,8 @@ export const CardContainer = ({
         <img
           src={
             colorClass === 'blue-theme'
-              ? 'assets/Fill-10-blue.svg'
-              : 'assets/Fill-10.svg'
+              ? 'src/assets/Fill-10-blue.svg'
+              : 'src/assets/Fill-10.svg'
           }
           className='svg-icon'
         />

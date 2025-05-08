@@ -1,22 +1,41 @@
-import { useMemo, useState } from "react";
+import { useState, useMemo } from "react";
 import { HyruleCardType } from "../types/hyrule.types";
-import { Category } from "../components/filters/filters";
 
 export const useFilters = (cards: HyruleCardType[]) => {
-  const [filterRarity, setFilterRarity] = useState<"common" | "rare" | "epic" | "">("");
-  const [filterCategory, setFilterCategory] = useState<Category | "">("");
+  const [filterRarity, setFilterRarity] = useState<string>('All');
+  const [filterCategory, setFilterCategory] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isReversed, setIsReversed] = useState<boolean>(false);
+
+  const clearFilters = () => {
+    setFilterRarity('All');
+    setFilterCategory('All');
+  };
 
   const filteredCards = useMemo(() => {
-    return cards.filter((card) => {
-      const matchRarity = filterRarity ? card.rarity === filterRarity : true;
-      const matchCategory = filterCategory ? card.category === filterCategory : true;
-      return matchRarity && matchCategory;
+    let result = cards.filter((card) => {
+      const matchesRarity = filterRarity === 'All' || card.rarity === filterRarity;
+      const matchesCategory = filterCategory === 'All' || card.category === filterCategory;
+      const matchesSearch = searchQuery
+        ? card.name.toLocaleLowerCase().includes(searchQuery.toLocaleLowerCase())
+        : true;
+      return matchesRarity && matchesCategory && matchesSearch;
     });
-  }, [cards, filterRarity, filterCategory]);
+  
+    if (isReversed) {
+      result = [...result].reverse();
+    }
+  
+    return result;
+  }, [cards, filterRarity, filterCategory, searchQuery, isReversed]);
 
   return {
     filteredCards,
     setFilterRarity,
     setFilterCategory,
+    clearFilters,
+    setSearchQuery,
+    setIsReversed,
+    isReversed,
   };
 };

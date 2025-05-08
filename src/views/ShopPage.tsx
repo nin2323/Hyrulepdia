@@ -1,5 +1,7 @@
+import { CardContainer } from "../components/CardContainer/CardContainer"
+
 export const ShopPage = () => {
     return (
-        <div></div>
+        <CardContainer></CardContainer>
     )
 }

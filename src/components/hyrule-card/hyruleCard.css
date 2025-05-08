@@ -182,3 +182,11 @@
     font-style: normal;
     line-height: 0.3;
 }
+
+/* Library */
+
+.card--library {
+    filter: grayscale(100%) brightness(0.8);
+    opacity: 0.7;
+    pointer-events: none;
+  }

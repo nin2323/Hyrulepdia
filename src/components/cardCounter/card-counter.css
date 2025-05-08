@@ -1,0 +1,71 @@
+.card-counter-container {
+    display: flex;
+    justify-content: flex-end;
+    height: fit-content;
+    position: sticky;
+    top: 18rem;
+}
+
+.card-counter {
+    position: relative;
+    width: 81px;
+    padding: 18px 8px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.26);
+    font-size: 14px;
+    text-align: center;
+    margin-right: 27px;
+}
+
+.card-counter .right-line-top,
+.card-counter .right-line-bottom,
+.card-counter .left-line-top,
+.card-counter .left-line-bottom {
+    position: absolute;
+    width: 1px;
+    height: 25%;
+    background-color: #7CD2FF;
+}
+
+
+.card-counter .top-line-left,
+.card-counter .top-line-right,
+.card-counter .bottom-line-left,
+.card-counter .bottom-line-right {
+    position: absolute;
+    height: 1px;
+    background-color: #7CD2FF;
+    width: 18%;
+}
+
+.card-counter .right-line-top,
+.card-counter .left-line-top { 
+    top: 0; }
+
+.card-counter .right-line-bottom,
+.card-counter .left-line-bottom { 
+    bottom: 0; }
+
+.card-counter .right-line-top,
+.card-counter .right-line-bottom { 
+    right: 0; }
+.card-counter .left-line-top,
+.card-counter .left-line-bottom { 
+    left: 0; }
+
+.card-counter .top-line-left { 
+    top: 0; left: 0; }
+
+.card-counter .top-line-right { 
+    top: 0; right: 0; }
+
+.card-counter .bottom-line-left { 
+    bottom: 0; left: 0; }
+
+.card-counter .bottom-line-right { 
+    bottom: 0; right: 0; }
+  
+
+
+
+  
