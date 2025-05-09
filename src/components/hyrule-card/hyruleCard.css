@@ -190,3 +190,17 @@
     opacity: 0.7;
     pointer-events: none;
   }
+
+  /* size */
+
+.card--lg {
+    transform: scale(1.5);
+    transform-origin: center;
+}
+
+.card--xl {
+    transform: scale(2.4);
+    z-index: 9999;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+

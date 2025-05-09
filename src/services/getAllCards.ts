@@ -30,6 +30,7 @@ export const getAllCards = async (): Promise<HyruleCardType[] | undefined> => {
 
         return allData.map((item: any) => {
             const rarity = getRandomRarity();
+            const fullDescription = item.description;
             const trimmedDescription = item.description.length > 130
                 ? item.description.slice(0, 120) + '...'
                 : item.description;
@@ -38,6 +39,7 @@ export const getAllCards = async (): Promise<HyruleCardType[] | undefined> => {
                 id: item.id,
                 name: item.name,
                 image: item.image,
+                fullDescription: fullDescription,
                 description: trimmedDescription,
                 location: item.common_locations?.join(', ') || "Unknown",
                 items: item.drops?.join(', ') || "None",

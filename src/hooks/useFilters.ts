@@ -38,4 +38,4 @@ export const useFilters = (cards: HyruleCardType[]) => {
     setIsReversed,
     isReversed,
   };
-};
+}; 
