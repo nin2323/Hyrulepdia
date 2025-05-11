@@ -31,7 +31,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('assets/black 1.png') center/cover no-repeat;
+  background: url('src/assets/black 1.png') center/cover no-repeat;
   opacity: 0.2; /* Opacidad de la imagen */
   z-index: 0;
 }
@@ -192,4 +192,35 @@
   bottom: -10px;
   right: -10px;
   transform: rotate(270deg);
+}
+/* ============ POPUP ============ */
+.card.popup {
+  background-color: #13161b;
+  border: 2px solid #7cd2ff;
+}
+
+.card.popup .bg-overlay {
+  background-color: #13161b;
+  box-shadow: 0 0 10px lightblue, 0 0 20px lightblue, 0 0 30px lightblue,
+    0 0 40px lightblue;
+  animation: lightPulse 2s infinite ease-in-out;
+}
+
+.card.popup .bg-image {
+  display: none;
+}
+
+@keyframes lightPulse {
+  0% {
+    box-shadow: 0 0 10px lightblue, 0 0 20px lightblue, 0 0 30px lightblue,
+      0 0 40px lightblue;
+  }
+  50% {
+    box-shadow: 0 0 15px #a8e6ff, 0 0 25px #a8e6ff, 0 0 35px #a8e6ff,
+      0 0 45px #a8e6ff;
+  }
+  100% {
+    box-shadow: 0 0 10px lightblue, 0 0 20px lightblue, 0 0 30px lightblue,
+      0 0 40px lightblue;
+  }
 }
