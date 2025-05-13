@@ -6,6 +6,8 @@ export const App = () => {
   return (
     <>
       <Header/>
+      {/* <HyruleCard />
+      <StoreOpening /> */}
       <Outlet />
     </>
   )

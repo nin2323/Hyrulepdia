@@ -58,11 +58,13 @@
     font-family: 'title';
     font-size: 0.82rem;
     margin-bottom: 0.1rem;
+    color: #f5e5c0;
 }
 
 .hyrule-card__type {
     display: flex;
     align-items: center;
+    margin-bottom: 0.3rem;
 }
 
 .hyrule-card__icon {
@@ -73,6 +75,9 @@
 
 .hyrule-card__header h2 {
     margin-block: 0;
+    font-size: 1.2rem;
+    color: #f5e5c0;
+    line-height: 0;
 }
 
 .hyrule-card__points {
@@ -149,12 +154,13 @@
 }
 
 .hyrule-card__section h3 {
-    font-weight: bold;
+    font-weight: 200;
     font-size: 1rem;
     font-family: 'title';
     margin: 0;
     line-height: 1rem;
     padding-top: 0.5rem;
+    text-align: center;
 }
 
 .hyrule-card__section {
@@ -181,6 +187,7 @@
     font-weight: 600;
     font-style: normal;
     line-height: 0.3;
+    margin-bottom: 0.15rem;
 }
 
 /* Library */
