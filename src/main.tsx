@@ -4,7 +4,9 @@ import { App } from './App.tsx'
 import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import { CollectionPage } from './views/CollectionPage.tsx';
 import { PorfilePage } from './views/ProfilePage.tsx';
-import { ShopPage } from './views/ShopPage.tsx';
+import { ShopPage } from './views/StorePage/ShopPage.tsx';
+import { ShopPurchase } from './views/StorePage/ShopPurchase.tsx';
+import { ShopOpening } from './views/StorePage/ShopOpening.tsx';
 import { HomePage } from './views/HomePage.tsx';
 import { AuthProvider } from './context/authContext.tsx';
 import { LoginForm } from './components/firebase/login/LoginForm.tsx';
@@ -40,6 +42,19 @@ createRoot(document.getElementById('root')!).render(
               <ShopPage />
             </PrivateRoute>
           } />
+
+          {/*Nuevas rutas para la tienda */}
+          <Route path='purchase' element={
+            <PrivateRoute>
+              <ShopPurchase/>
+            </PrivateRoute>
+          } />
+          <Route path='opening' element={
+            <PrivateRoute>
+              <ShopOpening/>
+            </PrivateRoute>
+          } />
+
         </Route>
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>

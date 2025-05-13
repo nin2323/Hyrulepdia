@@ -1,0 +1,33 @@
+.store-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.store-main__textbox__text {
+    color: #7CD2FF;
+    font-family: "Geist", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 1.5rem;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 2.2rem;
+}
+
+.store-main__textbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    justify-content: center;
+}
+
+.store-main__textbox__buttons {
+    display: flex;
+    margin-top: 2rem;
+    gap: 2.5rem
+}
