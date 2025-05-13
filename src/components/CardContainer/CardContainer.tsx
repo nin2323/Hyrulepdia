@@ -37,8 +37,8 @@ export const CardContainer = ({
             <img
               src={
                 colorClass === 'blue-theme'
-                  ? 'src/src/assets/Fill-10-blue.svg'
-                  : 'src/src/assets/Fill-10.svg'
+                  ? 'src/assets/Fill-10-blue.svg'
+                  : 'src/assets/Fill-10.svg'
               }
               className='svg-icon'
               alt='svg-top-left'
@@ -48,8 +48,8 @@ export const CardContainer = ({
             <img
               src={
                 colorClass === 'blue-theme'
-                  ? 'src/src/assets/Fill-10-blue.svg'
-                  : 'src/src/assets/Fill-10.svg'
+                  ? 'src/assets/Fill-10-blue.svg'
+                  : 'src/assets/Fill-10.svg'
               }
               className='svg-icon'
               alt='svg-top-right'
@@ -59,8 +59,8 @@ export const CardContainer = ({
             <img
               src={
                 colorClass === 'blue-theme'
-                  ? 'src/src/assets/Fill-10-blue.svg'
-                  : 'src/src/assets/Fill-10.svg'
+                  ? 'src/assets/Fill-10-blue.svg'
+                  : 'src/assets/Fill-10.svg'
               }
               className='svg-icon'
               alt='svg-bottom-left'
@@ -70,8 +70,8 @@ export const CardContainer = ({
             <img
               src={
                 colorClass === 'blue-theme'
-                  ? 'src/src/assets/Fill-10-blue.svg'
-                  : 'src/src/assets/Fill-10.svg'
+                  ? 'src/assets/Fill-10-blue.svg'
+                  : 'src/assets/Fill-10.svg'
               }
               className='svg-icon'
               alt='svg-bottom-right'
