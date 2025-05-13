@@ -1,9 +1,8 @@
-import { useState, FormEvent, ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '../../../firebaseConfig/firebaseConfig';
+import React, { useState, FormEvent, ChangeEvent, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './registerForm.css';
 import { Button } from '../../button/button';
+import { useAuth } from '../../../context/authContext';
 
 export const RegisterForm: FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -11,6 +10,8 @@ export const RegisterForm: FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const navigate = useNavigate();
+  const { signup } = useAuth();
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,63 +21,74 @@ export const RegisterForm: FC = () => {
       return;
     }
 
+    setIsSubmitting(true);
+    setError('');
+
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      console.log('Cuenta creada con éxito');
-      navigate('/login', {
+      await signup(email, password);
+      console.log(
+        'Cuenta creada con éxito. La información del perfil se completará más tarde.'
+      );
+      navigate('/profile', {
         state: {
-          message: 'Cuenta creada con éxito. Ahora, por favor, inicia sesión.',
+          message: 'Cuenta creada con éxito. Por favor, completa tu perfil.',
         },
       });
     } catch (err: any) {
       setError('Error al crear la cuenta: ' + err.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
-  const handleChange = (setter: Dispatch<SetStateAction<string>>) =>
-    (e: ChangeEvent<HTMLInputElement>) => setter(e.target.value);
+  const handleChange =
+    (setter: React.Dispatch<React.SetStateAction<string>>) =>
+    (e: ChangeEvent<HTMLInputElement>) =>
+      setter(e.target.value);
 
   return (
-    <div className="register-container">
-      <form className="register-form" onSubmit={handleSubmit}>
-        <h2>Register</h2>
+    <div className='register-container'>
+      <form className='register-form' onSubmit={handleSubmit}>
+        <h2>Registro</h2>
 
-        <div className="input-group">
-          <label htmlFor="email">Correo electrónico:</label>
+        <div className='input-group'>
+          <label htmlFor='email'>Correo electrónico:</label>
           <input
-            type="email"
-            id="email"
+            type='email'
+            id='email'
             value={email}
             onChange={handleChange(setEmail)}
             required
           />
         </div>
 
-        <div className="input-group">
-          <label htmlFor="password">Contraseña:</label>
+        <div className='input-group'>
+          <label htmlFor='password'>Contraseña:</label>
           <input
-            type="password"
-            id="password"
+            type='password'
+            id='password'
             value={password}
             onChange={handleChange(setPassword)}
             required
           />
         </div>
 
-        <div className="input-group">
-          <label htmlFor="confirmPassword">Confirmar contraseña:</label>
+        <div className='input-group'>
+          <label htmlFor='confirmPassword'>Confirmar contraseña:</label>
           <input
-            type="password"
-            id="confirmPassword"
+            type='password'
+            id='confirmPassword'
             value={confirmPassword}
             onChange={handleChange(setConfirmPassword)}
             required
           />
         </div>
 
-        {error && <p className="error-message">{error}</p>}
+        {error && <p className='error-message'>{error}</p>}
 
-        <Button>Crear cuenta</Button>
+        <Button type='submit' disabled={isSubmitting}>
+          {isSubmitting ? 'Creando cuenta...' : 'Crear cuenta'}
+        </Button>
       </form>
     </div>
   );
