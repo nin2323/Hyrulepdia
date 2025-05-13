@@ -4,10 +4,9 @@ import { doc, setDoc, getDoc, updateDoc } from "firebase/firestore";
 import { HyruleCardType } from "../types/hyrule.types";
 
 export const useAddFavorites = () => {
-
-  //  ID del usuario
   const auth = getAuth();
-  const user = auth.currentUser; 
+  const user = auth.currentUser;
+
   const toggleFavorite = async (card: HyruleCardType) => {
     if (!user) {
       console.log("Usuario no está logueado");
@@ -16,29 +15,34 @@ export const useAddFavorites = () => {
 
     const userId = user.uid;
     const cardId = card.id;
-    const userDocRef = doc(db, "users", userId); // doc del usuario
+    const userDocRef = doc(db, "users", userId);
 
     try {
       const userDocSnap = await getDoc(userDocRef);
+      let favorites: { id: number; rarity: string }[] = [];
 
       if (userDocSnap.exists()) {
-        // obtenemos sus favoritos
         const userData = userDocSnap.data();
-        const favorites: number[] = userData?.favorites || [];
+        favorites = Array.isArray(userData?.favorites) ? userData.favorites : [];
 
-        if (favorites.includes(cardId)) {
-          // Si la carta está en favoritos la eliminamos
-          const updatedFavorites = favorites.filter((id: number) => id !== cardId);
+        // Verifica si ya existe
+        const alreadyExists = favorites.some(fav => fav.id === cardId);
+
+        if (alreadyExists) {
+          const updatedFavorites = favorites.filter(fav => fav.id !== cardId);
           await updateDoc(userDocRef, { favorites: updatedFavorites });
           console.log(`Card ${cardId} removed from favorites`);
         } else {
-          // Si no está en favoritos la agregamos
-          await updateDoc(userDocRef, { favorites: [...favorites, cardId] });
-          console.log(`Card ${cardId} added to favorites`);
+          await updateDoc(userDocRef, {
+            favorites: [...favorites, { id: cardId, rarity: card.rarity }],
+          });
+          console.log(`Card ${cardId} added to favorites with rarity ${card.rarity}`);
         }
       } else {
-        // Si el documento del usuario no existe, lo creamos con un array de favoritos
-        await setDoc(userDocRef, { favorites: [cardId] });
+        // Crear documento si no existe
+        await setDoc(userDocRef, {
+          favorites: [{ id: cardId, rarity: card.rarity }],
+        });
         console.log(`User document created with card ${cardId} as favorite`);
       }
     } catch (error) {

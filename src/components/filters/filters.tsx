@@ -11,9 +11,11 @@ interface FiltersProps {
   onFilterCategoryChange?: (category: string) => void;
   onSearchChange: (query: string) => void; 
   setIsReversed: React.Dispatch<React.SetStateAction<boolean>>;
+  onFavoritesToggle: () => void;
+  isShowingFavorites: boolean;
 }
 
-export const Filters = ({ onFilterTypesChange, onFilterCategoryChange, onSearchChange, setIsReversed }: FiltersProps) => {
+export const Filters = ({ onFilterTypesChange, onFilterCategoryChange, onSearchChange, setIsReversed, onFavoritesToggle, isShowingFavorites }: FiltersProps) => {
   const types = ['common', 'rare', 'epic' ];
   const categories = ['creatures', 'equipment', 'materials', 'monsters', 'treasure'];
 
@@ -24,7 +26,9 @@ export const Filters = ({ onFilterTypesChange, onFilterCategoryChange, onSearchC
         <SearchBar onSearch={onSearchChange}/>
         <div  className="filters-buttons">
           <Button color="outlined" onClick={() => setIsReversed(prev => !prev)}>Card Nº</Button>
-          <Button color="outlined">Favorites</Button>
+          <Button color="outlined" onClick={onFavoritesToggle}>
+            {isShowingFavorites ? "View All" : "Favorites"}
+          </Button>
           <DropDownButton 
             options={types}
             onSelect={onFilterTypesChange}

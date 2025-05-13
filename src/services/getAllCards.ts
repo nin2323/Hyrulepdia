@@ -1,6 +1,6 @@
 import { HyruleCardType } from "../types/hyrule.types";
 
-const getRandomRarity = () : 'common' | 'rare' | 'epic' => {
+export const getRandomRarity = () : 'common' | 'rare' | 'epic' => {
     const rand = Math.random();
     if(rand < 0.05) return 'epic'; //5%
     if (rand < 0.30) return 'rare'; //25%
@@ -8,7 +8,7 @@ const getRandomRarity = () : 'common' | 'rare' | 'epic' => {
 };
 
 //Esta función asigna puntos según la rareza
-const getPointsByRarity = (rarity: 'common' | 'rare' | 'epic') : number => {
+export const getPointsByRarity = (rarity: 'common' | 'rare' | 'epic') : number => {
     switch (rarity) {
         case 'epic': return 100;
         case 'rare': return 50;
