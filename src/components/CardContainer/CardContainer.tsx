@@ -12,6 +12,7 @@ interface CardContainerProps {
   colorClass?: 'blue-theme' | 'golden-theme';
   popUp?: boolean;
   hideSvg?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 //Children representa cualquier contenido entre las etiquetas del componente.
@@ -22,9 +23,10 @@ export const CardContainer = ({
   colorClass = 'golden-theme',
   popUp = false,
   hideSvg = false,
+  onClick
 }: CardContainerProps) => {
   return (
-    <div className={`card ${className} ${colorClass} ${popUp ? 'popup' : ''}`}>
+    <div className={`card ${className} ${colorClass} ${popUp ? 'popup' : ''}`} onClick={onClick}>
       {!popUp && <div className='bg-image'></div>}
       <div className='bg-overlay'></div>
 

@@ -1,0 +1,41 @@
+html {
+    font-size: 62.5%;
+}
+
+.collection-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 60px;
+    justify-items: center; 
+    padding: 0 84px;
+  }
+
+.hyrule-card__border:hover {
+    cursor: pointer;
+}
+
+.cards-wrapped {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.collection-page {
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+    justify-content: space-between;
+    padding: 0;
+    position: relative;
+}
+
+
+.collection-page__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding-left: 200px;
+    position: sticky;
+    top: 230px;
+    height: fit-content;
+    margin-top: 50px;
+}
