@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ChestButtonType } from "../../types/hyrule.types"
-import { Button } from "../button/Button"
+import { Button } from "../button/button"
 import { ChestButton } from "../chest-button/ChestButton"
 import './StorePurchase.css'
 

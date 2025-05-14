@@ -2,7 +2,7 @@ import  './StoreOpening.css'
 import { HyruleCardType } from "../../types/hyrule.types";
 import { HyruleCard } from "../hyrule-card/HyruleCard";
 import { CardContainer } from '../CardContainer/CardContainer';
-import { Button } from '../button/Button';
+import { Button } from '../button/button';
 import { useNavigate } from 'react-router-dom';
 
 type storeOpening = {

@@ -9,13 +9,12 @@ export interface HyruleCardType {
     location: string;
     items: string;
     category: 'creatures' | 'materials' | 'equipment' | 'monsters' | 'treasure';
-<<<<<<< HEAD
     variant?: "default" | "library";
     size?: 'default' | 'lg' | 'xl';
     isFavorite?: boolean;
+    disableClick?: boolean;
 }
-=======
-}
+
 
 export interface HyruleDataType {
     category: string;
@@ -32,4 +31,3 @@ export interface ChestButtonType {
     rarity: 'common' | 'rare' | 'epic';
     price: number;
 }
->>>>>>> main

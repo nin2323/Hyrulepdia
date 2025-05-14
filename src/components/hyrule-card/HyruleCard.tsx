@@ -43,7 +43,7 @@ const rarityFrame = (rarity : HyruleCardType['rarity']) => {
 
 export const HyruleCard = ({
     id = 84,
-    variant = 'library',
+    variant = 'default',
     name ='CHUCHU' , 
     points = 200, 
     rarity = 'common', 
@@ -52,10 +52,13 @@ export const HyruleCard = ({
     location = 'Lorem ipsum dolor sit amet,', 
     items = 'Lorem ipsum dolor sit amet,', 
     category = 'monsters',
-    size = 'default'} : HyruleCardType )  => {
+    size = 'default',
+    disableClick = false
+} : HyruleCardType )  => {
     
     return (
         <div className={`hyrule-card__border ${rarity} ${variant === "library" ? "card--library" : ""} 
+            ${disableClick ? "card--disabled" : ""}
             ${size === "lg" ? "card--lg" : ""} 
             ${size === "xl" ? "card--xl" : ""}`}>
             <div className="hyrule-card">

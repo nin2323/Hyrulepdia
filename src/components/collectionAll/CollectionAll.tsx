@@ -91,8 +91,15 @@ export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
               <p>No cards found</p>
             ) : (
               cardsToDisplay.map((card) => (
-                <div key={card.id} onClick={() => setSelectedCard(card)}>
-                  <HyruleCard key={card.id} {...card} variant={variant} />
+                <div
+                  key={card.id}
+                  onClick={variant === "library" ? undefined : () => setSelectedCard(card)}
+                >
+                  <HyruleCard
+                    {...card}
+                    variant={variant}
+                    disableClick={variant === "library"}
+                  />
                 </div>
               ))
             )}

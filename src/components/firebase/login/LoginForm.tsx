@@ -4,7 +4,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebaseConfig/firebaseConfig';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import './loginForm.css';
-import { Button } from '../../button/Button';
+import { Button } from '../../button/button';
 
 
 
