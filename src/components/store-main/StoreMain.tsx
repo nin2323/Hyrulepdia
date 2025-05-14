@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Button } from '../button/button'
+import { Button } from '../button/Button'
 import { ChestButton } from '../chest-button/ChestButton'
 import './StoreMain.css'
 import { ChestButtonType } from '../../types/hyrule.types'

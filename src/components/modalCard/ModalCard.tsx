@@ -5,54 +5,62 @@ import { Button } from "../button/button";
 import { CardContainer } from "../CardContainer/CardContainer";
 import { useAuth } from "../../context/authContext";
 import { useAddFavorites } from "../../hooks/useAddFavorites";
-
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebaseConfig/firebaseConfig"; // Asegúrate de importar correctamente tu configuración de Firebase
 
 interface ModalCardProps {
   selectedCard: HyruleCardType;
   onClose: () => void;
   favoriteIds?: number[];
-  onRemoveFavorite?: (id: number) => void; 
+  onRemoveFavorite?: (id: number) => void;
 }
 
 export const ModalCard: FC<ModalCardProps> = ({
   selectedCard,
   onClose,
-  favoriteIds,
-  onRemoveFavorite
+  favoriteIds = [],
+  onRemoveFavorite,
 }) => {
   const [showZoomedCard, setShowZoomedCard] = useState(false);
-
-  const { toggleFavorite } = useAddFavorites(); // Llamamos al hook
+  const { toggleFavorite } = useAddFavorites();
   const [isFavorite, setIsFavorite] = useState(false);
-
   const { user } = useAuth();
 
-  // Verificar si la carta está en favoritos al abrir el modal
-useEffect(() => {
-  if (favoriteIds && selectedCard) {
-    setIsFavorite(favoriteIds.includes(selectedCard.id));
-  }
-}, [favoriteIds, selectedCard]);
+  // Verificar el estado de 'favorite' en Firestore para la carta seleccionada
+  useEffect(() => {
+    const fetchFavoriteStatus = async () => {
+      if (!user || !selectedCard) return;
+
+      const userDocRef = doc(db, "users", user.uid, "hyrule_cards", String(selectedCard.id));
+      const cardDocSnap = await getDoc(userDocRef);
+      if (cardDocSnap.exists()) {
+        const cardData = cardDocSnap.data();
+        setIsFavorite(cardData?.favorite ?? false); // Actualiza el estado según la propiedad 'favorite' de Firestore
+      }
+    };
+
+    fetchFavoriteStatus();
+  }, [selectedCard, user]); // Se ejecuta cuando la carta seleccionada o el usuario cambian
 
   // Función para manejar el clic en el botón de favoritos
-const handleToggleFavorite = async () => {
-  if (!user) {
-    alert("Debes estar logueado para añadir favoritos");
-    return;
-  }
+  const handleToggleFavorite = async () => {
+    if (!user) {
+      alert("Debes estar logueado para añadir favoritos");
+      return;
+    }
 
-  // Cambiar el estado de favorito localmente
-  const newFavoriteState = !isFavorite;
-  setIsFavorite(newFavoriteState);
+    // Cambiar el estado de favorito localmente
+    const newFavoriteState = !isFavorite;
+    setIsFavorite(newFavoriteState);
 
-  // Actualizar en Firestore
-  await toggleFavorite(selectedCard);
+    // Actualizar en Firestore
+    await toggleFavorite(selectedCard);
 
-  // Si fue eliminado de favoritos, notificar al padre
-  if (!newFavoriteState && onRemoveFavorite) {
-    onRemoveFavorite(selectedCard.id);
-  }
-};
+    // Si fue eliminado de favoritos, notificar al padre
+    if (!newFavoriteState && onRemoveFavorite) {
+      onRemoveFavorite(selectedCard.id);
+    }
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>

@@ -10,7 +10,7 @@ import '../hyrule-card/hyruleCard.css';
 import './collection-all.css'
 import '../cardCounter/card-counter.css'
 import '../modalCard/modal-card.css'
-import { Button } from "../button/button";
+import { Button } from "../button/button.tsx";
 import { useNavigate } from "react-router-dom";
 import { CollectionFavorites } from "../../hooks/useCollectionFavorites.ts";
 
@@ -62,6 +62,8 @@ export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
   const handleRemoveFavoriteLocally = (id: number) => {
     setFavoriteCards(prev => prev.filter(card => card.id !== id)); // Elimina la carta localmente de los favoritos
   };
+
+  
 
   // Las cartas a mostrar: si estamos mostrando favoritos, usamos 'favoriteCards', si no, usamos las cartas filtradas
   const cardsToDisplay = isShowingFavorites ? filtersForFavorites.filteredCards : filteredCards;

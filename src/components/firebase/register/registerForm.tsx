@@ -1,7 +1,7 @@
 import React, { useState, FormEvent, ChangeEvent, FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './registerForm.css';
-import { Button } from '../../button/button';
+import { Button } from '../../button/Button';
 import { useAuth } from '../../../context/authContext';
 
 export const RegisterForm: FC = () => {

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import { Button } from "../../components/button/button";
+import { Button } from "../../components/button/Button";
 import { Filters } from "../../components/filters/filters";
 
 export const DecksPage = () => {
@@ -12,6 +12,8 @@ const navigate = useNavigate();
             onFilterCategoryChange={() => {}}
             onSearchChange={() => {}}
             setIsReversed={() => {}}
+            onFavoritesToggle={() => {}}
+            isShowingFavorites
         />
         <div className="collection-page__buttons">
             <Button size="lg" onClick={() => navigate("/collection")}>My Cards</Button>

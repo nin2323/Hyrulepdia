@@ -1,5 +1,5 @@
 import './PopupGemsInfo.css'
-import { Button } from '../button/button';
+import { Button } from '../button/Button';
 
 interface PopupGems {
     visible: boolean; //un boolean que cambiará de estado según lo que hagamos, será false, y el botón usara setShowPopup para convertir el estado en true

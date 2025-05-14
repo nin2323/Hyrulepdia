@@ -1,4 +1,4 @@
-import { Button } from "../components/button/button"
+import { Button } from "../components/button/Button"
 import '../index.css'
 import '../styles/variables.css'
 import '../components/button/button.css'

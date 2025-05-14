@@ -1,7 +1,7 @@
 .filters {
     display: flex;
-    padding-inline: 2.7rem;
-    margin-top: 4rem;
+    padding-inline: 27px;
+    margin-top: 40px;
     justify-content: space-between;
     position: sticky;
     top: 52px;
@@ -12,7 +12,7 @@
 
 .filters-buttons {
     display: flex;
-    gap: 4rem;
+    gap: 40px;
 }
 
 

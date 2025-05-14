@@ -108,7 +108,7 @@
     }
 
     &:not(.disabled):hover {
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
         background-image: linear-gradient(45deg, transparent 0%, #BAEFFB 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
     }
 
@@ -141,12 +141,12 @@
 
     &:not(.disabled):hover {
         background-image: linear-gradient(45deg, transparent 0%, #F8EED5 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
     &:hover .button-corner {
         transform: scale(1.5); 
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
     &:hover::before {
@@ -173,12 +173,12 @@
 
     &:hover {
         background-image: linear-gradient(45deg, transparent 0%, #206127 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
     &:hover .button-corner {
         transform: scale(1.5); 
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
     &:hover::before {
@@ -204,13 +204,13 @@
     }
 
     &:hover {
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
         background-image: linear-gradient(45deg, transparent 0%, #ac0606 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
     }
 
     &:hover .button-corner {
         transform: scale(1.5);
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
     &:hover::before {
@@ -236,13 +236,13 @@
     }
 
     &:hover {
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
         background-image: linear-gradient(45deg, transparent 0%, #9b4f0c 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
     }
 
     &:hover .button-corner {
         transform: scale(1.5); /* Hace que el SVG crezca más que el botón */
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
     &:hover::before {
@@ -269,12 +269,12 @@
 
     &:hover {
         background-image: linear-gradient(45deg, transparent 0%, #0a616e 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
     &:hover .button-corner {
         transform: scale(1.5); /* Hace que el SVG crezca más que el botón */
-        filter: drop-shadow(0 0 1rem #ffffff8e );
+        filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
     &:hover::before {
