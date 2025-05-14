@@ -19,10 +19,10 @@ interface CollectionAllProps {
 }
 
 export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
-  const [cards, setCards] = useState<HyruleCardType[]>([]);
+  const [cards, setCards] = useState<HyruleCardType[]>([]); // Estado para todas las cartas
   const [favoriteCards, setFavoriteCards] = useState<HyruleCardType[]>([]); // Estado para cartas favoritas
   const [isShowingFavorites, setIsShowingFavorites] = useState(false);
-  const [selectedCard, setSelectedCard] = useState<HyruleCardType | null>(null); // <-- AQUÍ
+  const [selectedCard, setSelectedCard] = useState<HyruleCardType | null>(null);
 
   const { favoriteIds, favoriteCards: fetchedFavoriteCards } = CollectionFavorites(isShowingFavorites); // Usamos los IDs de favoritos
   const navigate = useNavigate();
@@ -38,10 +38,10 @@ export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
 
   // Cargar cartas favoritas cuando los IDs cambian
   useEffect(() => {
-    if (favoriteIds.length > 0) {
+    if (fetchedFavoriteCards.length > 0) {
       setFavoriteCards(fetchedFavoriteCards); // Si ya tenemos las cartas favoritas
     }
-  }, [favoriteIds, fetchedFavoriteCards]);
+  }, [fetchedFavoriteCards]);
 
   // Filtros
   const filtersForAll = useFilters(cards);
@@ -55,17 +55,16 @@ export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
     setIsReversed,
   } = isShowingFavorites ? filtersForFavorites : filtersForAll;
 
-
   const handleFavoritesToggle = () => {
     setIsShowingFavorites(prev => !prev);
   };
 
   const handleRemoveFavoriteLocally = (id: number) => {
-  setFavoriteCards(prev => prev.filter(card => card.id !== id));
+    setFavoriteCards(prev => prev.filter(card => card.id !== id)); // Elimina la carta localmente de los favoritos
   };
 
   // Las cartas a mostrar: si estamos mostrando favoritos, usamos 'favoriteCards', si no, usamos las cartas filtradas
-const cardsToDisplay = isShowingFavorites ? filtersForFavorites.filteredCards : filteredCards;
+  const cardsToDisplay = isShowingFavorites ? filtersForFavorites.filteredCards : filteredCards;
 
   return (
     <>
@@ -87,7 +86,7 @@ const cardsToDisplay = isShowingFavorites ? filtersForFavorites.filteredCards : 
           <CardCounter obtained={filteredCards.length} total={cards.length} />
           <div className="collection-container">
             {cardsToDisplay.length === 0 && !isShowingFavorites ? (
-              <p></p>
+              <p>No cards found</p>
             ) : (
               cardsToDisplay.map((card) => (
                 <div key={card.id} onClick={() => setSelectedCard(card)}>

@@ -15,38 +15,36 @@ export const useAddFavorites = () => {
 
     const userId = user.uid;
     const cardId = card.id;
-    const userDocRef = doc(db, "users", userId);
+
+    // Referencia al documento de la carta dentro de la subcolección 'hyrule_cards'
+    const cardDocRef = doc(db, "users", userId, "hyrule_cards", String(cardId));
 
     try {
-      const userDocSnap = await getDoc(userDocRef);
-      let favorites: { id: number; rarity: string }[] = [];
+      // Verificar si la carta ya existe en la subcolección
+      const cardSnap = await getDoc(cardDocRef);
 
-      if (userDocSnap.exists()) {
-        const userData = userDocSnap.data();
-        favorites = Array.isArray(userData?.favorites) ? userData.favorites : [];
-
-        // Verifica si ya existe
-        const alreadyExists = favorites.some(fav => fav.id === cardId);
-
-        if (alreadyExists) {
-          const updatedFavorites = favorites.filter(fav => fav.id !== cardId);
-          await updateDoc(userDocRef, { favorites: updatedFavorites });
-          console.log(`Card ${cardId} removed from favorites`);
-        } else {
-          await updateDoc(userDocRef, {
-            favorites: [...favorites, { id: cardId, rarity: card.rarity }],
-          });
-          console.log(`Card ${cardId} added to favorites with rarity ${card.rarity}`);
-        }
-      } else {
-        // Crear documento si no existe
-        await setDoc(userDocRef, {
-          favorites: [{ id: cardId, rarity: card.rarity }],
+      if (!cardSnap.exists()) {
+        // Si la carta no existe, la creamos con el campo `favorite: true` o `false` según se marque
+        await setDoc(cardDocRef, {
+          ...card, // Mantener el resto de los datos de la carta
+          favorite: true, // Inicializamos como favorita
         });
-        console.log(`User document created with card ${cardId} as favorite`);
+        console.log(`Carta ${cardId} añadida a favoritos.`);
+      } else {
+        const currentData = cardSnap.data();
+        const isFavorite = currentData.favorite === true;
+
+        // Actualizamos el campo `favorite` para alternarlo entre `true` y `false`
+        await updateDoc(cardDocRef, {
+          favorite: !isFavorite,
+        });
+
+        console.log(
+          `Carta ${cardId} ${!isFavorite ? "añadida a" : "eliminada de"} favoritos.`
+        );
       }
     } catch (error) {
-      console.error("Error managing favorites:", error);
+      console.error("Error al gestionar las cartas favoritas:", error);
     }
   };
 
