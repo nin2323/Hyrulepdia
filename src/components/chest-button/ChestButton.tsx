@@ -42,6 +42,19 @@ const displayChestType = (rarity: ChestButtonType['rarity']) => {
     }
 }
 
+//para que cambie el color del card container según la rareza
+const displayColorClass = (rarity: ChestButtonType['rarity']): 'blue-theme' | 'golden-theme' | 'purple-theme' => {
+    switch (rarity) {
+        case 'common':
+            return 'golden-theme';
+        case 'rare':
+            return 'blue-theme';
+        case 'epic':
+            return 'purple-theme';
+    }
+}
+
+
 export const ChestButton = ({
     rarity = 'epic',
     price = 500,
@@ -50,7 +63,7 @@ export const ChestButton = ({
     console.log(rarity, price)
 
     return (
-        <CardContainer className='chest-button'>
+        <CardContainer className='chest-button' colorClass={displayColorClass(rarity)}>
             <div className='chset-button__contnt'>
                 <h1>
                     CHEST

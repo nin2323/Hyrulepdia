@@ -9,7 +9,7 @@ import './CardContainer.css';
 interface CardContainerProps {
   children?: React.ReactNode;
   className?: string;
-  colorClass?: 'blue-theme' | 'golden-theme';
+  colorClass?: 'blue-theme' | 'golden-theme' | 'purple-theme';
   popUp?: boolean;
   hideSvg?: boolean;
 }
