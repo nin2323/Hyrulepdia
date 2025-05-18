@@ -13,7 +13,7 @@ export const ShopPurchase = () =>{
     //este useEffect sive para que, si se intenta acceder a storeOpening sin pagar o recargar las cartas, no te deje y te devuelva a la pantalla de shop
     useEffect( () =>{
         if (!selectedChest) navigate('/shop')
-    }, [] )
+    }, [selectedChest, navigate]);
 
     const handleOpen = async() => { //esta función hace que te lleve a ShopOpening
         setLoading(true);
