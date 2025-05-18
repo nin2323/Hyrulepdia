@@ -41,7 +41,7 @@ export const StorePurchase = ({selectedChest, onOpen}: StorePurchaseProps) => {
         selectedChest.rarity === 'rare' ? 500 : 800;
 
         if (gems < cost) {
-            setMessage("Error: you don't have enough gemes");
+            setMessage("You don't have enough gemes"); //quiero usar lo del toastify para sacar un popup. 
             return;
         }
 
