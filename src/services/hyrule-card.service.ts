@@ -98,7 +98,8 @@ export const getRandomHyruleData = async( num : number = 3, chestRarity: 'common
     const cardDocRef = doc(userCardsRef, String(card.id));
       await setDoc(cardDocRef, {
         ...card, // Guardo toda la carta en el documento
-        favorite: false // Si quieres agregar el campo `favorite` inicializado en `false`
+        favorite: false, // Si quieres agregar el campo `favorite` inicializado en `false`
+        isDiscovered: true
       });
     }
   } else {

@@ -1,5 +1,7 @@
 import React from 'react';
 import './CardContainer.css';
+import Fill10 from '../../assets/Fill-10.svg';
+import Fill10Blue from '../../assets/Fill-10-blue.svg';
 
 //Props que recibe desde donde se le invoque como App.tsx
 //Estos props pueden ser cualquier cosa mientras esten dentro del componente
@@ -35,46 +37,30 @@ export const CardContainer = ({
         <>
           <div className='svg-wrapper top-left'>
             <img
-              src={
-                colorClass === 'blue-theme'
-                  ? 'src/assets/Fill-10-blue.svg'
-                  : 'src/assets/Fill-10.svg'
-              }
+              src={colorClass === 'blue-theme' ? Fill10Blue : Fill10}
               className='svg-icon'
               alt='svg-top-left'
             />
           </div>
           <div className='svg-wrapper top-right'>
             <img
-              src={
-                colorClass === 'blue-theme'
-                  ? 'src/assets/Fill-10-blue.svg'
-                  : 'src/assets/Fill-10.svg'
-              }
+              src={colorClass === 'blue-theme' ? Fill10Blue : Fill10}
               className='svg-icon'
-              alt='svg-top-right'
+              alt='svg-top-left'
             />
           </div>
           <div className='svg-wrapper bottom-left'>
             <img
-              src={
-                colorClass === 'blue-theme'
-                  ? 'src/assets/Fill-10-blue.svg'
-                  : 'src/assets/Fill-10.svg'
-              }
+              src={colorClass === 'blue-theme' ? Fill10Blue : Fill10}
               className='svg-icon'
-              alt='svg-bottom-left'
+              alt='svg-top-left'
             />
           </div>
           <div className='svg-wrapper bottom-right'>
             <img
-              src={
-                colorClass === 'blue-theme'
-                  ? 'src/assets/Fill-10-blue.svg'
-                  : 'src/assets/Fill-10.svg'
-              }
+              src={colorClass === 'blue-theme' ? Fill10Blue : Fill10}
               className='svg-icon'
-              alt='svg-bottom-right'
+              alt='svg-top-left'
             />
           </div>
         </>

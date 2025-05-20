@@ -6,7 +6,7 @@ import { CardContainer } from "../CardContainer/CardContainer";
 import { useAuth } from "../../context/authContext";
 import { useAddFavorites } from "../../hooks/useAddFavorites";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebaseConfig/firebaseConfig"; // Asegúrate de importar correctamente tu configuración de Firebase
+import { db } from "../../firebaseConfig/firebaseConfig"; // Asegúrate de importar correctamente Firebase
 
 interface ModalCardProps {
   selectedCard: HyruleCardType;
@@ -26,7 +26,7 @@ export const ModalCard: FC<ModalCardProps> = ({
   const [isFavorite, setIsFavorite] = useState(false);
   const { user } = useAuth();
 
-  // Verificar el estado de 'favorite' en Firestore para la carta seleccionada
+  // Verificar el estado de favorite en Firestore para la carta seleccionada
   useEffect(() => {
     const fetchFavoriteStatus = async () => {
       if (!user || !selectedCard) return;
@@ -67,7 +67,7 @@ export const ModalCard: FC<ModalCardProps> = ({
       <CardContainer className="card-container-modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-content">
           <div className="modal-content__card" onClick={() => setShowZoomedCard(true)}>
-            <HyruleCard {...selectedCard} variant="default" size="lg" />
+            <HyruleCard {...selectedCard}  size="lg" />
           </div>
           <div className="modal-content__text-btn">
             <h1>{selectedCard.name}</h1>
@@ -99,7 +99,7 @@ export const ModalCard: FC<ModalCardProps> = ({
           }}
         >
           <div className="zoomed-card-content" onClick={(e) => e.stopPropagation()}>
-            <HyruleCard {...selectedCard} variant="default" size="xl" />
+            <HyruleCard {...selectedCard}  size="xl" />
           </div>
         </div>
       )}
