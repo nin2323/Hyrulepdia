@@ -6,15 +6,16 @@ import { Filters } from "../filters/filters";
 import { useFilters } from "../../hooks/useFilters";
 import { CardCounter } from "../cardCounter/CardCounter";
 import { ModalCard } from "../modalCard/ModalCard";
-import '../hyrule-card/hyruleCard.css';
-import './collection-all.css'
-import '../cardCounter/card-counter.css'
-import '../modalCard/modal-card.css'
 import { Button } from "../button/button.tsx";
 import { useNavigate } from "react-router-dom";
 import { CollectionFavorites } from "../../hooks/useCollectionFavorites.ts";
 import { useUserCollection } from "../../hooks/useUserCollection";
 import loadingGif from '../../assets/gif-zelda-loading.webp'
+
+import '../hyrule-card/hyruleCard.css';
+import './collection-all.css'
+import '../cardCounter/card-counter.css'
+import '../modalCard/modal-card.css'
 
 interface CollectionAllProps {
   variant?: 'default' | 'library';
@@ -31,11 +32,10 @@ export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
   const { favoriteIds, favoriteCards: fetchedFavoriteCards } = CollectionFavorites(isShowingFavorites);
   const navigate = useNavigate();
 
-    useEffect(() => {
-  // Asegúrate de marcar la página como "lista" después de un breve delay
+useEffect(() => {
   const timer = setTimeout(() => {
     setIsPageReady(true);
-  }, 100); // Ajusta si necesitas más tiempo
+  }, 100); 
 
   return () => clearTimeout(timer);
 }, []);
@@ -73,8 +73,7 @@ useEffect(() => {
   }, [fetchedFavoriteCards]);
 
  
-  // Aplicar filtros. Para 'library' mostramos todas sin filtrar por isDiscovered,
-  // para el resto sí filtramos.
+  // Aplicar filtros. Para 'library' mostramos todas sin filtrar por isDiscovered, para el resto sí filtramos.
   const filtersForAll = useFilters(cards, variant === "library");
   const filtersForFavorites = useFilters(favoriteCards);
 
@@ -95,11 +94,7 @@ useEffect(() => {
   };
 
   // Decide qué cartas mostrar según el modo y filtros
-  const cardsToDisplay = variant === "library"
-    ? filtersForAll.filteredCards  // Todas las cartas filtradas sin ocultar tapadas
-    : isShowingFavorites
-      ? filtersForFavorites.filteredCards
-      : filteredCards;
+  const cardsToDisplay = isShowingFavorites ? filtersForFavorites.filteredCards.filter(card => card.isDiscovered) : (variant === "library" ? filtersForAll.filteredCards : filteredCards);
 
     if (loadingUserCards && isPageReady) {
       return (
@@ -110,8 +105,6 @@ useEffect(() => {
 }
 
   if (userCardsError) return <p>Error cargando cartas del usuario: {userCardsError}</p>;
-
-
 
   return (
     <>
