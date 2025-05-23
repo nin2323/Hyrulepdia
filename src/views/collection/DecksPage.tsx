@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { Button } from "../../components/button/button";
 import { Filters } from "../../components/filters/filters";
+import './DecksPage.css'
 
 export const DecksPage = () => {
 const navigate = useNavigate();
@@ -19,6 +20,9 @@ const navigate = useNavigate();
             <Button size="lg" onClick={() => navigate("/collection")}>My Cards</Button>
             <Button size="lg" onClick={() => navigate("/collection/decks")}>Decks</Button>
             <Button size="lg" onClick={() => navigate("/collection/library")}>Library</Button>
+        </div>
+        <div className="collection-page__decks">
+            
         </div>
         </>
     )

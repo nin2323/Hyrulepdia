@@ -1,0 +1,10 @@
+.collection-page__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: sticky;
+    top: 230px;
+    height: fit-content;
+    margin-top: 50px;
+    align-items: center;
+}
