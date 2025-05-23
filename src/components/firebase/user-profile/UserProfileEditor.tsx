@@ -35,6 +35,8 @@ export const UserProfileEditor = () => {
         const data = snapshot.data();
         setOneLiner(data.oneLiner || '');
         setGems(data.gems || 0);
+        // Si ya tienes photoURL en Firestore, podrías cargarlo aquí también:
+        // setPhotoURL(data.photoURL || user.photoURL || '');
       }
     };
 
@@ -66,7 +68,11 @@ export const UserProfileEditor = () => {
 
       // Actualizamos los datos en Firestore
       const docRef = doc(db, 'users', user.uid);
-      await updateDoc(docRef, { oneLiner, gems });
+      await updateDoc(docRef, {
+        oneLiner,
+        gems,
+        photoURL,
+      });
 
       // Mostramos mensaje de éxito
       setMessage('Perfil actualizado correctamente ✅');

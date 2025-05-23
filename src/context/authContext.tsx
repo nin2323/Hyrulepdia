@@ -50,6 +50,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         nombreUsuario: '',
         oneliner: '',
         gems: 0,
+        photoURL: '',
       });
     } catch (error: any) {
       console.error('Error al registrar usuario:', error);
