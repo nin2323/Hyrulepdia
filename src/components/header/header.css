@@ -2,14 +2,13 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 2.5rem 8rem;
-  margin: 4rem 2.7rem 0rem 2.7rem;
+  padding: 25px 80px;
   background: rgba(39, 88, 128, 0.1); 
   position: relative;
 }
  
 .header-logo {
-  font-size: 3.6rem;
+  font-size: 36px;
   text-decoration: none;
   color: #E0CEA0;
 }
@@ -21,8 +20,8 @@ header {
 
 .header-nav {
   display: flex;
-  gap: 2.6rem;
-  margin-right: 10rem;
+  gap: 26px;
+  margin-right: 100px;
   align-items: center;
 }
 
@@ -30,23 +29,23 @@ header {
   text-decoration: none;
   color: #FFFFFF;
   font-weight: 500;
-  font-size: 2rem;
+  font-size: 20px;
   font-family: 'the wild breath of Zelda';
 }
 
 nav a:hover {
-  filter: drop-shadow(0 0 1rem #FFFFFF );
+  filter: drop-shadow(0 0 10px #FFFFFF );
 }
 
 .user-money {
   display: flex;
-  gap: 2rem;
+  gap: 20px;
   align-items: center;
 }
 
 .user-money p {
   color: #FFFFFF;
-  font-size: 2rem;
+  font-size: 20px;
 }
 
 

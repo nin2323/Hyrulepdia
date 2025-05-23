@@ -1,5 +1,11 @@
-import { Footer } from '../components/footer/footer';
+import { UserProfileEditor } from '../components/firebase/user-profile/UserProfileEditor';
 
-export const ProfilePage = () => {
-  return <div></div>;
+//<UserProfileEditor />
+export const PorfilePage = () => {
+  return (
+    <div>
+      <h1>Perfil</h1>
+      <UserProfileEditor />
+    </div>
+  );
 };

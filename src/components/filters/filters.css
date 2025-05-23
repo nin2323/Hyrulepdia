@@ -1,0 +1,18 @@
+.filters {
+    display: flex;
+    padding-inline: 27px;
+    margin-top: 40px;
+    justify-content: space-between;
+    position: sticky;
+    top: 52px;
+    z-index: 10;
+    background: transparent;  
+    backdrop-filter: blur(16px);
+}
+
+.filters-buttons {
+    display: flex;
+    gap: 40px;
+}
+
+
