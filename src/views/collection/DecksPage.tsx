@@ -16,13 +16,15 @@ const navigate = useNavigate();
             onFavoritesToggle={() => {}}
             isShowingFavorites
         />
-        <div className="collection-page__buttons">
-            <Button size="lg" onClick={() => navigate("/collection")}>My Cards</Button>
-            <Button size="lg" onClick={() => navigate("/collection/decks")}>Decks</Button>
-            <Button size="lg" onClick={() => navigate("/collection/library")}>Library</Button>
-        </div>
-        <div className="collection-page__decks">
-            
+        <div className="collection-page">
+            <div className="collection-page__buttons">
+                <Button size="lg" onClick={() => navigate("/collection")}>My Cards</Button>
+                <Button size="lg" onClick={() => navigate("/collection/decks")}>Decks</Button>
+                <Button size="lg" onClick={() => navigate("/collection/library")}>Library</Button>
+            </div>
+            <div className="collection-page__decks">
+                <div></div>
+            </div>
         </div>
         </>
     )
