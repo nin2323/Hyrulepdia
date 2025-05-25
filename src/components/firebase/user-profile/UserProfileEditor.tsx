@@ -66,7 +66,7 @@ export const UserProfileEditor = () => {
   };
 
   return (
-    <div>
+    <div className={styles.containerProfile}>
       {message && <p>{message}</p>}
 
       <label className={styles.clickableImg}>
@@ -85,7 +85,7 @@ export const UserProfileEditor = () => {
         />
       </label>
 
-      <div className={styles.inputTextCard}>
+      <div className={styles.inputTextCardName}>
         {/*<!-- Líneas verticales partidas laterales -->*/}
         <div className={styles.leftTopLine}></div>
         <div className={styles.leftBottomLine}></div>
@@ -99,15 +99,28 @@ export const UserProfileEditor = () => {
         <div className={styles.bottomRightLine}></div>
         <input
           className={styles.inputText}
+          placeholder='NAME'
           type='text'
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
         />
       </div>
 
-      <div>
-        <label>One-liner:</label>
+      <div className={styles.inputTextCardOneLiner}>
+        {/*<!-- Líneas verticales partidas laterales -->*/}
+        <div className={styles.leftTopLine}></div>
+        <div className={styles.leftBottomLine}></div>
+        <div className={styles.rightTopLine}></div>
+        <div className={styles.rightBottomLine}></div>
+
+        {/*<-- Líneas horizontales partidas -->*/}
+        <div className={styles.topLeftLine}></div>
+        <div className={styles.topRightLine}></div>
+        <div className={styles.bottomLeftLine}></div>
+        <div className={styles.bottomRightLine}></div>
         <input
+          className={styles.inputText}
+          placeholder='ONE LINER'
           type='text'
           value={oneLiner}
           onChange={(e) => setOneLiner(e.target.value)}
@@ -122,8 +135,18 @@ export const UserProfileEditor = () => {
 
       {showSensitive && (
         <>
-          <div>
-            <label>Email:</label>
+          <div className={styles.inputTextCardOneLiner}>
+            {/*<!-- Líneas verticales partidas laterales -->*/}
+            <div className={styles.leftTopLine}></div>
+            <div className={styles.leftBottomLine}></div>
+            <div className={styles.rightTopLine}></div>
+            <div className={styles.rightBottomLine}></div>
+
+            {/*<-- Líneas horizontales partidas -->*/}
+            <div className={styles.topLeftLine}></div>
+            <div className={styles.topRightLine}></div>
+            <div className={styles.bottomLeftLine}></div>
+            <div className={styles.bottomRightLine}></div>
             <input
               type='email'
               value={email}
@@ -131,8 +154,18 @@ export const UserProfileEditor = () => {
             />
           </div>
 
-          <div>
-            <label>Contraseña nueva:</label>
+          <div className={styles.inputTextCardOneLiner}>
+            {/*<!-- Líneas verticales partidas laterales -->*/}
+            <div className={styles.leftTopLine}></div>
+            <div className={styles.leftBottomLine}></div>
+            <div className={styles.rightTopLine}></div>
+            <div className={styles.rightBottomLine}></div>
+
+            {/*<-- Líneas horizontales partidas -->*/}
+            <div className={styles.topLeftLine}></div>
+            <div className={styles.topRightLine}></div>
+            <div className={styles.bottomLeftLine}></div>
+            <div className={styles.bottomRightLine}></div>
             <input
               type='password'
               value={password}

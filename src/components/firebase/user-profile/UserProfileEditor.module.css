@@ -1,9 +1,16 @@
-* {
-  color: white;
+/*===CONTENEDOR DE LA PAGINA==*/
+.containerProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 48px; /* distancia desde el header */
+  min-height: 100vh;
+  /*gap: 32px; /* separación general entre bloques si lo deseas */
 }
 
 /*===IMAGEN PERFIL USUARIO===*/
 .clickableImg {
+  margin-bottom: 48px;
   display: inline-block;
   cursor: pointer;
 }
@@ -18,14 +25,26 @@
 .clickableImg:hover img {
   transform: scale(1.05);
 }
-
+input {
+  font-size: 16px;
+}
 /*===BORDES===*/
-.inputTextCard {
+.inputTextCardOneLiner {
   position: relative;
-  width: 500px;
-  height: 60px;
+  width: 574px;
+  height: 37px;
   margin: 10px auto;
-  background: #132d42;
+  background: #0f2435;
+  font-size: 16px;
+}
+.inputTextCardName {
+  position: relative;
+  width: 435px;
+  height: 37px;
+  margin: 10px auto;
+  background: #0f2435;
+  font-size: 16px;
+  gap: 20px;
 }
 .inputText {
   width: 100%;
@@ -45,28 +64,28 @@
 .bottomRightLine {
   position: absolute;
   height: 2px;
-  background-color: gold;
+  background-color: #7cd2ff;
   z-index: 2;
 }
 .topLeftLine {
   top: 0;
   left: 0;
-  width: calc(10% - 1px);
+  width: calc(20% - 1px);
 }
 .topRightLine {
   top: 0;
   right: 0;
-  width: calc(10% - 1px);
+  width: calc(20% - 1px);
 }
 .bottomLeftLine {
   bottom: 0;
   left: 0;
-  width: calc(10% - 1px);
+  width: calc(20% - 1px);
 }
 .bottomRightLine {
   bottom: 0;
   right: 0;
-  width: calc(10% - 1px);
+  width: calc(20% - 1px);
 }
 .leftTopLine,
 .leftBottomLine,
@@ -74,26 +93,26 @@
 .rightBottomLine {
   position: absolute;
   width: 2px;
-  background-color: gold;
+  background-color: #7cd2ff;
   z-index: 2;
 }
 .leftTopLine {
   left: 0;
   top: 0;
-  height: calc(10% - 1px);
+  height: calc(30% - 1px);
 }
 .leftBottomLine {
   left: 0;
   bottom: 0;
-  height: calc(10% - 1px);
+  height: calc(30% - 1px);
 }
 .rightTopLine {
   right: 0;
   top: 0;
-  height: calc(10% - 1px);
+  height: calc(30% - 1px);
 }
 .rightBottomLine {
   right: 0;
   bottom: 0;
-  height: calc(10% - 1px);
+  height: calc(30% - 1px);
 }
