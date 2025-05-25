@@ -9,7 +9,7 @@ import './CardContainer.css';
 interface CardContainerProps {
   children?: React.ReactNode;
   className?: string;
-  colorClass?: 'blue-theme' | 'golden-theme';
+  colorClass?: 'blue-theme' | 'golden-theme' | 'purple-theme';
   popUp?: boolean;
   hideSvg?: boolean;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
@@ -23,10 +23,13 @@ export const CardContainer = ({
   colorClass = 'golden-theme',
   popUp = false,
   hideSvg = false,
-  onClick
+  onClick,
 }: CardContainerProps) => {
   return (
-    <div className={`card ${className} ${colorClass} ${popUp ? 'popup' : ''}`} onClick={onClick}>
+    <div
+      className={`card ${className} ${colorClass} ${popUp ? 'popup' : ''}`}
+      onClick={onClick}
+    >
       {!popUp && <div className='bg-image'></div>}
       <div className='bg-overlay'></div>
 
@@ -38,6 +41,8 @@ export const CardContainer = ({
               src={
                 colorClass === 'blue-theme'
                   ? 'src/assets/Fill-10-blue.svg'
+                  : colorClass === 'purple-theme'
+                  ? 'src/assets/Fill-10-purple.svg'
                   : 'src/assets/Fill-10.svg'
               }
               className='svg-icon'
@@ -49,6 +54,8 @@ export const CardContainer = ({
               src={
                 colorClass === 'blue-theme'
                   ? 'src/assets/Fill-10-blue.svg'
+                  : colorClass === 'purple-theme'
+                  ? 'src/assets/Fill-10-purple.svg'
                   : 'src/assets/Fill-10.svg'
               }
               className='svg-icon'
@@ -60,6 +67,8 @@ export const CardContainer = ({
               src={
                 colorClass === 'blue-theme'
                   ? 'src/assets/Fill-10-blue.svg'
+                  : colorClass === 'purple-theme'
+                  ? 'src/assets/Fill-10-purple.svg'
                   : 'src/assets/Fill-10.svg'
               }
               className='svg-icon'
@@ -71,6 +80,8 @@ export const CardContainer = ({
               src={
                 colorClass === 'blue-theme'
                   ? 'src/assets/Fill-10-blue.svg'
+                  : colorClass === 'purple-theme'
+                  ? 'src/assets/Fill-10-purple.svg'
                   : 'src/assets/Fill-10.svg'
               }
               className='svg-icon'
