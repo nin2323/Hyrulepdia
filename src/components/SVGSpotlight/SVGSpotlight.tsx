@@ -23,7 +23,7 @@ const SVGSpotlight: React.FC = () => {
 
     const svgMarkup = `
       <svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        ${Array.from({ length: 2 }, (_, i) => {
+        ${Array.from({ length: 1 }, (_, i) => {
           const pos = i * 1;
           return `
             <line x1="${pos}" y1="0" x2="${pos}" y2="100" stroke="white" stroke-width="0.5"/>
