@@ -11,7 +11,7 @@ import Fill10Blue from '../../assets/Fill-10-blue.svg';
 interface CardContainerProps {
   children?: React.ReactNode;
   className?: string;
-  colorClass?: 'blue-theme' | 'golden-theme';
+  colorClass?: 'blue-theme' | 'golden-theme' | 'purple-theme';
   popUp?: boolean;
   hideSvg?: boolean;
   onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
