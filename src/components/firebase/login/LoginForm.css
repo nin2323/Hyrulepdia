@@ -1,3 +1,23 @@
+body:has(.login-page),
+body:has(.register-form-container) {
+  margin: 0;
+}
+
+.login-page,
+.register-form-container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.login-form-container{
+  display: flex;
+  justify-content: center;
+}
+
 .success-message {
     color: #17f017;
     font-size: 1.2em;
@@ -34,12 +54,12 @@
 .login-form {
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 300px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 15px;
-    border: 1px solid white;
+    
 }
 
 .input-group {
@@ -68,7 +88,9 @@
 .switch-form {
     margin-top: 20px;
     color: white;
-    font-size: 12px;
+    font-size: 14px;
+    display: flex;
+    gap: 6px;
   }
   
   .switch-form a {
@@ -79,5 +101,29 @@
   .switch-form a:hover {
     text-decoration: underline;
   }
+
+  .button-login {
+    margin-top: 26px;
+  }
+
+  .input-login {
+    width: auto;
+  }
+
+  .input-login-container {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .login-logo {
+    width: 380px;
+    height: auto;
+  }
+  
+
+ 
+
+
 
   
