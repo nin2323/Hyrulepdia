@@ -5,6 +5,7 @@ import { auth, db } from '../../../firebaseConfig/firebaseConfig';
 import { useEffect, useState } from 'react';
 import './UserProfileEditor.module.css';
 import styles from './UserProfileEditor.module.css';
+import { Button } from '../../button/button';
 
 export const UserProfileEditor = () => {
   const { user } = useAuth();
@@ -127,11 +128,12 @@ export const UserProfileEditor = () => {
         />
       </div>
 
-      <button onClick={() => setShowSensitive((prev) => !prev)}>
+      
+      <Button color='primary' size='sm' onClick={() => setShowSensitive((prev) => !prev)}>
         {showSensitive
-          ? 'Ocultar email y contraseña'
-          : 'Editar email y contraseña'}
-      </button>
+          ? 'Ocultar'
+          : 'Editar'}
+      </Button>
 
       {showSensitive && (
         <>
@@ -175,7 +177,9 @@ export const UserProfileEditor = () => {
         </>
       )}
 
-      <button onClick={handleSave}>Guardar cambios</button>
+      <Button color='primary' size='sm' onClick={handleSave}>
+       Guardar
+      </Button>
     </div>
   );
 };
