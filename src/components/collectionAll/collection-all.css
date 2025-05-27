@@ -3,11 +3,12 @@ html {
 }
 
 .collection-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); 
+    display: flex;
+    flex-wrap: wrap;
     gap: 60px;
     justify-items: center; 
-    padding: 0 84px;
+    width: 100%;
+    justify-content: center;
   }
 
 .hyrule-card__border:hover {
@@ -17,11 +18,14 @@ html {
 .cards-wrapped {
     display: flex;
     flex-direction: row-reverse;
+    justify-content: space-between;
+    gap: 25px;
 }
 
 .collection-page {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    column-gap: 30px;
     margin-top: 60px;
     justify-content: space-between;
     padding: 0;
@@ -33,9 +37,29 @@ html {
     display: flex;
     flex-direction: column;
     gap: 32px;
-    padding-left: 200px;
     position: sticky;
     top: 230px;
     height: fit-content;
     margin-top: 50px;
+    align-items: center;
 }
+
+/* Gif  */
+
+.no-cards-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+.no-cards-container img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: auto;
+}
+

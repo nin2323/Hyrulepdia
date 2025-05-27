@@ -1,33 +1,31 @@
-// Importamos hooks y funciones necesarias de Firebase y React
-import { useAuth } from '../../../context/authContext'; // Para obtener el usuario actual
-import { updateEmail, updatePassword, updateProfile } from 'firebase/auth'; // Funciones para actualizar en Firebase Auth
-import { doc, updateDoc, getDoc } from 'firebase/firestore'; // Funciones para acceder y editar Firestore
+import { useAuth } from '../../../context/authContext';
+import { updateEmail, updatePassword, updateProfile } from 'firebase/auth';
+import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebaseConfig/firebaseConfig';
-import { useEffect, useState } from 'react'; // Hooks de React
+import { useEffect, useState } from 'react';
+import './UserProfileEditor.module.css';
+import styles from './UserProfileEditor.module.css';
+import { Button } from '../../button/button';
 
-// Componente principal
 export const UserProfileEditor = () => {
-  const { user } = useAuth(); // Obtenemos el usuario actual desde el authContext
+  const { user } = useAuth();
 
-  // Estados para manejar los datos del formulario
   const [displayName, setDisplayName] = useState('');
   const [photoURL, setPhotoURL] = useState('');
   const [oneLiner, setOneLiner] = useState('');
   const [gems, setGems] = useState(0);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState(''); // Mensaje de éxito o error
+  const [message, setMessage] = useState('');
+  const [showSensitive, setShowSensitive] = useState(false);
 
-  // Cuando se monta el componente, cargamos los datos del usuario
   useEffect(() => {
     if (!user) return;
 
-    // Datos de Firebase Auth
     setDisplayName(user.displayName || '');
     setPhotoURL(user.photoURL || '');
     setEmail(user.email || '');
 
-    // Datos personalizados de Firestore
     const fetchProfileData = async () => {
       const docRef = doc(db, 'users', user.uid);
       const snapshot = await getDoc(docRef);
@@ -35,92 +33,153 @@ export const UserProfileEditor = () => {
         const data = snapshot.data();
         setOneLiner(data.oneLiner || '');
         setGems(data.gems || 0);
-        // Si ya tienes photoURL en Firestore, podrías cargarlo aquí también:
-        // setPhotoURL(data.photoURL || user.photoURL || '');
       }
     };
 
     fetchProfileData();
   }, [user]);
 
-  // Enviar el formulario
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!user) return;
+  const handleSave = async () => {
+    if (!user || !auth.currentUser) return;
 
     try {
-      // Si hay cambios en nombre o foto, los actualizamos en Firebase Auth
-      if (auth.currentUser) {
-        if (displayName || photoURL) {
-          await updateProfile(auth.currentUser, { displayName, photoURL });
-        }
+      await updateProfile(auth.currentUser, { displayName, photoURL });
 
-        // Si cambió el email
-        if (email && email !== user.email) {
-          await updateEmail(auth.currentUser, email);
-        }
-
-        // Si se quiere cambiar la contraseña
-        if (password) {
-          await updatePassword(auth.currentUser, password);
-        }
+      if (email && email !== user.email) {
+        await updateEmail(auth.currentUser, email);
       }
 
-      // Actualizamos los datos en Firestore
-      const docRef = doc(db, 'users', user.uid);
-      await updateDoc(docRef, {
+      if (password) {
+        await updatePassword(auth.currentUser, password);
+      }
+
+      await updateDoc(doc(db, 'users', user.uid), {
         oneLiner,
         gems,
         photoURL,
       });
 
-      // Mostramos mensaje de éxito
-      setMessage('Perfil actualizado correctamente ✅');
+      setMessage('✅ Cambios guardados correctamente');
+      setPassword('');
     } catch (err: any) {
-      // Mostramos el error si falla algo
-      setMessage(`Error: ${err.message}`);
+      setMessage(`❌ Error: ${err.message}`);
     }
   };
 
-  // JSX: formulario de edición de perfil
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Editar Perfil</h2>
+    <div className={styles.containerProfile}>
       {message && <p>{message}</p>}
 
-      <label>Nombre:</label>
-      <input
-        value={displayName}
-        onChange={(e) => setDisplayName(e.target.value)}
-      />
+      <label className={styles.clickableImg}>
+        <img src={photoURL} alt='Foto de perfil' />
+        <input
+          type='file'
+          accept='image/*'
+          style={{ display: 'none' }}
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              const url = URL.createObjectURL(file);
+              setPhotoURL(url);
+            }
+          }}
+        />
+      </label>
 
-      <label>Foto de perfil (URL):</label>
-      <input value={photoURL} onChange={(e) => setPhotoURL(e.target.value)} />
+      <div className={styles.inputTextCardName}>
+        {/*<!-- Líneas verticales partidas laterales -->*/}
+        <div className={styles.leftTopLine}></div>
+        <div className={styles.leftBottomLine}></div>
+        <div className={styles.rightTopLine}></div>
+        <div className={styles.rightBottomLine}></div>
 
-      <label>Email:</label>
-      <input value={email} onChange={(e) => setEmail(e.target.value)} />
+        {/*<-- Líneas horizontales partidas -->*/}
+        <div className={styles.topLeftLine}></div>
+        <div className={styles.topRightLine}></div>
+        <div className={styles.bottomLeftLine}></div>
+        <div className={styles.bottomRightLine}></div>
+        <input
+          className={styles.inputText}
+          placeholder='NAME'
+          type='text'
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+        />
+      </div>
 
-      <label>Nueva contraseña:</label>
-      <input
-        type='password'
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <div className={styles.inputTextCardOneLiner}>
+        {/*<!-- Líneas verticales partidas laterales -->*/}
+        <div className={styles.leftTopLine}></div>
+        <div className={styles.leftBottomLine}></div>
+        <div className={styles.rightTopLine}></div>
+        <div className={styles.rightBottomLine}></div>
 
-      <label>One-liner:</label>
-      <input value={oneLiner} onChange={(e) => setOneLiner(e.target.value)} />
+        {/*<-- Líneas horizontales partidas -->*/}
+        <div className={styles.topLeftLine}></div>
+        <div className={styles.topRightLine}></div>
+        <div className={styles.bottomLeftLine}></div>
+        <div className={styles.bottomRightLine}></div>
+        <input
+          className={styles.inputText}
+          placeholder='ONE LINER'
+          type='text'
+          value={oneLiner}
+          onChange={(e) => setOneLiner(e.target.value)}
+        />
+      </div>
 
-      <label>gems:</label>
-      <input
-        type='number'
-        value={gems}
-        onChange={(e) => {
-          const value = e.target.value;
-          setGems(value === '' ? 0 : parseInt(value, 10));
-        }}
-      />
+      
+      <Button color='primary' size='sm' onClick={() => setShowSensitive((prev) => !prev)}>
+        {showSensitive
+          ? 'Ocultar'
+          : 'Editar'}
+      </Button>
 
-      <button type='submit'>Guardar cambios</button>
-    </form>
+      {showSensitive && (
+        <>
+          <div className={styles.inputTextCardOneLiner}>
+            {/*<!-- Líneas verticales partidas laterales -->*/}
+            <div className={styles.leftTopLine}></div>
+            <div className={styles.leftBottomLine}></div>
+            <div className={styles.rightTopLine}></div>
+            <div className={styles.rightBottomLine}></div>
+
+            {/*<-- Líneas horizontales partidas -->*/}
+            <div className={styles.topLeftLine}></div>
+            <div className={styles.topRightLine}></div>
+            <div className={styles.bottomLeftLine}></div>
+            <div className={styles.bottomRightLine}></div>
+            <input
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className={styles.inputTextCardOneLiner}>
+            {/*<!-- Líneas verticales partidas laterales -->*/}
+            <div className={styles.leftTopLine}></div>
+            <div className={styles.leftBottomLine}></div>
+            <div className={styles.rightTopLine}></div>
+            <div className={styles.rightBottomLine}></div>
+
+            {/*<-- Líneas horizontales partidas -->*/}
+            <div className={styles.topLeftLine}></div>
+            <div className={styles.topRightLine}></div>
+            <div className={styles.bottomLeftLine}></div>
+            <div className={styles.bottomRightLine}></div>
+            <input
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+        </>
+      )}
+
+      <Button color='primary' size='sm' onClick={handleSave}>
+       Guardar
+      </Button>
+    </div>
   );
 };

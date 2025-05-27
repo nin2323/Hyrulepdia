@@ -3,6 +3,10 @@ import { ChestButtonType } from "../../types/hyrule.types"
 import { Button } from "../button/button"
 import { ChestButton } from "../chest-button/ChestButton"
 import './StorePurchase.css'
+import { useEffect, useState } from "react";
+import { useAuth } from "../../context/authContext";
+import {doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db } from "../../firebaseConfig/firebaseConfig";
 
 type StorePurchaseProps = {
     selectedChest: {
@@ -14,13 +18,55 @@ type StorePurchaseProps = {
 
 export const StorePurchase = ({selectedChest, onOpen}: StorePurchaseProps) => {
     const navigate = useNavigate();
+    const { user } = useAuth();
+    const [gems, setGems] = useState(0);
+    const [message, setMessage] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchGems = async () => {
+            if (!user) return;
+            const userRef = doc(db, 'users', user.uid);
+            const userSnap = await getDoc(userRef);
+            if (userSnap.exists()) {
+                setGems(userSnap.data().gems || 0);
+            }
+        };
+        fetchGems();
+    }, [user]);
+
+    const handleChestOpen = async () => {
+        if (!user) return; 
+        
+        const cost =  selectedChest.rarity === 'common' ? 200 : 
+        selectedChest.rarity === 'rare' ? 500 : 800;
+
+        if (gems < cost) {
+            setMessage("You don't have enough gemes"); //quiero usar lo del toastify para sacar un popup. 
+            return;
+        }
+
+        try {
+            const userRef = doc(db, 'users', user.uid);
+            const newGems = gems - cost;
+
+            await updateDoc(userRef, {gems: newGems});
+            setGems(newGems);
+            setMessage(null);
+            onOpen();
+        } catch (error: any) {
+            setMessage(`Error opening chest: ${error.message}`);
+        }
+    };
+
+
     if (!selectedChest) return null
     const {rarity, price} = selectedChest;
     
     return (
             <div className="store-purchase">
                 <Button onClick={() => navigate('/shop')}>BACK</Button>
-                <Button color='secondary' onClick={onOpen}>OPEN</Button>
+                <Button color='secondary' onClick={handleChestOpen}>OPEN</Button>
+                {message && <p className="store-purchase__message">{message}</p>}
                 {/* Pasamos los datos al ChestButton */}
                 <div className="store-purchase__chest">
                     <ChestButton rarity={rarity} price={price} />

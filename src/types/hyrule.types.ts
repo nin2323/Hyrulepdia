@@ -9,10 +9,10 @@ export interface HyruleCardType {
     location: string;
     items: string;
     category: 'creatures' | 'materials' | 'equipment' | 'monsters' | 'treasure';
-    variant?: "default" | "library";
     size?: 'default' | 'lg' | 'xl';
     isFavorite?: boolean;
     disableClick?: boolean;
+    isDiscovered?: boolean;
 }
 
 
