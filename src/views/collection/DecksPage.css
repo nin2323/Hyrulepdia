@@ -1,10 +1,63 @@
-.collection-page__buttons {
+/* Contenedor general de mazos */
+  .collection-page__decks {
     display: flex;
-    flex-direction: column;
-    gap: 32px;
-    position: sticky;
-    top: 230px;
-    height: fit-content;
-    margin-top: 50px;
-    align-items: center;
+    margin-left: 2rem;
+    flex-wrap: wrap;
+    gap: 4rem
+    
+  }
+  
+  /* Cada bloque individual de mazo */
+  .deck-preview {
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    padding: 0.5rem;
+    transition: box-shadow 0.2s ease;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    width: 15rem;
+    height: 23.5rem;
+  }
+  
+  .deck-preview:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Imagen principal del mazo */
+  .deck-image img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  /* Nombre del mazo debajo de la imagen */
+  .deck-name {
+    margin-top: 0.75rem;
+    font-weight: bold;
+    font-size: 1.05rem;
+    color: #333;
+    word-wrap: break-word;
+  }
+
+.deck-button {
+    margin: 0;
+    align-self: start;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.deck-button img {
+    object-fit: contain;
+    width: 15rem;
+    height: 25rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.deck-button:hover img {
+    transform: scale(1.1);
 }
