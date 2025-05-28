@@ -14,11 +14,13 @@
   
   /* Formulario principal del editor */
   .deck-editor-form {
-    background: #fdfdfd;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    background: rgb(14, 23, 40);
     border-radius: 12px;
     padding: 2rem;
-    width: 90%;
-    max-width: 90rem;
+    width: 100%;
+    max-width: 106rem;
     max-height: 85vh; /* ❗️ esto limita la altura */
     display: flex;
     flex-direction: column;
@@ -30,12 +32,15 @@
   /* Campo de texto para el nombre del mazo */
   .deck-name-input {
     width: 100%;
-    color:rgba(0, 0, 0, 0.753);
-    background-color: rgb(255, 255, 255);
+    font-family: 'title';
+    font-weight: 100;
+    letter-spacing: 0.1rem;
+    color:#ffffff;
+    background-color:rgb(14, 23, 40);
     padding: 0.75rem 1rem;
-    font-size: 1.1rem;
-    border: 2px solid #ccc;
-    border-radius: 8px;
+    font-size: 2rem;
+    border: 1px solid #97DCFF;
+    border-radius: 6px;
   }
   
   /* Grid de 6 ranuras de cartas */
@@ -49,10 +54,11 @@
   
   /* Botón de slot individual */
   .card-slot-button {
-    width: 14rem;
-    aspect-ratio: 10 / 14.3; /* proporción similar a las cartas reales */
-    background-color: #f0f0f0;
-    border: 2px dashed #999;
+    overflow: visible; /* importante para que lo que esté fuera del botón se vea */
+    width: 16rem;
+    aspect-ratio: 10 / 13.9; /* proporción similar a las cartas reales */
+    background-color:rgb(14, 23, 40);
+    border: 2px dashed #97DCFF;
     border-radius: 8px;
     font-size: 2rem;
     color: #555;
@@ -73,15 +79,8 @@
     justify-content: center;
   }
   
-  
   .card-slot-button.active {
-    border-color: #0070f3;
-  }
-  
-  .card-slot-button img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    border-color:#E0CEA0;
   }
   
   /* Contenedor de la selección de cartas */
@@ -95,8 +94,12 @@
   .user-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(11.5rem, 1fr));
-    gap: 2rem;
+    gap: 5rem;
+    max-width: 100%;
+    width: 97%;
+    box-sizing: border-box;
     margin-top: 0.5rem;
+    padding-left: 1.9rem;
     justify-items: center;
   }
   
@@ -110,11 +113,11 @@
     transition: transform 0.2s ease;
   }
   
-  .user-card img {
+  /* .user-card img {  esta linea de código era lo que hacía que las cartas no se vieran bien 😢, deforma el icono y la imagen de la card
     width: 100%;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  }
+  } */
   
   .user-card:hover {
     transform: scale(1.05);
@@ -122,24 +125,17 @@
   
   /* Botón de crear mazo */
   .create-deck-button {
-    background-color: #28a745;
-    color: white;
-    font-weight: bold;
     font-size: 1rem;
-    padding: 0.75rem 2rem;
     border: none;
-    border-radius: 8px;
     margin-top: 1rem;
     cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.create-deck-button:hover {
-    background-color: #218838;
+    padding: 1rem 2.5rem !important;
 }
 
 .card-selection h4 {
     font-size: 2rem;
-    color: #B99F65;
+    font-weight: 100;
+    color: #E0CEA0;
     letter-spacing: 0.1rem;
 }
+

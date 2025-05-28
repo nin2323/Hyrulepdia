@@ -7,6 +7,7 @@ import { collection, getDocs, doc } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
 import { DeckEditorPage } from "./DeckEditorPage";
 import deckButton from "../../assets/backgrounds/deck-button.png"
+import { useUnlockedCards } from "../../hooks/useUnlockedCards";
 import './DecksPage.css'
 
 export const DecksPage = () => {
@@ -14,6 +15,8 @@ const navigate = useNavigate(); //use navigate para redirigir
 const { user } = useAuth();
 const [decks, setDecks] = useState<any[]>([]); //almacenamos los mazos del usuario
 const [isCreating, setIsCreating] = useState(false); //controla si se muestra el editor
+const [selectedDeck, setSelectedDeck] = useState<any | null>(null);
+const { cards: userCards } = useUnlockedCards(); //para la preview de los mazos
 
 useEffect(() => {
     const fetchDecks = async () => {
@@ -21,7 +24,7 @@ useEffect(() => {
         const userRef = doc(db, 'users', user.uid);
         const decksRef = collection(userRef, 'decks');
         const snapshot = await getDocs(decksRef);
-        const data = snapshot.docs.map(doc => ({id: doc.id, ...doc.data}));
+        const data = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})); //los nombres no funcionaban porque estaba pasando data como propiedad y no como función
         setDecks(data); //cargamos los mazos en el estado
     };
     fetchDecks();
@@ -45,23 +48,26 @@ useEffect(() => {
             </div>
             <div className="collection-page__decks">
                 <button className="deck-button" onClick={() => setIsCreating(true)}>
-                    <img src={deckButton} alt='deck button'  />;
+                    <img src={deckButton} alt='deck button'  />
                 </button>
-                {decks.map(deck => (
-                    <div key={deck.id} className="deck-preview">
-                        <div className="deck-image">
-                            {deck.cards && deck.cards[0] && (
-                                <img
-                                    src={deck.cards[0].image || "https://via.placeholder.com/150"}
-                                    alt="Deck Cover"
-                                />
-                            )}
-                        </div>
-                        <div className="deck-name">{deck.name}</div>
+                {decks.map(deck => {
+                    return (
+                        <div key={deck.id} className="deck-preview" onClick={() => setSelectedDeck(deck)}>
+                        <div className="deck-name">{deck.name || "Unnamed Deck"}</div>
                     </div>
-                ))}
+                );
+            })}
             </div>
-            {isCreating && <DeckEditorPage onClose={() => setIsCreating(false)} />}
+            {(isCreating || selectedDeck) && (
+                <DeckEditorPage
+                    key={selectedDeck?.id || "new"}
+                    onClose={() => {
+                        setIsCreating(false);
+                        setSelectedDeck(null);
+                    }}
+                initialDeck={selectedDeck || undefined}
+            />
+        )}
         </div>
         </>
     )
