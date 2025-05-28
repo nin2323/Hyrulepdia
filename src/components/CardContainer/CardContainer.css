@@ -56,6 +56,11 @@
   --line-color: #00aaff;
 }
 
+/* === TEMA: PURPURA === */
+.card.purple-theme {
+  --line-color: #ba6ed5;
+}
+
 /* === ESQUINAS === */
 
 .card::before,
