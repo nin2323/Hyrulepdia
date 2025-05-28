@@ -9,7 +9,13 @@ html {
     justify-items: center; 
     width: 100%;
     justify-content: center;
-  }
+}
+
+@media (min-width: 769px) and (max-width: 1439px) {
+    .collection-container {
+        gap: 30px;
+    }
+}
 
 .hyrule-card__border:hover {
     cursor: pointer;
@@ -40,13 +46,12 @@ html {
     position: sticky;
     top: 230px;
     height: fit-content;
-    margin-top: 50px;
-    align-items: center;
+    padding: 0 27px;
 }
 
 /* Gif  */
 
-.no-cards-container {
+.loading-container {
     display: flex;
     align-items: center;
     position: relative;
@@ -54,7 +59,7 @@ html {
     width: 100%;
 }
 
-.no-cards-container img {
+.loading-container img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -63,3 +68,12 @@ html {
     height: auto;
 }
 
+.no-cards-message {
+    display: flex;
+    align-items: center;
+}
+
+.no-cards-message p {
+    color: white;
+    font-size: 16px;
+}

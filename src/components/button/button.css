@@ -78,6 +78,13 @@
     font-size: 20px;
 }
 
+ @media (min-width: 769px) and (max-width: 1439px) {
+    .button.md {
+        font-size: 16px;
+    }
+ }
+
+
 .button.lg {
     --cut-size: var(--cut-size-lg);
     height: 68px;
@@ -91,6 +98,15 @@
 
     &:hover .button-corner {
         transform: scale(1.4);
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1439px) {
+    .button.lg {
+        height: 58px;
+        padding: 0 12px;
+        font-size: 20px;
+        min-width: 240px;
     }
 }
 

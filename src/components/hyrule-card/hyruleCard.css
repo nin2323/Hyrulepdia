@@ -18,6 +18,12 @@
     border-radius: 0.7rem;
 }
 
+ @media (min-width: 769px) and (max-width: 1439px) {
+    .hyrule-card__border {
+        transform: scale(0.9);
+    }
+ }
+
 .common {
     background-color: #f5e5c0;
     background: radial-gradient(circle,rgba(224, 206, 160, 1) 68%, rgba(83, 71, 45, 1) 90%);

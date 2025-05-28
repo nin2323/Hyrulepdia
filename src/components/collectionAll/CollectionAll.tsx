@@ -27,22 +27,28 @@ export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
   const [isShowingFavorites, setIsShowingFavorites] = useState(false);
   const [selectedCard, setSelectedCard] = useState<HyruleCardType | null>(null);
   const [isPageReady, setIsPageReady] = useState(false);
+  const [loadingCards, setLoadingCards] = useState(true);
+  const [hasAttemptedLoad, setHasAttemptedLoad] = useState(false);
 
   const { userCards, loading: loadingUserCards, error: userCardsError } = useUserCollection();
   const { favoriteIds, favoriteCards: fetchedFavoriteCards } = CollectionFavorites(isShowingFavorites);
   const navigate = useNavigate();
+  const isStillLoading = loadingUserCards || loadingCards;
+  
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setIsPageReady(true);
-  }, 100); 
+// useEffect(() => {
+//   const timer = setTimeout(() => {
+//     setIsPageReady(true);
+//   }, 100); 
 
-  return () => clearTimeout(timer);
-}, []);
+//   return () => clearTimeout(timer);
+// }, []);
 
   // Cargar todas las cartas
 useEffect(() => {
   const fetchData = async () => {
+    setLoadingCards(true);
+
     const allCards = await getAllCards();
 
     if (allCards) {
@@ -58,16 +64,18 @@ useEffect(() => {
 
       setCards(markedCards);
     }
+    setLoadingCards(false);
+    
   };
 
-  if (userCards.length > 0) {
+  if (userCards.length >= 0) {
     fetchData();
   }
 }, [userCards]);
 
   // Actualizar cartas favoritas
   useEffect(() => {
-    if (fetchedFavoriteCards.length > 0) {
+    if (fetchedFavoriteCards.length >= 0) {
       setFavoriteCards(fetchedFavoriteCards);
     }
   }, [fetchedFavoriteCards]);
@@ -96,13 +104,21 @@ useEffect(() => {
   // Decide qué cartas mostrar según el modo y filtros
   const cardsToDisplay = isShowingFavorites ? filtersForFavorites.filteredCards.filter(card => card.isDiscovered) : (variant === "library" ? filtersForAll.filteredCards : filteredCards);
 
-    if (loadingUserCards && isPageReady) {
+    if (isPageReady) {
       return (
         <div className="collection-container loading">
           <img src={loadingGif} alt="Cargando..." className="loading-gif" />
         </div>
     );
 }
+
+  if (!userCards) {
+    return (
+      <div>
+        <p>Looks like Link forgot to pick up your cards. Typical</p>
+      </div>
+    )
+  }
 
   if (userCardsError) return <p>Error cargando cartas del usuario: {userCardsError}</p>;
 
@@ -132,11 +148,15 @@ useEffect(() => {
             total={cards.length}
           />
           <div className="collection-container">
-            {cardsToDisplay.length === 0 ? (
-              <div className="no-cards-container">
-                <img src={loadingGif} alt="No hay cartas" className="no-cards-gif" /> 
-              </div>
-            ) : (
+            {isStillLoading ? (
+                <div className="loading-container">
+                  <img src={loadingGif} alt="Loading cards..." className="loading-gif" />
+                </div>
+              ) : cardsToDisplay.length === 0 && hasAttemptedLoad ? (
+                <div className="no-cards-message">
+                  <p>Looks like Link forgot to pick up your cards. Typical.</p>
+                </div>
+              ) : (
             cardsToDisplay.map((card) => (
               <div
                 className="test"
