@@ -25,32 +25,13 @@ body:has(.register-form-container) {
     text-align: center;
   }
   
-  .error-message {
+.error-message {
     color: red;
     font-size: 1em;
     margin-top: 10px;
     text-align: center;
   }
-  
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    font-family: Arial, sans-serif;
-  }
-
-  .login-container .button {
-    width: 100%;
-  }
-
-  .login-container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: white;
-    font-size: 28px;
-  }
-  
+    
 .login-form {
     padding: 20px;
     border-radius: 8px;
@@ -60,29 +41,6 @@ body:has(.register-form-container) {
     align-items: center;
     gap: 15px;
     
-}
-
-.input-group {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.input-group label {
-    font-size: 14px;
-    color: white;
-}
-
-.input-group input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-.input-group input:focus {
-    outline: none;
-    border-color: #5b55d6;
 }
 
 .switch-form {
@@ -116,11 +74,6 @@ body:has(.register-form-container) {
     gap: 28px;
   }
 
-  .login-logo {
-    width: 380px;
-    height: auto;
-  }
-  
 
  
 

@@ -1,4 +1,4 @@
-import React, { useState, FormEvent, ChangeEvent, FC } from 'react';
+import { useState, FormEvent, FC } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './registerForm.css';
 import { Button } from '../../button/button';
@@ -43,15 +43,10 @@ export const RegisterForm: FC = () => {
     }
   };
 
-  // const handleChange =
-  //   (setter: React.Dispatch<React.SetStateAction<string>>) =>
-  //   (e: ChangeEvent<HTMLInputElement>) =>
-  //     setter(e.target.value);
-
   return (
     <div className='register-form-container'>
       <form className='register-form' onSubmit={handleSubmit}>
-        <img src={logo} alt="logo" className='logo-login' />
+        <img src={logo} alt="logo"/>
       <div className='register-input-content'>
         <div className=''>
           <SearchBar
