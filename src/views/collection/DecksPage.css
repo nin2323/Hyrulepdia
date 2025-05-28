@@ -9,14 +9,15 @@
   
   /* Cada bloque individual de mazo */
   .deck-preview {
+    display: flex;
     cursor: pointer;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
     margin: 1rem;
     background: #101422c2;
     border: 1px solid #dddddd00;
     border-radius: 6px;
     overflow: hidden;
-    text-align: center;
     padding: 0.5rem;
     transition: box-shadow 0.2s ease;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -42,10 +43,15 @@
   /* Nombre del mazo debajo de la imagen */
   .deck-name {
     margin-top: 0.75rem;
-    font-weight: bold;
-    font-size: 1.05rem;
-    color: #333;
+    font-weight: 100;
+    font-size: 2.5rem;
+    letter-spacing: 0.2rem;
+    align-items: center;
+    justify-content: center;
+    color: #7CD2FF;
+    text-shadow: 0px 0px 4px #96cefc;
     word-wrap: break-word;
+    font-family: 'title';
   }
 
 .deck-button {
