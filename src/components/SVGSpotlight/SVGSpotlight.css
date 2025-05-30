@@ -1,0 +1,21 @@
+.svg-grid-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 100px);
+  grid-template-rows: repeat(auto-fill, 100px);
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.svg-tile {
+  width: 100px;
+  height: 100px;
+  pointer-events: none;
+  transition: filter 0.1s linear, opacity 0.2s ease;
+  filter: brightness(0.3);
+  opacity: 0;
+}

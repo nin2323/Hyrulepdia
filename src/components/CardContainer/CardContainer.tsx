@@ -1,7 +1,5 @@
 import React from 'react';
 import './CardContainer.css';
-import Fill10 from '../../assets/Fill-10.svg';
-import Fill10Blue from '../../assets/Fill-10-blue.svg';
 
 //Props que recibe desde donde se le invoque como App.tsx
 //Estos props pueden ser cualquier cosa mientras esten dentro del componente
@@ -25,10 +23,13 @@ export const CardContainer = ({
   colorClass = 'golden-theme',
   popUp = false,
   hideSvg = false,
-  onClick
+  onClick,
 }: CardContainerProps) => {
   return (
-    <div className={`card ${className} ${colorClass} ${popUp ? 'popup' : ''}`} onClick={onClick}>
+    <div
+      className={`card ${className} ${colorClass} ${popUp ? 'popup' : ''}`}
+      onClick={onClick}
+    >
       {!popUp && <div className='bg-image'></div>}
       <div className='bg-overlay'></div>
 
@@ -37,30 +38,54 @@ export const CardContainer = ({
         <>
           <div className='svg-wrapper top-left'>
             <img
-              src={colorClass === 'blue-theme' ? Fill10Blue : Fill10}
+              src={
+                colorClass === 'blue-theme'
+                  ? 'src/assets/Fill-10-blue.svg'
+                  : colorClass === 'purple-theme'
+                  ? 'src/assets/Fill-10-purple.svg'
+                  : 'src/assets/Fill-10.svg'
+              }
               className='svg-icon'
               alt='svg-top-left'
             />
           </div>
           <div className='svg-wrapper top-right'>
             <img
-              src={colorClass === 'blue-theme' ? Fill10Blue : Fill10}
+              src={
+                colorClass === 'blue-theme'
+                  ? 'src/assets/Fill-10-blue.svg'
+                  : colorClass === 'purple-theme'
+                  ? 'src/assets/Fill-10-purple.svg'
+                  : 'src/assets/Fill-10.svg'
+              }
               className='svg-icon'
-              alt='svg-top-left'
+              alt='svg-top-right'
             />
           </div>
           <div className='svg-wrapper bottom-left'>
             <img
-              src={colorClass === 'blue-theme' ? Fill10Blue : Fill10}
+              src={
+                colorClass === 'blue-theme'
+                  ? 'src/assets/Fill-10-blue.svg'
+                  : colorClass === 'purple-theme'
+                  ? 'src/assets/Fill-10-purple.svg'
+                  : 'src/assets/Fill-10.svg'
+              }
               className='svg-icon'
-              alt='svg-top-left'
+              alt='svg-bottom-left'
             />
           </div>
           <div className='svg-wrapper bottom-right'>
             <img
-              src={colorClass === 'blue-theme' ? Fill10Blue : Fill10}
+              src={
+                colorClass === 'blue-theme'
+                  ? 'src/assets/Fill-10-blue.svg'
+                  : colorClass === 'purple-theme'
+                  ? 'src/assets/Fill-10-purple.svg'
+                  : 'src/assets/Fill-10.svg'
+              }
               className='svg-icon'
-              alt='svg-top-left'
+              alt='svg-bottom-right'
             />
           </div>
         </>
