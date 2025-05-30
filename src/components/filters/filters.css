@@ -8,11 +8,24 @@
     z-index: 10;
     background: transparent;  
     backdrop-filter: blur(16px);
+    gap: 32px;
+}
+
+@media (max-width: 1024px) {
+    .filters {
+        justify-content: center;
+    }
 }
 
 .filters-buttons {
     display: flex;
     gap: 40px;
+}
+
+@media (max-width: 1024px) {
+    .filters-buttons {
+        display: none;
+    }
 }
 
 

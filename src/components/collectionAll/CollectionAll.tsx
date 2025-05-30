@@ -36,14 +36,6 @@ export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
   const isStillLoading = loadingUserCards || loadingCards;
   
 
-// useEffect(() => {
-//   const timer = setTimeout(() => {
-//     setIsPageReady(true);
-//   }, 100); 
-
-//   return () => clearTimeout(timer);
-// }, []);
-
   // Cargar todas las cartas
 useEffect(() => {
   const fetchData = async () => {

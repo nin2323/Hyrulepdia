@@ -17,6 +17,14 @@
     margin-right: 27px;
 }
 
+@media (max-width: 749px) {
+    .card-counter {
+        width: 48px;
+        font-size: 12px;
+    }
+}
+
+
 .card-counter .right-line-top,
 .card-counter .right-line-bottom,
 .card-counter .left-line-top,

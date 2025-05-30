@@ -11,6 +11,12 @@
     text-transform: uppercase;
     text-align: center;
 } 
+  @media (min-width: 1025px) and (max-width: 1600px) {
+    input{
+        font-size: 18px;
+    }
+    }
+
 .search-bar {
     display: flex;
     align-items: center;
@@ -23,18 +29,23 @@
     background-color: transparent;
     text-transform: uppercase;
     cursor: pointer;
-    height: 48px;
+    max-height: 38px;
     padding: 0 60px;
     min-width: 160px;
     max-width: 568px;
     flex: 1;
 }
 
-   @media (min-width: 769px) and (max-width: 1439px) {
+    @media (max-width: 1024px) {
         .search-bar {
-            max-width: 230px;
-        }
+            justify-content: center;
+            height: 34px;
+            max-width: 100px;
     }
+        input {
+            font-size: 14px;
+        }
+}
 
 .search-bar.outlined::before {
     background-image: none;
@@ -45,6 +56,12 @@
     background-color: #111e2c;
     transition: box-shadow 0.3s ease-in-out;
 }
+
+  @media (min-width: 1025px) and (max-width: 1600px) {
+    .search-bar.search-bar.outlined {
+        max-width: 260px;
+    }
+    }
 
 /*  BORDES VERTICALES  */
   

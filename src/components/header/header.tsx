@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom"
+import MobileLogo from '../../assets/icons/header_mobile_logo.svg'
 import "./header.css"
 import rupia from '../../assets/rupia-icon.png'
 import { useEffect, useState } from "react";
@@ -31,8 +32,9 @@ export const Header = ()=> {
 
     return (
         <header>
-                <div>
+                <div className="header-logo">
                     <NavLink className={"header-logo"} to="/">HYRULEPEDIA</NavLink>
+                    {/* <img src={MobileLogo} alt="mobile logo" className="header-logo__mobile"/> */}
                 </div>
                 <div className="header-content">
                     <nav className="header-nav">
@@ -42,7 +44,7 @@ export const Header = ()=> {
                     </nav>
                     <div className="user-money">
                         <p>{gems !== null ? gems.toLocaleString() : "..."}</p>
-                        <img src={rupia} alt="User gems" />  {/*habra que cambiarlo para que sea dinamico segun las rupias del usuario*/}
+                        <img className="img-rupia" src={rupia} alt="User gems" />  {/*habra que cambiarlo para que sea dinamico segun las rupias del usuario*/}
                     </div>
                 </div>
         </header>  

@@ -18,11 +18,18 @@
     border-radius: 0.7rem;
 }
 
- @media (min-width: 769px) and (max-width: 1439px) {
+ @media (min-width: 1025px) and (max-width: 1504px) {
     .hyrule-card__border {
         transform: scale(0.9);
     }
  }
+
+ @media (max-width: 1024px) {
+    .hyrule-card__border {
+        transform: scale(0.7);
+    }
+ }
+
 
 .common {
     background-color: #f5e5c0;
