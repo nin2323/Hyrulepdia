@@ -11,7 +11,7 @@ import { Button } from "../../components/button/button";
 import 'react-toastify/dist/ReactToastify.css';
 
 
-export const DeckEditorPage = ({ onClose, initialDeck }: { onClose: () => void; initialDeck?: { id: string; name: string; cards: string[] }; }) => {
+export const DeckEditorPage = ({ onClose, initialDeck, onDeckUpdated, }: { onClose: () => void; initialDeck?: { id: string; name: string; cards: string[] }; onDeckUpdated?: () => void; }) => {
     const [deckName, setDeckName] = useState(""); // Nombre del mazo
     const [selectedSlots, setSelectedSlots] = useState<(string | null)[]>(Array(6).fill(null));
     const [activeSlot, setActiveSlot] = useState<number | null>(null); // Slot activo que el usuario quiere llenar
@@ -21,13 +21,24 @@ export const DeckEditorPage = ({ onClose, initialDeck }: { onClose: () => void; 
 
     //para la preview
 useEffect(() => {
-    if (initialDeck) {
+    if (initialDeck  && userCards.length > 0) {
         setDeckName(initialDeck.name || "");
         setSelectedSlots(
-        initialDeck.cards?.map(String).concat(Array(6).fill(null)).slice(0, 6) || Array(6).fill(null)
+        initialDeck.cards
+        ?.map(c => (c !== null && c !== undefined ? String(c) : null))
+        .concat(Array(6).fill(null))
+        .slice(0, 6) || Array(6).fill(null)
         );
     }
-}, [initialDeck]);
+}, [initialDeck, userCards]);
+
+//para comprobar que los mazos funcionan
+useEffect(() => {
+    if (initialDeck) {
+      console.log("Initial Deck cards:", initialDeck.cards);
+      console.log("User Cards:", userCards.map(c => c.id));
+    }
+  }, [initialDeck, userCards]);
 
   // Cerrar al hacer clic fuera
   useEffect(() => {
@@ -40,15 +51,16 @@ useEffect(() => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
 
-  // Añadir una carta al slot activo
-  const handleSelectCard = (cardId: string) => {
+  // Añadir una carta al slot activo: el id se normaliza a string para que no haya problemas
+  const handleSelectCard = (cardId: string | number) => {
     if (activeSlot === null) return;
-    if (selectedSlots.includes(cardId)) {
+    const cardIdStr = String(cardId);  // normalizam a string el id
+    if (selectedSlots.includes(cardIdStr)) {
       toast.error("Card already in the deck");
       return;
     }
     const newSlots = [...selectedSlots];
-    newSlots[activeSlot] = cardId;
+    newSlots[activeSlot] = cardIdStr;
     setSelectedSlots(newSlots); //para que el grid permanezca abierto siempre
   };
 
@@ -80,6 +92,7 @@ useEffect(() => {
             await addDoc(decksRef, deck);
             toast.success("Saved successfully");
           }
+          if (onDeckUpdated) onDeckUpdated();
           onClose();
         } catch (err) {
             console.error("Error al guardar el mazo:", err);
@@ -115,16 +128,13 @@ useEffect(() => {
                 }
             }}
             >
-              {cardId ? (
-                <HyruleCard
-                {...(userCards.find(c => c.id === cardId)!)}
-                size="sm"
-                disableClick
-                isDiscovered
-              />
-            ) : (
-              <span className="empty-slot">+</span>
-              )}
+              {cardId ? (() => {
+                const cardData = userCards.find(c => String(c.id) === cardId);
+                if (!cardData) return <div className="missing-card">Carta no encontrada</div>;
+                return <HyruleCard {...cardData} size="sm" disableClick isDiscovered />;
+            })() : (
+                <span className="empty-slot">+</span>
+            )}
             </button>
           ))}
         </div>
@@ -148,7 +158,7 @@ useEffect(() => {
         )}
 
         {/* Botón para crear el mazo */}
-        <Button className='create-deck-button'size="md" onClick={() =>{handleCreateDeck()}} >Create new deck</Button>
+        <Button className='create-deck-button'size="md" onClick={() =>{handleCreateDeck()}} >Save deck</Button>
       </div>
     </div>
   );

@@ -18,17 +18,18 @@ const [isCreating, setIsCreating] = useState(false); //controla si se muestra el
 const [selectedDeck, setSelectedDeck] = useState<any | null>(null);
 const { cards: userCards } = useUnlockedCards(); //para la preview de los mazos
 
+const fetchDecks = async () => {
+    if (!user) return;
+    const userRef = doc(db, 'users', user.uid);
+    const decksRef = collection(userRef, 'decks');
+    const snapshot = await getDocs(decksRef);
+    const data = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})); //los nombres no funcionaban porque estaba pasando data como propiedad y no como función
+    setDecks(data); //cargamos los mazos en el estado
+};
+
 useEffect(() => {
-    const fetchDecks = async () => {
-        if (!user) return;
-        const userRef = doc(db, 'users', user.uid);
-        const decksRef = collection(userRef, 'decks');
-        const snapshot = await getDocs(decksRef);
-        const data = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})); //los nombres no funcionaban porque estaba pasando data como propiedad y no como función
-        setDecks(data); //cargamos los mazos en el estado
-    };
     fetchDecks();
-}, [user, isCreating]) //recargamos al crear nuevo mazo
+}, [user, isCreating]); //recargamos al crear nuevo mazo
 
     return (
         <>
@@ -65,6 +66,13 @@ useEffect(() => {
                         setIsCreating(false);
                         setSelectedDeck(null);
                     }}
+                    onDeckUpdated={() => { //esta función hace que se sincronice la recarga de mazos en la página, se actualiza el estado decks con los datos nuevos de firebase
+                        // Refresca la lista de mazos para reflejar cambios
+                        fetchDecks();
+                        // Además, cierra el modal y limpia selección
+                        setIsCreating(false);
+                        setSelectedDeck(null);
+                      }}
                 initialDeck={selectedDeck || undefined}
             />
         )}
