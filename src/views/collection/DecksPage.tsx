@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import { useCallback } from "react";
 import { Button } from "../../components/button/button";
 import { Filters } from "../../components/filters/filters";
 import { useAuth } from "../../context/authContext";
@@ -7,7 +8,6 @@ import { collection, getDocs, doc } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
 import { DeckEditorPage } from "./DeckEditorPage";
 import deckButton from "../../assets/backgrounds/deck-button.png"
-import { useUnlockedCards } from "../../hooks/useUnlockedCards";
 import './DecksPage.css'
 
 export const DecksPage = () => {
@@ -16,20 +16,19 @@ const { user } = useAuth();
 const [decks, setDecks] = useState<any[]>([]); //almacenamos los mazos del usuario
 const [isCreating, setIsCreating] = useState(false); //controla si se muestra el editor
 const [selectedDeck, setSelectedDeck] = useState<any | null>(null);
-const { cards: userCards } = useUnlockedCards(); //para la preview de los mazos
 
-const fetchDecks = async () => {
+const fetchDecks = useCallback(async () => {
     if (!user) return;
     const userRef = doc(db, 'users', user.uid);
     const decksRef = collection(userRef, 'decks');
     const snapshot = await getDocs(decksRef);
     const data = snapshot.docs.map(doc => ({id: doc.id, ...doc.data()})); //los nombres no funcionaban porque estaba pasando data como propiedad y no como función
     setDecks(data); //cargamos los mazos en el estado
-};
+}, [user]);
 
 useEffect(() => {
     fetchDecks();
-}, [user, isCreating]); //recargamos al crear nuevo mazo
+}, [fetchDecks, isCreating]); //recargamos al crear nuevo mazo
 
     return (
         <>
