@@ -33,6 +33,12 @@ export const UserProfileEditor = () => {
         const data = snapshot.data();
         setOneLiner(data.oneLiner || '');
         setGems(data.gems || 0);
+
+        // prioriza al de Firestore
+        setPhotoURL(data.photoURL || user.photoURL || '');
+      } else {
+        // Si no hay doc en Firestore, usa solo el de Firebase Auth
+        setPhotoURL(user.photoURL || '');
       }
     };
 
@@ -128,11 +134,12 @@ export const UserProfileEditor = () => {
         />
       </div>
 
-      
-      <Button color='primary' size='sm' onClick={() => setShowSensitive((prev) => !prev)}>
-        {showSensitive
-          ? 'Ocultar'
-          : 'Editar'}
+      <Button
+        color='primary'
+        size='sm'
+        onClick={() => setShowSensitive((prev) => !prev)}
+      >
+        {showSensitive ? 'Ocultar' : 'Editar'}
       </Button>
 
       {showSensitive && (
@@ -178,7 +185,7 @@ export const UserProfileEditor = () => {
       )}
 
       <Button color='primary' size='sm' onClick={handleSave}>
-       Guardar
+        Guardar
       </Button>
     </div>
   );
