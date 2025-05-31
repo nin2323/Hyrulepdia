@@ -39,7 +39,7 @@ header {
   font-family: 'the wild breath of Zelda';
 }
 
-nav a:hover {
+nav a.active {
   filter: drop-shadow(0 0 10px #FFFFFF );
 }
 
@@ -54,26 +54,9 @@ nav a:hover {
   font-size: 20px;
 }
 
-@media (max-width: 749px) {
-
-  }
-
-
-
 /* RESPONSIVE */
-@media (min-width: 990px) and (max-width: 1440px) {
-  header {
-    padding: 20px 60px;
-  }
-}
 
-@media (min-width: 749px) and (max-width: 989px) {
-  header {
-    padding: 16px 40px;
-  }
-}
-
-@media (max-width: 749px) {
+@media (max-width: 1124px)  {
   header {
     padding: 16px 20px;
   }
@@ -121,9 +104,15 @@ nav a:hover {
     justify-content: space-around;
     z-index: 1000;
     gap: 0;
+    height: 42px;
   }
-
-
 }
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  header {
+    padding: 20px 60px;
+  }
+}
+
 
 

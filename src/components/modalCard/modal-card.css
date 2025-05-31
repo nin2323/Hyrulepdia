@@ -28,10 +28,24 @@
   color: white;
 }
 
+@media (max-width: 1124px) {
+  .modal-description {
+    font-size: 12px;
+  }
+}
+
 .modal-content__text-btn > h1 {
   font-size: 44px;
   color: white;
 }
+
+@media (max-width: 1124px) {
+  .modal-content__text-btn > h1 {
+    font-size: 34px;
+  }
+}
+
+
 
 .card-container-modal {
   background-color: #0f213f;
@@ -39,6 +53,12 @@
 
 .modal-content__card {
   margin-inline: 88px 88px;
+}
+
+@media (max-width: 1124px) {
+  .modal-content__card {
+    margin-inline: 44px 44px;
+  }
 }
 
 .modal-content__btn {

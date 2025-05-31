@@ -36,7 +36,7 @@
     flex: 1;
 }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1124px) {
         .search-bar {
             justify-content: center;
             height: 34px;
@@ -56,12 +56,6 @@
     background-color: #111e2c;
     transition: box-shadow 0.3s ease-in-out;
 }
-
-  @media (min-width: 1025px) and (max-width: 1600px) {
-    .search-bar.search-bar.outlined {
-        max-width: 260px;
-    }
-    }
 
 /*  BORDES VERTICALES  */
   

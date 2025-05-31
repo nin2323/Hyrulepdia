@@ -53,8 +53,16 @@
     transform-origin: top right;
 }
 
-/* Sizes */
+.button.md {
+    --cut-size: var(--cut-size-md);
+    height: 48px;
+    padding: 0 24px;
+    font-size: 16px;
+}
 
+
+/* Sizes */
+/* Size small */
 .button.sm {
     --cut-size: var(--cut-size-sm);
     height: 32px;
@@ -71,26 +79,13 @@
     }
 }
 
-.button.md {
-    --cut-size: var(--cut-size-md);
-    height: 38px;
-    padding: 0 24px;
-    font-size: 20px;
-}
-
- @media (min-width: 751px) and (max-width: 1439px) {
-    .button.md {
-        font-size: 16px;
-    }
- }
-
-
+/* Size large */
 .button.lg {
     --cut-size: var(--cut-size-lg);
-    height: 68px;
+    height: 58px;
     padding: 0 30px;
     font-size: 24px;
-    min-width: 280px;
+    min-width: 240px;
 
     & .button-corner {
         width: 24px;
@@ -101,28 +96,42 @@
     }
 }
 
-@media (min-width: 1025px) and (max-width: 1600px) {
+@media (min-width: 749px) and (max-width: 1124px) {
     .button.lg {
-        height: 52px;
-        padding: 0 12px;
-        font-size: 20px;
-        min-width: 220px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .button.lg {
-        height: 38px;
-        padding: 0 4px;
-        min-width: 100px;
-        font-size: 12px;
-    }   
+        --cut-size: var(--cut-size-md);
+        height: 48px;
+        padding: 0 24px;
+        font-size: 18px;
+        min-width: 180px;
 
         & .button-corner {
-            width: 14px;
+            width: 17px;
+        }
+    }
+
+}
+
+@media (max-width: 749px) {
+    .button.lg {
+        --cut-size: var(--cut-size-sm);
+        height: 34px;
+        padding: 0 16px;
+        font-size: 12px;
+        min-width: 80px;
+
+        & .button-corner {
+            width: 10px;
+        }
+
+        &:hover .button-corner {
+            transform: scale(1.5);
+        }
     }
 }
 
+
+
+/* BUTTON TYPE */
 /* Primary */
 
 .button.primary {
@@ -150,6 +159,7 @@
         background-image: linear-gradient(45deg, transparent 0%, #275880 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
     }
 }
+
 
 /* Secondary */
 
@@ -183,6 +193,7 @@
     }
 }
 
+
 /* Succes */
 
 .button.succes {
@@ -214,6 +225,7 @@
         background-image: linear-gradient(45deg, transparent 0%, #4AD45A 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
     }
 }
+
 
 /* Error */
 
@@ -247,6 +259,7 @@
     }
 }
 
+
 /* Warning */
 
 .button.warning {
@@ -257,7 +270,7 @@
     }
 
     & .button-corner {
-        color: #FD7E14;                  /* dar color al corner*/
+        color: #FD7E14;
     }
 
     & .button-content .button-corner {
@@ -270,14 +283,15 @@
     }
 
     &:hover .button-corner {
-        transform: scale(1.5); /* Hace que el SVG crezca más que el botón */
+        transform: scale(1.5);
         filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
     &:hover::before {
-        background-image: linear-gradient(45deg, transparent 0%, #FD7E14 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));   /* dar color al borde con hover */
+        background-image: linear-gradient(45deg, transparent 0%, #FD7E14 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
     }
 }
+
 
 /* Info */
 
@@ -302,7 +316,7 @@
     }
 
     &:hover .button-corner {
-        transform: scale(1.5); /* Hace que el SVG crezca más que el botón */
+        transform: scale(1.5);
         filter: drop-shadow(0 0 10px #ffffff8e );
     }
 
@@ -310,6 +324,7 @@
         background-image: linear-gradient(45deg, transparent 0%, #17A2B8 0% calc(100% - calc(var(--cut-size) + 4px)), transparent calc(100% - calc(var(--cut-size) + 4px)));
     }
 }
+
 
 /* Disabled */
 
@@ -335,7 +350,8 @@
     cursor: not-allowed;
 }
 
-/* Button-collection */
+
+/* Button Outlined */
 
 .button.outlined::before {
     background-image: none;
@@ -343,8 +359,12 @@
 
 .button.outlined {
     color: white;
-    background-color: rgba(28, 67, 98, 1);
+    background-color: #275880;
     transition: box-shadow 0.3s ease-in-out;
+}
+
+.button.outlined.md {
+    height: 38px;
 }
 
 /*  BORDES VERTICALES  */

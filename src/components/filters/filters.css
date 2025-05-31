@@ -8,23 +8,27 @@
     z-index: 10;
     background: transparent;  
     backdrop-filter: blur(16px);
-    gap: 32px;
-}
-
-@media (max-width: 1024px) {
-    .filters {
-        justify-content: center;
-    }
+    gap: 60px;
 }
 
 .filters-buttons {
     display: flex;
-    gap: 40px;
+    gap: 20px;
 }
 
-@media (max-width: 1024px) {
-    .filters-buttons {
+@media (max-width: 1124px) {
+    .filters {
+        justify-content: center;
+        
+    }
+     .filters-buttons {
         display: none;
+    }
+}
+
+@media (min-width: 1440px) {
+    .filters-buttons {
+       gap: 40px;
     }
 }
 

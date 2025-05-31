@@ -18,12 +18,6 @@
     border-radius: 0.7rem;
 }
 
- @media (min-width: 1025px) and (max-width: 1504px) {
-    .hyrule-card__border {
-        transform: scale(0.9);
-    }
- }
-
  @media (max-width: 1024px) {
     .hyrule-card__border {
         transform: scale(0.7);
@@ -209,6 +203,12 @@
 .card--lg {
     transform: scale(1.5);
     transform-origin: center;
+}
+
+@media (max-width: 1024px) {
+    .card--lg {
+        transform: scale(1.1);
+    }
 }
 
 .card--xl {
