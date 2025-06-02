@@ -10,24 +10,24 @@ import './DeckEditorPage.css'
 import { Button } from "../../components/button/button";
 import 'react-toastify/dist/ReactToastify.css';
 
-
+//DeckEditorPage recibe 3 props, onClose(cierra el editor), initialDeck(mazo a editar si existe) y onDeckUpdate(una función que se ejecuta cuando se actualiza o crea un mazo)
 export const DeckEditorPage = ({ onClose, initialDeck, onDeckUpdated, }: { onClose: () => void; initialDeck?: { id: string; name: string; cards: string[] }; onDeckUpdated?: () => void; }) => {
     const [deckName, setDeckName] = useState(""); // Nombre del mazo
-    const [selectedSlots, setSelectedSlots] = useState<(string | null)[]>(Array(6).fill(null));
+    const [selectedSlots, setSelectedSlots] = useState<(string | null)[]>(Array(6).fill(null)); //array con los 6 slots para las cartas
     const [activeSlot, setActiveSlot] = useState<number | null>(null); // Slot activo que el usuario quiere llenar
     const { user } = useAuth(); // Usuario autenticado
     const { cards: userCards } = useUnlockedCards(); // Cartas desbloqueadas del usuario
     const modalRef = useRef<HTMLDivElement>(null); // Para detectar clics fuera
 
-    //para la preview
+    //para la preview, si hay un mazo cargado se precargan el nombre y las cartas
 useEffect(() => {
     if (initialDeck  && userCards.length > 0) {
-        setDeckName(initialDeck.name || "");
-        setSelectedSlots(
-        initialDeck.cards
-        ?.map(c => (c !== null && c !== undefined ? String(c) : null))
-        .concat(Array(6).fill(null))
-        .slice(0, 6) || Array(6).fill(null)
+        setDeckName(initialDeck.name || ""); //utiliza setDeckName para que el nombre del mazo inicial sea el que corresponda
+        setSelectedSlots( //se usa setSelectedSlots para que el mazo aparezca con las cartas que tenía guardadas si es que las tenía
+        initialDeck.cards //se hace un mapeo del array inicial, 
+        ?.map(c => (c !== null && c !== undefined ? String(c) : null)) //convierte cada id de carta a string si la card no es null. ternario
+        .concat(Array(6).fill(null)) //añade 6 null al final del array por si el mazo no tenía 6 cartas guardadas
+        .slice(0, 6) || Array(6).fill(null) //corta el array en los primeros 6 elementos, para que siempre tenga longitud 6
         );
     }
 }, [initialDeck, userCards]);
@@ -83,12 +83,12 @@ useEffect(() => {
 
     try {
         if (initialDeck && initialDeck.id) {
-            // 🔁 Modo edición: actualiza
+            // Modo edición: actualiza
             const deckRef = doc(decksRef, initialDeck.id);
             await updateDoc(deckRef, deck);
             toast.success("Deck updated");
           } else {
-            // ✨ Modo nuevo: crea
+            // Modo nuevo: crea
             await addDoc(decksRef, deck);
             toast.success("Saved successfully");
           }
