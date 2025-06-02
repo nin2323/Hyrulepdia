@@ -71,7 +71,10 @@ export const ChestButton = ({
                     {displayRarity(rarity)}
                 </h1>
                 {displayChestType(rarity)}
-                <h2>{price} <span><img src={rupiaIcon} alt={rupiaIcon}></img></span></h2>
+                <div className="chest-price__content">
+                    <p className="chest-price">{price}</p>
+                    <span><img className="chest-rupia-icon" src={rupiaIcon} alt={rupiaIcon}></img></span>
+                </div>
                 <div className="chest-button__text">
                     {displayDescription(rarity)}
                 </div>

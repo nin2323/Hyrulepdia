@@ -1,14 +1,31 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../button/button'
 import { ChestButton } from '../chest-button/ChestButton'
 import './StoreMain.css'
 import { ChestButtonType } from '../../types/hyrule.types'
 import { PopupGemsInfo } from '../popup-gems-info/PopupGemsInfo'
+import { useHorizontalScroll } from '../../hooks/useHorizontalScroll'
+
 
 export const StoreMain = () => {
     const [showPopup, setShowPopup] = useState(false); //maneja el estado del popup, inicia en falso para que no se muestre
     const navigate = useNavigate(); //hay que igualar useNavigate a una var const 
+    const scrollRef = useHorizontalScroll();
+    const middleChestRef = useRef<HTMLDivElement>(null);
+
+      useEffect(() => {
+    if (scrollRef.current && middleChestRef.current) {
+      const container = scrollRef.current;
+      const chest = middleChestRef.current;
+
+      const containerWidth = container.offsetWidth;
+      const chestLeft = chest.offsetLeft;
+      const chestWidth = chest.offsetWidth;
+
+      container.scrollLeft = chestLeft - (containerWidth / 2) + (chestWidth / 2);
+    }
+  }, []);
 
     const handleSelect = (rarity: ChestButtonType[`rarity`], price: number) => { //al clickar te lleva a purchase y te dice el estado que tiene que tener
         navigate('/purchase' , {
@@ -17,15 +34,16 @@ export const StoreMain = () => {
     };
 
     return (
-        <>
-            <div className="store-main">
-                <div onClick={ ()=> handleSelect( 'rare', 500)}>
+        <div>
+            <div ref={scrollRef} className="store-main">
+                
+                <div className='card-content' onClick={ ()=> handleSelect( 'rare', 500)}>
                     <ChestButton rarity="rare" price={500} />
                 </div>
-                <div onClick={()=> handleSelect('common', 200)}>
+                <div ref={middleChestRef} className='card-content' onClick={()=> handleSelect('common', 200)}>
                     <ChestButton rarity="common" price={200} />
                 </div>
-                <div onClick={()=> handleSelect('epic', 800)}>
+                <div className='card-content' onClick={()=> handleSelect('epic', 800)}>
                     <ChestButton rarity="epic" price={800} />
                 </div>
             </div>
@@ -37,7 +55,7 @@ export const StoreMain = () => {
                 </div>
             </div>
             <PopupGemsInfo visible={showPopup} onClose={() => setShowPopup(false)}/>
-        </>
+        </div>
     )
 }
 //PoppuGemsInfo no puede cerrarse por si mimo. Necesita avisar al componente padre que quiere cerrarse. Esto se hace llamando a la función onClose
