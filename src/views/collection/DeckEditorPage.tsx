@@ -55,7 +55,7 @@ useEffect(() => {
   const handleSelectCard = (cardId: string | number) => {
     if (activeSlot === null) return;
     const cardIdStr = String(cardId);  // normalizam a string el id
-    if (selectedSlots.includes(cardIdStr)) {
+    if (selectedSlots.includes(cardIdStr)) { //
       toast.error("Card already in the deck");
       return;
     }
@@ -72,31 +72,32 @@ useEffect(() => {
     }
     if (!user) return;
 
-    const deck = {
+    const deck = { //creación del objeto deck
         name: deckName,
         cards: selectedSlots.map(card => card ? String(card) : null),
         createdAt: Date.now(),
     };
 
+    //referencias a firebase
     const userRef = doc(db, 'users', user.uid);
     const decksRef = collection(userRef, 'decks');
 
     try {
-        if (initialDeck && initialDeck.id) {
+        if (initialDeck && initialDeck.id) { //si el mazo que estás editando existe ya en firebase
             // Modo edición: actualiza
             const deckRef = doc(decksRef, initialDeck.id);
             await updateDoc(deckRef, deck);
             toast.success("Deck updated");
-          } else {
+          } else { //si el mazo no existe
             // Modo nuevo: crea
             await addDoc(decksRef, deck);
             toast.success("Saved successfully");
           }
-          if (onDeckUpdated) onDeckUpdated();
+          if (onDeckUpdated) onDeckUpdated(); //Si hay una función onDeckUpdated, se ejecuta (normalmente vuelve a cargar la lista de mazos).
           onClose();
         } catch (err) {
-            console.error("Error al guardar el mazo:", err);
-            toast.error("Error al guardar el mazo");
+            console.error("Error saving deck:", err);
+            toast.error("Error saving deck");
         }
       };
 
@@ -113,7 +114,7 @@ useEffect(() => {
 
         {/* Grid de 6 botones para slots de cartas */}
         <div className="card-slot-grid">
-          {selectedSlots.map((cardId, index) => (
+          {selectedSlots.map((cardId, index) => ( //como el array selectedSlots tiene siempre 6 elementos, el map genera siempre 6 botones
             <button
               key={index}
               className={`card-slot-button ${activeSlot === index ? "active" : ""}`}

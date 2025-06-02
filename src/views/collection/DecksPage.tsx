@@ -13,11 +13,11 @@ import './DecksPage.css'
 export const DecksPage = () => {
 const navigate = useNavigate(); //use navigate para redirigir
 const { user } = useAuth();
-const [decks, setDecks] = useState<any[]>([]); //almacenamos los mazos del usuario
+const [decks, setDecks] = useState<any[]>([]); //almacenamos los mazos del usuario en un array, y usaremos setDecks para actualizarlo
 const [isCreating, setIsCreating] = useState(false); //controla si se muestra el editor
-const [selectedDeck, setSelectedDeck] = useState<any | null>(null);
+const [selectedDeck, setSelectedDeck] = useState<any | null>(null); //si se hace click en un mazo se pasa al editor para modificarlo
 
-const fetchDecks = useCallback(async () => {
+const fetchDecks = useCallback(async () => { //Consulta firestore para traer mazos guardados del usuario autenticado
     if (!user) return;
     const userRef = doc(db, 'users', user.uid);
     const decksRef = collection(userRef, 'decks');
