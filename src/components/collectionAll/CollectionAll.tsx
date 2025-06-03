@@ -151,7 +151,7 @@ useEffect(() => {
               ) : (
             cardsToDisplay.map((card) => (
               <div
-                className="test"
+                className="card-container"
                 key={card.id}
                 onClick={
                   card.isDiscovered ? () => setSelectedCard(card) : undefined

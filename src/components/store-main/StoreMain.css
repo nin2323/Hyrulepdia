@@ -33,7 +33,7 @@
     gap: 2.5rem
 }
 
-.store-main .card-content {
+.store-main:not(.dragging) .card-content {
     cursor: pointer;
 }
 
@@ -51,12 +51,19 @@
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
             touch-action: pan-x;
-            gap: 4rem;
-            padding-inline: 1rem;
+            gap: 1.6rem;
             scroll-padding-inline: 1rem;
             scrollbar-width: none;
             user-select: none;
+            padding-inline: 6rem;
+        }
+        .store-main .card-content {
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
         }
 
-   
+        .store-main .card-content.active {
+            transform: scale(1);
+        }
     }
+

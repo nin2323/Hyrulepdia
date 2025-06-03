@@ -56,10 +56,6 @@ body {
 }
 
 @media (max-width: 749px) {
-  :root {
-    width: 100%;
-  }
-
   html {
     overflow-x: hidden;
     box-sizing: border-box;

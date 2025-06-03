@@ -119,11 +119,7 @@ html {
 }
 
    @media (max-width: 1124px) {
-        :root {
-            width: 100vw;
-        }
-
-        .test {
+        .card-container {
            width: 120px; 
            height: 147px;
         }
