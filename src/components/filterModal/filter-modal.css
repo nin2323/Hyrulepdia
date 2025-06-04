@@ -1,0 +1,33 @@
+.filter-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  backdrop-filter: blur(25px);
+  display: flex;
+  z-index: 1000;
+}
+
+.close-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+    
+}
+
+.close-btn__content {
+    padding-top: 40px;
+    padding-left: 32px;
+}
+
+.dropdown-button .filter-modal-overlay {
+    display: flex;
+    align-items: flex-start;
+
+}
+
+
+
+

@@ -91,3 +91,11 @@
 .zoomed-card-content {
   cursor: default;
 }
+
+.card-container-modal .hyrule-card__border {
+  transform: scale(1.5);
+}
+
+.zoomed-card-content .hyrule-card__border.card--xl {
+  transform: scale(2.5);
+}

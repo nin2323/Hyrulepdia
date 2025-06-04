@@ -64,12 +64,16 @@ export const StorePurchase = ({selectedChest, onOpen}: StorePurchaseProps) => {
     
     return (
             <div className="store-purchase">
-                <Button onClick={() => navigate('/shop')}>BACK</Button>
-                <Button color='secondary' onClick={handleChestOpen}>OPEN</Button>
-                {message && <p className="store-purchase__message">{message}</p>}
-                {/* Pasamos los datos al ChestButton */}
-                <div className="store-purchase__chest">
-                    <ChestButton rarity={rarity} price={price} />
+                <div className="store-purchase__content">
+                    <div className="store-purchase__btn">
+                        <Button onClick={() => navigate('/shop')}>BACK</Button>
+                        <Button color='secondary' onClick={handleChestOpen}>OPEN</Button>
+                    </div>
+                    {message && <p className="store-purchase__message">{message}</p>}
+                    {/* Pasamos los datos al ChestButton */}
+                    <div className="store-purchase__chest">
+                        <ChestButton rarity={rarity} price={price} />
+                    </div>
                 </div>
                 <div className="store-purchase__info">
                     <h1>

@@ -4,6 +4,7 @@ import { HyruleCard } from "../hyrule-card/HyruleCard";
 import { CardContainer } from '../CardContainer/CardContainer';
 import { Button } from '../button/button';
 import { useNavigate } from 'react-router-dom';
+import { useHorizontalScroll } from '../../hooks/useHorizontalScroll';
 
 type storeOpening = {
     cards: HyruleCardType[],
@@ -11,18 +12,20 @@ type storeOpening = {
 
 export const StoreOpening = ({cards}: storeOpening) => {
     const navigate = useNavigate();
+      const { scrollRef } = useHorizontalScroll();
+
 
     return (
-    <>
+    <body className='slider-page'>
         <div className='store-opening'>
             <CardContainer>
             <div className="hyrule-cards-wrapper">
 
-                <div className="hyrule-cards-container">
+                <div ref={scrollRef} className="hyrule-cards-container">
                     {cards.length === 0 ? (
                     <p className='hyrule-cards-container__loading-info'>Loading cards...</p>
                     ) : (
-                    cards.map((card) => <HyruleCard key={card.id} {...card} />)
+                    cards.map((card) => <HyruleCard  key={card.id} {...card} />)
                     )}
                 </div>
             </div>
@@ -35,6 +38,6 @@ export const StoreOpening = ({cards}: storeOpening) => {
                 </div>
             </div>
         </div>
-    </>
+    </body>
     )
 }

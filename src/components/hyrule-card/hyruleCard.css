@@ -18,13 +18,6 @@
     border-radius: 0.7rem;
 }
 
- @media (max-width: 1024px) {
-    .hyrule-card__border {
-        transform: scale(0.7);
-    }
- }
-
-
 .common {
     background-color: #f5e5c0;
     background: radial-gradient(circle,rgba(224, 206, 160, 1) 68%, rgba(83, 71, 45, 1) 90%);
@@ -44,14 +37,13 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;    
+    align-items: center;
     color: #f5e5c0;
-    /* border: 0.38rem solid #E0CEA0; */
-    width: 300px;
-    padding-block: 0.3rem;
+    padding: 0.3rem 0.8rem;
     border-radius: 0.5rem;  
-    width: 14.24rem;
-    height: 20.24rem; 
+    width: calc(100% - 8px);
+    height: calc(100% - 8px); 
     background-image: url(..\..\assets\backgrounds\card-background.png);
     background-size:90% 90%;
     background-color: #0d0d0d;    
@@ -66,12 +58,12 @@
     font-size: 0.82rem;
     margin-bottom: 0.1rem;
     color: #f5e5c0;
+    width: 100%;
 }
 
 .hyrule-card__type {
     display: flex;
     align-items: center;
-    margin-bottom: 0.3rem;
 }
 
 .hyrule-card__icon {
@@ -80,11 +72,9 @@
     height: auto;
 }
 
-.hyrule-card__header h2 {
-    margin-block: 0;
+.hyrule-card__header .h2 {
     font-size: 1.2rem;
     color: #f5e5c0;
-    line-height: 0;
 }
 
 .hyrule-card__points {
@@ -92,33 +82,42 @@
     font-weight: 100;
 }
 
-.hyrule-card__image img {
-    width: 87%;
-    margin-inline: 0.95rem;
+.hyrule-card__image {
     border-radius: 0.35rem;
-    max-height: 8rem;
-    object-fit: cover;
-    
+    width: 100%;
+    height: 8rem;
+    overflow: hidden;
+    position: relative;
 }
 
-.common-frame img{
+.hyrule-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.common-frame {
     outline: 0.12rem solid #B99F65;
 }
 
-.rare-frame img{
+.rare-frame {
     outline: 0.12rem solid #7CD2FF;
 }
 
-.epic-frame img{
+.epic-frame {
     outline: 0.12rem solid #BA6ED5;
 }
 
 .hyrule-card__content {
     padding-inline:  0rem;
     justify-content: center;
-    position: relative;
     width: 100%;
-    height: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
 
 }
 
@@ -126,23 +125,17 @@
     width: 13rem;
     position: absolute;
     margin: auto;
-    top: 0;
+    top: 50%;
     bottom: 1;
-    right: 0;
-    left: 0;
-    z-index: 0; /* Fondo */
+    left: 50%;
+    z-index: 0;
+    transform: translate(-50%, -50%);
 }
 
 .hyrule-card__content__info {
-    width: 11rem;
-    position: absolute;
-    margin: auto;
-    margin-top: 0.68rem;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
+    width: 90%;
     z-index: 1;
+    position: relative;
 }
 
 .hyrule-card__description {
@@ -197,40 +190,13 @@
     margin-bottom: 0.15rem;
 }
 
-
-  /* size */
-
-.card--lg {
-    transform: scale(1.5);
-    transform-origin: center;
-}
-
-@media (max-width: 1024px) {
-    .card--lg {
-        transform: scale(1.1);
-    }
-}
-
-.card--xl {
-    transform: scale(2.4);
-    z-index: 9999;
-    box-shadow: 0 0 20px rgba(0,0,0,0.6);
-}
-
-/* disableclick */
-
 .card--disabled {
-  /* pointer-events: none; */
   cursor: pointer;
-  /* opacity: 0.7; */
 }
-
-/* isDiscovered */
 
 .collection-page .hidden-card .hyrule-card {
     display: none;
 }
-
 
 .collection-page .hidden-card {
     background-image: url('../../assets/backgrounds/no-available-card.png');
@@ -240,5 +206,81 @@
     border-radius: 0;
     pointer-events: none !important;
 }
+
+@media (max-width: 750px) {
+    body:not(.slider-page) .hyrule-card__border {
+        width: 13rem;
+        height: 19rem; 
+    }
+
+    body:not(.slider-page) .hyrule-card__content__frame {
+        width: 11.5rem;
+    }
+
+    body:not(.slider-page) .hyrule-card__image {
+        height: 7rem;
+    }
+}
+
+@media (max-width: 550px) {
+    body:not(.slider-page) .hyrule-card__border {
+        width: 9.2rem;
+        height: 14rem; 
+        border-radius: 3px;
+    }
+
+    body:not(.slider-page) .hyrule-card {
+        width: calc(100% - 5px);
+        height: calc(100% - 5px);
+        border-radius: 0.2rem;
+            padding: 0.2rem 0.4rem;
+    }
+
+    body:not(.slider-page) .hyrule-card__content__frame {
+        width: 8rem;
+    }
+    body:not(.slider-page) .hyrule-card__content {
+        margin-top: 0;
+    }
+
+    body:not(.slider-page) .hyrule-card__image {
+        height: 4.0rem;
+    }
+
+    body:not(.slider-page) .hyrule-card__header {
+        margin-top: 2px;
+    }
+    body:not(.slider-page) .hyrule-card__header .h2 {
+        font-size: 7px;
+        line-height: 1px;
+    }
+    body:not(.slider-page) .hyrule-card__points {
+        font-size: 4px;
+    }
+    body:not(.slider-page) .hyrule-card__icon {
+        width: 7px;
+    }
+
+    body:not(.slider-page) .hyrule-card__description {
+        line-height: 6px;
+    }
+    body:not(.slider-page) .hyrule-card__description p {
+        font-size: 4px;
+    }
+    body:not(.slider-page) .hyrule-card__section h3 {
+        font-size: 6px;
+        padding-top: 1px;
+        line-height: 0.9;
+    }
+    body:not(.slider-page) .hyrule-card__section p {
+        font-size: 4px;
+    }
+
+    body:not(.slider-page) .hyrule-card__footer {
+        padding-top: 3px;
+        font-size: 4px;
+    }
+}
+
 
 

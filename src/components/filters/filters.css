@@ -16,13 +16,35 @@
     gap: 20px;
 }
 
+.filters-btn__modal {
+    display: none;
+}
+
+.filter-modal-buttons {
+  display: flex !important;
+  flex-direction: column; /* si quieres que se apilen en el modal */
+  gap: 2rem;
+  padding-top: 60px;
+}
+
 @media (max-width: 1124px) {
     .filters {
         justify-content: center;
-        
+        position: unset;
+        gap: 30px;
+        backdrop-filter: none;
     }
      .filters-buttons {
         display: none;
+    }
+
+    .filters-btn__modal {
+        display: flex;
+        width: 66px;
+    }
+
+    .filter-buttons {
+        display: flex !important;  
     }
 }
 

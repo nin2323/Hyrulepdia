@@ -47,6 +47,14 @@
         }
 }
 
+@media (max-width: 749px) {
+        .search-bar {
+            justify-content: center;
+            height: 34px;
+            width: 80px;
+    }
+}
+
 .search-bar.outlined::before {
     background-image: none;
 }

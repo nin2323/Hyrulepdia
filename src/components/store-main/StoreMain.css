@@ -4,7 +4,7 @@
     justify-content: center;
     align-items: center;
     gap: 6rem;
-    margin-top: 11rem;
+    margin-top: 7rem;
     overflow: visible;
 }
 
@@ -56,14 +56,21 @@
             scrollbar-width: none;
             user-select: none;
             padding-inline: 6rem;
+            margin-top: 1rem;
         }
+
+
         .store-main .card-content {
-            transform: scale(0.9);
+            transform: scale(0.8);
             transition: transform 0.3s ease;
         }
 
         .store-main .card-content.active {
-            transform: scale(1);
+            transform: scale(0.9);
+        }
+
+        .store-main__textbox {
+            margin-top: 0;
         }
     }
 

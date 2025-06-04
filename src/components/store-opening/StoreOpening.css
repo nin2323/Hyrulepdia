@@ -8,6 +8,7 @@
     margin: auto;
     margin-inline: 5rem;
     margin-top: 8rem;
+    gap: 2.4rem;
 }
 
 .hyrule-cards-wrapper {
@@ -34,7 +35,7 @@
     position: relative;
     z-index: 0;
     display: flex;
-    gap: 2.5rem;
+    gap: 8rem;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -71,5 +72,42 @@
 
 .hyrule-cards__textbox span {
     color:#ffffff;
+}
+
+/* Responsive */
+
+@media (max-width: 990px) {
+    .store-opening {
+        margin-inline: 0; 
+    }
+
+    .hyrule-cards-wrapper {
+        width: 100vw; 
+        overflow-x: auto;
+        padding: 0 1rem;
+        cursor: grabbing;
+        justify-content: unset;
+        scrollbar-width: none;
+    }
+
+    .hyrule-cards-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        padding: 10px 0;
+        width: 100%;
+        gap: 4rem;
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+        user-select: none;
+        flex-shrink: 0;
+        width: max-content; 
+        scroll-padding-inline: 1rem;
+    }
+
+    .hyrule-cards__textbox {
+        margin-top: 4rem;
+        text-align: center;
+    }
 }
 
