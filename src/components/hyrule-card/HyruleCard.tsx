@@ -53,7 +53,7 @@ export const HyruleCard = ({
     category = 'monsters',
     size = 'default',
     disableClick = false,
-    isDiscovered= false,
+    isDiscovered= false, 
 } : HyruleCardType )  => {
     
     return (

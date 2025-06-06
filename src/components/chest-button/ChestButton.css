@@ -103,3 +103,28 @@
         }
 }
 
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-10px, -10px);
+  }
+  40% {
+    transform: translate(10px, 10px);
+  }
+  60% {
+    transform: translate(-10px, 10px);
+  }
+  80% {
+    transform: translate(10px, -10px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.chest-button__img.vibrar {
+  animation: glitch 0.5s infinite;
+  transform: scale(1.2);
+}

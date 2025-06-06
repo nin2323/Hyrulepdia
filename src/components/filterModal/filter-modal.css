@@ -7,7 +7,26 @@
   backdrop-filter: blur(25px);
   display: flex;
   z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
+
+.filter-modal-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.filter-modal-panel {
+  height: 100%;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.filter-modal-overlay.open .filter-modal-panel {
+  transform: translateX(0);
+}
+
 
 .close-btn {
     background-color: red;
@@ -27,6 +46,8 @@
     align-items: flex-start;
 
 }
+
+
 
 
 

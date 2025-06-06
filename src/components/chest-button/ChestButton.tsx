@@ -6,6 +6,7 @@ import epicChest from '../../assets/chests/chest-epic.svg'
 import rupiaIcon from '../../assets/rupia-icon.png'
 import { CardContainer } from "../CardContainer/CardContainer"
 
+
 //para que cambie la descripción según el tipo de cofre
 const displayDescription = (rarity: ChestButtonType['rarity']) => {
     switch (rarity) {
@@ -31,16 +32,21 @@ const displayRarity = (rarity: ChestButtonType['rarity']) => {
 }
 
 //para que cambie la imágen según el tipo de cofre
-const displayChestType = (rarity: ChestButtonType['rarity']) => {
-    switch (rarity) {
-        case 'common':
-            return <img className="chest-button__img" src={commonChest} alt={commonChest}></img>;
-        case 'rare':
-            return <img className="chest-button__img" src={rareChest} alt={rareChest}></img>;
-        case 'epic':
-            return <img className="chest-button__img" src={epicChest} alt={epicChest}></img>
-    }
-}
+const displayChestType = (
+  rarity: ChestButtonType["rarity"],
+  isVibrating: boolean
+) => {
+  const className = `chest-button__img${isVibrating ? " vibrar" : ""}`;
+
+  switch (rarity) {
+    case "common":
+      return <img className={className} src={commonChest} alt="common chest" />;
+    case "rare":
+      return <img className={className} src={rareChest} alt="rare chest" />;
+    case "epic":
+      return <img className={className} src={epicChest} alt="epic chest" />;
+  }
+};
 
 //para que cambie el color del card container según la rareza
 const displayColorClass = (rarity: ChestButtonType['rarity']): 'blue-theme' | 'golden-theme' | 'purple-theme' => {
@@ -58,19 +64,20 @@ const displayColorClass = (rarity: ChestButtonType['rarity']): 'blue-theme' | 'g
 export const ChestButton = ({
     rarity = 'epic',
     price = 500,
+    isVibrating = false
 } : ChestButtonType ) => {
 
     console.log(rarity, price)
 
     return (
-        <CardContainer className='chest-button' colorClass={displayColorClass(rarity)}>
+        <CardContainer className={`chest-button ${isVibrating ? "vibrar" : ""}`} colorClass={displayColorClass(rarity)}>
             <div className='chset-button__contnt'>
                 <h1>
                     CHEST
                     <br />
                     {displayRarity(rarity)}
                 </h1>
-                {displayChestType(rarity)}
+                {displayChestType(rarity, isVibrating)}
                 <div className="chest-price__content">
                     <p className="chest-price">{price}</p>
                     <span><img className="chest-rupia-icon" src={rupiaIcon} alt={rupiaIcon}></img></span>

@@ -51,7 +51,8 @@
         .search-bar {
             justify-content: center;
             height: 34px;
-            width: 80px;
+            min-width: 80px;
+
     }
 }
 

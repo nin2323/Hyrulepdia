@@ -25,10 +25,8 @@ onFavoritesToggle,
 isShowingFavorites
 
 }: FilterModalProps ) => {
-    if (!open) return null;
-
   return (
-    <div className="filter-modal-overlay">
+    <div className={`filter-modal-overlay ${open ? 'open' : 'closed'}`}>
       <div className="filter-modal-panel">
         <div className="close-btn__content">
             <button className='close-btn' onClick={onClose}>
@@ -44,7 +42,7 @@ isShowingFavorites
             onFavoritesToggle={onFavoritesToggle}
             isShowingFavorites={isShowingFavorites}
             isModal={true}
-      />
+        />
         </div>
       </div>
     </div>

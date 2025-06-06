@@ -4,7 +4,6 @@ header {
   align-items: center;
   padding: 25px 80px;
   background: rgba(39, 88, 128, 0.1); 
-  position: relative;
   gap: 6px;
 }
 

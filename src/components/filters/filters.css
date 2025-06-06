@@ -22,9 +22,9 @@
 
 .filter-modal-buttons {
   display: flex !important;
-  flex-direction: column; /* si quieres que se apilen en el modal */
+  flex-direction: column; 
   gap: 2rem;
-  padding-top: 60px;
+  padding-top: 10px;
 }
 
 @media (max-width: 1124px) {

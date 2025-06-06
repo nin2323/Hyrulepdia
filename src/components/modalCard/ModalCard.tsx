@@ -6,7 +6,7 @@ import { CardContainer } from "../CardContainer/CardContainer";
 import { useAuth } from "../../context/authContext";
 import { useAddFavorites } from "../../hooks/useAddFavorites";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebaseConfig/firebaseConfig"; // Asegúrate de importar correctamente Firebase
+import { db } from "../../firebaseConfig/firebaseConfig";
 
 interface ModalCardProps {
   selectedCard: HyruleCardType;
@@ -25,6 +25,13 @@ export const ModalCard: FC<ModalCardProps> = ({
   const { toggleFavorite } = useAddFavorites();
   const [isFavorite, setIsFavorite] = useState(false);
   const { user } = useAuth();
+
+  useEffect(() => {
+  document.body.classList.add("modal-open");
+  return () => {
+    document.body.classList.remove("modal-open");
+  };
+}, []);
 
   // Verificar el estado de favorite en Firestore para la carta seleccionada
   useEffect(() => {
@@ -65,6 +72,13 @@ export const ModalCard: FC<ModalCardProps> = ({
   return (
     <div className="modal-overlay" onClick={onClose}>
       <CardContainer className="card-container-modal" onClick={(e) => e.stopPropagation()}>
+          <button
+            className="modal-close-button"
+            onClick={onClose}
+            aria-label="Close modal"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px" fill="#e3e3e3"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+          </button>
         <div className="modal-content">
           <div className="modal-content__card" onClick={() => setShowZoomedCard(true)}>
             <HyruleCard {...selectedCard}  size="lg" />

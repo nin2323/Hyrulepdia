@@ -14,6 +14,7 @@ export interface HyruleCardType {
     disableClick?: boolean;
     isDiscovered?: boolean;
     className?: string;
+    onClick: () => void;
 }
 
 
@@ -31,4 +32,5 @@ export interface HyruleDataType {
 export interface ChestButtonType {
     rarity: 'common' | 'rare' | 'epic';
     price: number;
+    isVibrating?: boolean;
 }

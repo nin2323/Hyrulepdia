@@ -1,12 +1,13 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 
 export const useHorizontalScroll = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [mostVisible, setMostVisible] = useState<HTMLElement | null>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-  const moved = useRef(false); // si hubo movimiento arrastrando
-  const ignoreClick = useRef(false); // para ignorar el click siguiente
+  const moved = useRef(false);
+  const ignoreClick = useRef(false);
 
   const detectMostVisible = useCallback((): HTMLElement | null => {
     const slider = scrollRef.current;
@@ -48,31 +49,16 @@ export const useHorizontalScroll = () => {
       scrollLeft.current = slider.scrollLeft;
     };
 
-    const handleMouseLeave = () => {
+    const handleEnd = () => {
       if (!isDragging.current) return;
       isDragging.current = false;
       slider.classList.remove('dragging');
 
-      if (moved.current) {
-        ignoreClick.current = true; // hubo drag, ignorar click
-      }
+      if (moved.current) ignoreClick.current = true;
 
       const mostVisible = detectMostVisible();
-      if (mostVisible) {
-        mostVisible.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-      }
-    };
+      setMostVisible(mostVisible);
 
-    const handleMouseUp = () => {
-      if (!isDragging.current) return;
-      isDragging.current = false;
-      slider.classList.remove('dragging');
-
-      if (moved.current) {
-        ignoreClick.current = true; // hubo drag, ignorar click
-      }
-
-      const mostVisible = detectMostVisible();
       if (mostVisible) {
         mostVisible.scrollIntoView({ behavior: 'smooth', inline: 'center' });
       }
@@ -92,6 +78,8 @@ export const useHorizontalScroll = () => {
 
     const handleScroll = () => {
       const mostVisible = detectMostVisible();
+      setMostVisible(mostVisible);
+
       if (!mostVisible) return;
 
       Array.from(slider.children).forEach(child => {
@@ -100,22 +88,22 @@ export const useHorizontalScroll = () => {
     };
 
     slider.addEventListener('mousedown', handleMouseDown);
-    slider.addEventListener('mouseleave', handleMouseLeave);
-    slider.addEventListener('mouseup', handleMouseUp);
+    slider.addEventListener('mouseleave', handleEnd);
+    slider.addEventListener('mouseup', handleEnd);
     slider.addEventListener('mousemove', handleMouseMove);
     slider.addEventListener('scroll', handleScroll);
 
-    // Inicializar el estado activo
+    // Inicial
     handleScroll();
 
     return () => {
       slider.removeEventListener('mousedown', handleMouseDown);
-      slider.removeEventListener('mouseleave', handleMouseLeave);
-      slider.removeEventListener('mouseup', handleMouseUp);
+      slider.removeEventListener('mouseleave', handleEnd);
+      slider.removeEventListener('mouseup', handleEnd);
       slider.removeEventListener('mousemove', handleMouseMove);
       slider.removeEventListener('scroll', handleScroll);
     };
   }, [detectMostVisible]);
 
-  return { scrollRef, ignoreClick };
+  return { scrollRef, ignoreClick, mostVisible };
 };
