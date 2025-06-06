@@ -1,42 +1,36 @@
 import { useAuth } from '../../../context/authContext';
-import {
-  updateEmail,
-  updatePassword,
-  updateProfile,
-  EmailAuthProvider,
-  reauthenticateWithCredential,
-} from 'firebase/auth';
+import { updateEmail, updatePassword, updateProfile } from 'firebase/auth';
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebaseConfig/firebaseConfig';
-import { useEffect, useState, useRef, useCallback } from 'react';
-import styles from './UserProfileEditor.module.css'; // Usamos 'styles' que ya está importado
+import { useEffect, useState } from 'react';
+import styles from './UserProfileEditor.module.css';
 import { Button } from '../../button/button';
+import imageCompression from 'browser-image-compression'; // Asegúrate de que esta librería esté instalada
+
+// Si usas react-toastify, descomenta estas líneas y asegúrate de que esté instalado y configurado.
+// import { toast } from 'react-toastify';
+// Si no, las alertas básicas (`alert()`) se usarán.
 
 export const UserProfileEditor = () => {
-  const { user } = useAuth(); // El usuario de tu contexto de autenticación
+  const { user } = useAuth();
 
   const [displayName, setDisplayName] = useState('');
-  const [photoURL, setPhotoURL] = useState('');
+  const [photoURL, setPhotoURL] = useState(''); // Esta será la Data URL
   const [oneLiner, setOneLiner] = useState('');
   const [gems, setGems] = useState(0);
-  const [email, setEmail] = useState(''); // El nuevo correo electrónico
-  const [password, setPassword] = useState(''); // La contraseña actual para reautenticar o la nueva contraseña
-  const [currentPassword, setCurrentPassword] = useState(''); // Campo para la contraseña actual SIEMPRE que se cambie correo/contraseña
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [showSensitive, setShowSensitive] = useState(false); // Para mostrar/ocultar campos de email/password
+  const [showSensitive, setShowSensitive] = useState(false);
+  const [loadingImage, setLoadingImage] = useState(false); // Estado para feedback de carga de imagen
 
-  const debounceTimer = useRef<NodeJS.Timeout | null>(null);
-
-  // --- 1. Carga inicial de los datos del usuario ---
+  // Carga inicial de datos del usuario
   useEffect(() => {
     if (!user) return;
 
-    // Sincronizar estados con los datos de Firebase Auth
     setDisplayName(user.displayName || '');
-    setPhotoURL(user.photoURL || '');
     setEmail(user.email || '');
 
-    // Cargar datos adicionales de Firestore
     const fetchProfileData = async () => {
       const docRef = doc(db, 'users', user.uid);
       const snapshot = await getDoc(docRef);
@@ -44,147 +38,163 @@ export const UserProfileEditor = () => {
         const data = snapshot.data();
         setOneLiner(data.oneLiner || '');
         setGems(data.gems || 0);
-        // Asegúrate de que photoURL se actualice si hay uno en Firestore
-        setPhotoURL(data.photoURL || user.photoURL || '');
+        // SIEMPRE lee la photoURL de Firestore si existe, porque ahí es donde la guardaremos.
+        setPhotoURL(data.photoURL || ''); // Si no hay foto en Firestore, será una cadena vacía
+      } else {
+        // Si no hay doc en Firestore o no tiene photoURL, usa un valor por defecto o vacío
+        setPhotoURL(''); // O user.photoURL si quieres el de Firebase Auth como fallback si es corto
       }
     };
 
     fetchProfileData();
-  }, [user]); // Dependencia del efecto: el objeto user
+  }, [user]);
 
-  // --- 2. Función para guardar los cambios (incluye email y password) ---
-  const saveProfile = useCallback(async () => {
+  // --- Función para transformar File/Blob a Data URL (integrada) ---
+  const transformFileToDataUrl = (file: File): Promise<string | null> => {
+    const imageAllowedTypes = ['image/webp', 'image/jpeg', 'image/png'];
+
+    if (!imageAllowedTypes.includes(file.type)) {
+      // toast.error('Solo se permiten imágenes en formato WEBP, JPEG o PNG.'); // Si usas toast
+      alert('Solo se permiten imágenes en formato WEBP, JPEG o PNG.'); // Si no usas toast
+      return Promise.resolve(null);
+    }
+
+    // El tamaño de 550 KB es para el archivo COMPRIMIDO.
+    // Si la compresión a 0.5MB (512KB) es efectiva, esto no debería activarse a menos que el archivo original ya sea pequeño y WebP no lo reduzca significativamente.
+    // Recuerda que la Data URL será ~33% más grande que el archivo binario.
+    // Un archivo de 550KB binario se convierte en ~730KB de Data URL, lo cual está DENTRO del límite de 1MB de Firestore.
+    if (file.size > 550 * 1024) { // 550 KB
+      // toast.error('La imagen no debe exceder los 550 KB después de la compresión.'); // Si usas toast
+      alert('La imagen no debe exceder los 550 KB después de la compresión.'); // Si no usas toast
+      return Promise.resolve(null);
+    }
+
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        resolve(reader.result as string);
+      };
+
+      reader.onerror = () => {
+        console.error("Error al leer el archivo con FileReader.");
+        // toast.error("Ocurrió un error al cargar la imagen. Inténtalo de nuevo."); // Si usas toast
+        alert("Ocurrió un error al cargar la imagen. Inténtalo de nuevo."); // Si no usas toast
+        resolve(null);
+      };
+
+      reader.readAsDataURL(file);
+      console.log("Image conversion to Data URL started.");
+    });
+  };
+
+  // --- Manejo de la subida de la imagen ---
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const imageFile = event.target.files?.[0];
+    if (!imageFile) return;
+
+    setLoadingImage(true);
+    setMessage('');
+
+    const options = {
+      maxSizeMB: 0.5, // Comprime a 0.5 MB (512 KB)
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+      // fileType: "image/webp", // Puedes especificar esto si quieres forzar la conversión a WebP
+    };
+
+    try {
+      // 1. Comprimir la imagen
+      const compressedFile = await imageCompression(imageFile, options);
+      console.log('compressedFile instanceof Blob', compressedFile instanceof Blob);
+      console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
+
+      // 2. Convertir el Blob (imagen comprimida) a Data URL
+      const dataUrl = await transformFileToDataUrl(compressedFile);
+      
+      if (dataUrl) {
+        setPhotoURL(dataUrl); // Actualizar el estado con la Data URL
+        setMessage('✅ Imagen lista para guardar. ¡No olvides hacer clic en "Guardar"!');
+      } else {
+        setMessage('❌ No se pudo procesar la imagen.'); // El alert ya lo mostró transformFileToDataUrl
+      }
+    } catch (error: any) {
+      console.error('Error al procesar la imagen:', error);
+      setMessage(`❌ Error al subir la imagen: ${error.message || 'Intenta de nuevo.'}`);
+    } finally {
+      setLoadingImage(false);
+    }
+  };
+
+  // --- Manejo del guardado de perfil ---
+  const handleSave = async () => {
     if (!user || !auth.currentUser) {
       setMessage('❌ No hay usuario autenticado.');
       return;
     }
 
-    setMessage('Guardando cambios...'); // Mensaje mientras se guarda
+    setMessage('');
 
     try {
-      // **A. Actualizar datos en Firebase Authentication (displayName, photoURL)**
-      // Esto siempre se intenta para campos no sensibles
-      await updateProfile(auth.currentUser, {
+      // ¡¡LA CLAVE ESTÁ AQUÍ!!
+      // NO actualices el photoURL del perfil de Firebase Auth con la Data URL.
+      // Firebase Auth tiene un límite muy bajo para photoURL.
+      await updateProfile(auth.currentUser, { 
         displayName,
-        photoURL,
+        // photoURL: photoURL, // <--- COMENTA o QUITA esta línea si `photoURL` puede ser muy larga
+        // Si tienes una photoURL corta (ej. de un Gravatar o una URL de Storage)
+        // puedes usarla aquí, pero NO si es una Data URL grande.
+        // Si la foto solo se guardará en Firestore, déjalo sin `photoURL` aquí.
       });
 
-      // **B. Reautenticación y actualización de EMAIL/PASSWORD (operaciones sensibles)**
-      const emailChanged = email && email !== user.email;
-      const passwordChanged = password; // Si el campo de password tiene un valor, se asume que se quiere cambiar
-
-      if (emailChanged || passwordChanged) {
-        // La reautenticación es necesaria para operaciones sensibles
-        // DEBEMOS OBLIGAR al usuario a poner su contraseña ACTUAL
-        if (!currentPassword) {
-          throw new Error(
-            '⚠️ Debes ingresar tu contraseña actual para cambiar el correo o la contraseña.'
-          );
-        }
-
-        const credential = EmailAuthProvider.credential(
-          user.email!,
-          currentPassword
-        );
-        await reauthenticateWithCredential(auth.currentUser, credential);
-        setMessage('Reautenticación exitosa. Guardando cambios sensibles...');
-      }
-
-      // **C. Actualizar EMAIL (solo si ha cambiado)**
-      if (emailChanged) {
+      if (email && email !== user.email) {
         await updateEmail(auth.currentUser, email);
-        setMessage(
-          '✅ Correo electrónico actualizado. Es posible que necesites verificarlo.'
-        );
       }
 
-      // **D. Actualizar PASSWORD (solo si se ha ingresado una nueva)**
-      if (passwordChanged) {
+      if (password) {
         await updatePassword(auth.currentUser, password);
-        setMessage('✅ Contraseña actualizada.');
       }
 
-      // **E. Actualizar datos en Firestore**
+      // Esto es lo importante: GUARDA LA DATA URL EN FIRESTORE.
+      // Firestore soporta cadenas mucho más largas (hasta 1MB por documento).
       await updateDoc(doc(db, 'users', user.uid), {
         oneLiner,
         gems,
-        photoURL, // Guardamos photoURL en Firestore también para consistencia
-        // Considera guardar displayName y email en Firestore también si los usas para algo más
-        // displayName: displayName,
-        // email: email,
+        photoURL, // <-- Aquí guardas la Data URL en tu documento de Firestore
       });
 
-      setMessage('✅ Perfil actualizado correctamente.');
-      // Limpiar campos sensibles después de un guardado exitoso
+      setMessage('✅ Cambios guardados correctamente');
       setPassword('');
-      setCurrentPassword('');
     } catch (err: any) {
-      // Manejo de errores específicos de Firebase Auth
-      let errorMessage =
-        'Error al guardar cambios. Por favor, inténtalo de nuevo.';
-      if (err.code === 'auth/wrong-password') {
-        errorMessage = '❌ Contraseña actual incorrecta.';
-      } else if (err.code === 'auth/requires-recent-login') {
-        errorMessage =
-          '❌ Por favor, inicia sesión de nuevo para realizar este cambio.';
-      } else if (err.code === 'auth/email-already-in-use') {
-        errorMessage = '❌ El correo electrónico ya está en uso.';
+      console.error('Error al guardar el perfil:', err);
+      if (err.code === 'auth/requires-recent-login') {
+        setMessage('❌ Por favor, vuelve a iniciar sesión para actualizar tu email o contraseña.');
       } else {
-        errorMessage = `❌ Error: ${err.message}`;
+        setMessage(`❌ Error al guardar: ${err.message}`);
       }
-      setMessage(errorMessage);
-      console.error('Error al guardar perfil:', err);
     }
-  }, [
-    displayName,
-    photoURL,
-    email,
-    password,
-    oneLiner,
-    gems,
-    user,
-    currentPassword,
-  ]);
+  };
 
-  // --- 3. Debounce para guardar automáticamente ---
-  useEffect(() => {
-    // No disparamos el debounce si el usuario no está autenticado o no hay cambios significativos
-    if (!user || !auth.currentUser) return;
-
-    // Evitamos el debounce cuando solo estamos mostrando/ocultando campos sensibles
-    // o cuando el mensaje está activo por un error/éxito
-    if (showSensitive) return; // Si los campos sensibles están visibles, el guardado es manual
-
-    if (debounceTimer.current) clearTimeout(debounceTimer.current);
-    debounceTimer.current = setTimeout(() => {
-      saveProfile();
-    }, 1500); // Guardar después de 1.5 segundos de inactividad
-  }, [displayName, photoURL, oneLiner, saveProfile, user, showSensitive]); // Quitamos email y password si el guardado es manual para esos
-
-  // --- 4. Renderizado del componente ---
   return (
     <div className={styles.containerProfile}>
-      {message && <p className={styles.message}>{message}</p>}{' '}
-      {/* Puedes estilizar este mensaje */}
-      {/* Imagen de perfil */}
+      {message && <p className={message.startsWith('❌') ? styles.errorMessage : styles.successMessage}>{message}</p>}
+
       <label className={styles.clickableImg}>
-        <img src={photoURL} alt='Foto de perfil' />
+        <img
+          src={photoURL || 'src/assets/black 1.png'} // Muestra la Data URL desde el estado
+          alt='Foto de perfil'
+        />
         <input
           type='file'
-          accept='image/*'
+          accept='image/webp, image/jpeg, image/png'
           style={{ display: 'none' }}
-          onChange={(e) => {
-            const file = e.target.files?.[0];
-            if (file) {
-              const url = URL.createObjectURL(file);
-              setPhotoURL(url);
-            }
-          }}
+          onChange={handleImageUpload}
+          disabled={loadingImage}
         />
+        {loadingImage && <p>Cargando imagen...</p>}
       </label>
-      {/* Nombre */}
+
       <div className={styles.inputTextCardName}>
-        {/* Líneas decorativas */}
         <div className={styles.leftTopLine}></div>
         <div className={styles.leftBottomLine}></div>
         <div className={styles.rightTopLine}></div>
@@ -201,9 +211,8 @@ export const UserProfileEditor = () => {
           onChange={(e) => setDisplayName(e.target.value)}
         />
       </div>
-      {/* One Liner */}
+
       <div className={styles.inputTextCardOneLiner}>
-        {/* Líneas decorativas */}
         <div className={styles.leftTopLine}></div>
         <div className={styles.leftBottomLine}></div>
         <div className={styles.rightTopLine}></div>
@@ -220,22 +229,18 @@ export const UserProfileEditor = () => {
           onChange={(e) => setOneLiner(e.target.value)}
         />
       </div>
-      {/* Botón para mostrar/ocultar campos sensibles */}
+
       <Button
         color='primary'
         size='sm'
         onClick={() => setShowSensitive((prev) => !prev)}
       >
-        {showSensitive
-          ? 'OCULTAR CAMBIOS SENSIBLES'
-          : 'EDITAR CORREO / CONTRASEÑA'}
+        {showSensitive ? 'Ocultar' : 'Editar'}
       </Button>
-      {/* Campos sensibles (Correo y Contraseña) */}
+
       {showSensitive && (
         <>
-          {/* Correo electrónico */}
           <div className={styles.inputTextCardOneLiner}>
-            {/* Líneas decorativas */}
             <div className={styles.leftTopLine}></div>
             <div className={styles.leftBottomLine}></div>
             <div className={styles.rightTopLine}></div>
@@ -246,17 +251,13 @@ export const UserProfileEditor = () => {
             <div className={styles.bottomRightLine}></div>
             <input
               type='email'
-              name='new-email'
-              autoComplete='off'
-              placeholder='Nuevo correo electrónico'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              className={styles.inputText}
             />
           </div>
 
-          {/* Nueva Contraseña (opcional) */}
           <div className={styles.inputTextCardOneLiner}>
-            {/* Líneas decorativas */}
             <div className={styles.leftTopLine}></div>
             <div className={styles.leftBottomLine}></div>
             <div className={styles.rightTopLine}></div>
@@ -267,40 +268,17 @@ export const UserProfileEditor = () => {
             <div className={styles.bottomRightLine}></div>
             <input
               type='password'
-              name='new-user-password'
-              autoComplete='new-password'
-              placeholder='Nueva contraseña (dejar vacío para no cambiar)'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-
-          {/* Contraseña Actual (OBLIGATORIA para cambios sensibles) */}
-          <div className={styles.inputTextCardOneLiner}>
-            {/* Líneas decorativas */}
-            <div className={styles.leftTopLine}></div>
-            <div className={styles.leftBottomLine}></div>
-            <div className={styles.rightTopLine}></div>
-            <div className={styles.rightBottomLine}></div>
-            <div className={styles.topLeftLine}></div>
-            <div className={styles.topRightLine}></div>
-            <div className={styles.bottomLeftLine}></div>
-            <div className={styles.bottomRightLine}></div>
-            <input
-              type='password'
-              name='current-user-password'
-              autoComplete='current-password'
-              placeholder='Contraseña ACTUAL para confirmar cambios'
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
+              placeholder='Contraseña (dejar en blanco para no cambiar)'
+              className={styles.inputText}
             />
           </div>
         </>
       )}
-      {/* Botón para guardar manualmente */}
-      {/* Es importante que este botón llame a saveProfile sin debounce para los cambios sensibles */}
-      <Button color='primary' size='sm' onClick={saveProfile}>
-        GUARDAR CAMBIOS
+
+      <Button color='primary' size='sm' onClick={handleSave} disabled={loadingImage}>
+        Guardar
       </Button>
     </div>
   );
