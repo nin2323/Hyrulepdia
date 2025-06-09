@@ -43,6 +43,9 @@
 }
 
     @media (max-width: 764px) {
+        .store-page {
+            margin-top: 10rem;
+        }
         .store-main {
             display: flex;
             overflow-x: auto;

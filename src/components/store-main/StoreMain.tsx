@@ -37,7 +37,7 @@ export const StoreMain = () => {
   };
 
   return (
-    <>
+    <div className='store-page'>
       <div ref={scrollRef} className="store-main">
         <div className="card-content" onClick={() => handleSelect('rare', 500)}>
           <ChestButton rarity="rare" price={500} />
@@ -61,6 +61,6 @@ export const StoreMain = () => {
         </div>
       </div>
       <PopupGemsInfo visible={showPopup} onClose={() => setShowPopup(false)} />
-    </>
+    </div>
   );
 };

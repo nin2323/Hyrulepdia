@@ -1,14 +1,3 @@
-@font-face {
-    font-family: 'title';
-    src: url('./TheWildBreath.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Patrick+Hand&display=swap');
-
-@import url('https://fonts.googleapis.com/css2?family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&family=Irish+Grover&family=Patrick+Hand&display=swap');
-
 .hyrule-card__border {
     display: flex;
     justify-content: center;
@@ -142,7 +131,6 @@
 
 .hyrule-card__description {
     font-size: 0.7rem;
-    font-family: "Inknut Antiqua", serif;
     color: #97DCFF;
     text-align: center;
     text-shadow: 0px 0px 3px #5BB3FB;
@@ -170,7 +158,6 @@
 }
 .hyrule-card__section p {
     font-size: 0.6rem;
-    font-family: "Inknut Antiqua", serif;
     color: #97DCFF;
     text-align: center;
     text-shadow: 0px 0px 3px #5BB3FB;
@@ -185,7 +172,6 @@
     color: #B99F65;
     font-family: 'title';
     padding-top: 0.8rem;
-    font-family: "Inknut Antiqua", serif;
     font-weight: 600;
     font-style: normal;
     line-height: 0.3;
