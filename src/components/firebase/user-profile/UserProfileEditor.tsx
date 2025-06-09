@@ -1,5 +1,11 @@
 import { useAuth } from '../../../context/authContext';
-import { updateEmail, updatePassword, updateProfile } from 'firebase/auth';
+import {
+  updateEmail,
+  updatePassword,
+  updateProfile,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+} from 'firebase/auth';
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebaseConfig/firebaseConfig';
 import { useEffect, useState } from 'react';
@@ -14,6 +20,7 @@ import imageCompression from 'browser-image-compression'; // Asegúrate de que e
 export const UserProfileEditor = () => {
   const { user } = useAuth();
 
+  const [currentPassword, setCurrentPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
   const [photoURL, setPhotoURL] = useState(''); // Esta será la Data URL
   const [oneLiner, setOneLiner] = useState('');
@@ -164,6 +171,17 @@ export const UserProfileEditor = () => {
       }
 
       if (password) {
+        if (!currentPassword) {
+          setMessage('❌ Debes ingresar tu contraseña actual para cambiarla.');
+          return;
+        }
+
+        const credential = EmailAuthProvider.credential(
+          user.email!,
+          currentPassword
+        );
+
+        await reauthenticateWithCredential(auth.currentUser, credential);
         await updatePassword(auth.currentUser, password);
       }
 
@@ -295,6 +313,23 @@ export const UserProfileEditor = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder='Contraseña (dejar en blanco para no cambiar)'
+              className={styles.inputText}
+            />
+          </div>
+          <div className={styles.inputTextCardName}>
+            <div className={styles.leftTopLine}></div>
+            <div className={styles.leftBottomLine}></div>
+            <div className={styles.rightTopLine}></div>
+            <div className={styles.rightBottomLine}></div>
+            <div className={styles.topLeftLine}></div>
+            <div className={styles.topRightLine}></div>
+            <div className={styles.bottomLeftLine}></div>
+            <div className={styles.bottomRightLine}></div>
+            <input
+              type='password'
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              placeholder='Contraseña actual'
               className={styles.inputText}
             />
           </div>
