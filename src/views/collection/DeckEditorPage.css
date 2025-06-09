@@ -139,3 +139,17 @@
     letter-spacing: 0.1rem;
 }
 
+/*para botón de eliminar deck*/
+
+.deck__buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-deck-button {
+  margin-top: 10px;
+  color: red
+}
