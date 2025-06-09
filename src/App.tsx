@@ -7,8 +7,6 @@ export const App = () => {
   return (
     <>
       <Header/>
-      {/* <HyruleCard />
-      <StoreOpening /> */}
       <Outlet />
       <ToastContainer position="top-center" autoClose={3000} />
       {/* la linea de arriba es el componente montado para el toast */}
