@@ -21,7 +21,6 @@ export const StorePurchase = ({selectedChest, onOpen}: StorePurchaseProps) => {
     const navigate = useNavigate();
     const { user } = useAuth();
     const [gems, setGems] = useState(0);
-    const [message, setMessage] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchGems = async () => {
