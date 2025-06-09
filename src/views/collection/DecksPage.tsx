@@ -9,6 +9,8 @@ import { db } from "../../firebaseConfig/firebaseConfig";
 import { DeckEditorPage } from "./DeckEditorPage";
 import deckButton from "../../assets/backgrounds/deck-button.png"
 import './DecksPage.css'
+import { useUnlockedCards } from "../../hooks/useUnlockedCards";
+
 
 export const DecksPage = () => {
 const navigate = useNavigate(); //use navigate para redirigir
@@ -16,6 +18,7 @@ const { user } = useAuth();
 const [decks, setDecks] = useState<any[]>([]); //almacenamos los mazos del usuario en un array, y usaremos setDecks para actualizarlo
 const [isCreating, setIsCreating] = useState(false); //controla si se muestra el editor
 const [selectedDeck, setSelectedDeck] = useState<any | null>(null); //si se hace click en un mazo se pasa al editor para modificarlo
+const { cards: userCards } = useUnlockedCards();
 
 const fetchDecks = useCallback(async () => { //Consulta firestore para traer mazos guardados del usuario autenticado
     if (!user) return;
@@ -51,9 +54,24 @@ useEffect(() => {
                     <img src={deckButton} alt='deck button'  />
                 </button>
                 {decks.map(deck => {
+                    const firstCardId = deck.cards?.find((id: null) => id !== null); //find para encontrar la primera carta que no sea null, mejor que focusear el index 0 del array de cartas
+                    const firstCard = userCards.find(c => String(c.id) === String(firstCardId));
+                    if (!firstCard) return null; // no renderiza si no hay imagen
+
                     return (
-                        <div key={deck.id} className="deck-preview" onClick={() => setSelectedDeck(deck)}>
-                        <div className="deck-name">{deck.name || "Unnamed Deck"}</div>
+                        <div
+                            key={deck.id}
+                            className="deck-preview"
+                            onClick={() => setSelectedDeck(deck)}
+                            style={{
+                                backgroundImage: firstCard ? `url(${firstCard.image})` : 'none',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                }}
+                        >
+                        <div className="deck-name">
+                            {deck.name || "Unnamed Deck"}
+                        </div>
                     </div>
                 );
             })}

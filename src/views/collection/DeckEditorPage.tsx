@@ -70,6 +70,12 @@ useEffect(() => {
       toast.error("You must write a name fot the deck");
       return;
     }
+
+    const hasAtLeastOneCard = selectedSlots.some(card => card !== null); //comprueba que hay mínimo una carta añadida
+    if (!hasAtLeastOneCard) {
+    toast.error("You must add at least one card to create a deck");
+    return;
+    }
     if (!user) return;
 
     const deck = { //creación del objeto deck
