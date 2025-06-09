@@ -85,3 +85,28 @@
 .popup-gems-info__gem-guide__battel p {
     line-height: 2rem;
 }
+
+/* Responsive */
+
+@media (max-width: 749px) {
+    .popup-gems-info__content h1 {
+        font-size: 18px;
+    }
+
+    .popup-gems-info__content p {
+        font-size: 10px;
+    }
+
+    .popup-gems-info__content h2 {
+        font-size: 16px;
+    }
+
+    .popup-gems-info__gem-guide__quests h2 {
+        font-size: 16px;
+    }
+
+    .popup-gems-info__content {
+        line-height: 20px;
+        gap: 6px;
+    }
+}
