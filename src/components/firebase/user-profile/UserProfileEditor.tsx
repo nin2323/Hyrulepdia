@@ -63,7 +63,8 @@ export const UserProfileEditor = () => {
     // Si la compresión a 0.5MB (512KB) es efectiva, esto no debería activarse a menos que el archivo original ya sea pequeño y WebP no lo reduzca significativamente.
     // Recuerda que la Data URL será ~33% más grande que el archivo binario.
     // Un archivo de 550KB binario se convierte en ~730KB de Data URL, lo cual está DENTRO del límite de 1MB de Firestore.
-    if (file.size > 550 * 1024) { // 550 KB
+    if (file.size > 550 * 1024) {
+      // 550 KB
       // toast.error('La imagen no debe exceder los 550 KB después de la compresión.'); // Si usas toast
       alert('La imagen no debe exceder los 550 KB después de la compresión.'); // Si no usas toast
       return Promise.resolve(null);
@@ -77,19 +78,21 @@ export const UserProfileEditor = () => {
       };
 
       reader.onerror = () => {
-        console.error("Error al leer el archivo con FileReader.");
+        console.error('Error al leer el archivo con FileReader.');
         // toast.error("Ocurrió un error al cargar la imagen. Inténtalo de nuevo."); // Si usas toast
-        alert("Ocurrió un error al cargar la imagen. Inténtalo de nuevo."); // Si no usas toast
+        alert('Ocurrió un error al cargar la imagen. Inténtalo de nuevo.'); // Si no usas toast
         resolve(null);
       };
 
       reader.readAsDataURL(file);
-      console.log("Image conversion to Data URL started.");
+      console.log('Image conversion to Data URL started.');
     });
   };
 
   // --- Manejo de la subida de la imagen ---
-  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const imageFile = event.target.files?.[0];
     if (!imageFile) return;
 
@@ -106,21 +109,30 @@ export const UserProfileEditor = () => {
     try {
       // 1. Comprimir la imagen
       const compressedFile = await imageCompression(imageFile, options);
-      console.log('compressedFile instanceof Blob', compressedFile instanceof Blob);
-      console.log(`compressedFile size ${compressedFile.size / 1024 / 1024} MB`);
+      console.log(
+        'compressedFile instanceof Blob',
+        compressedFile instanceof Blob
+      );
+      console.log(
+        `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
+      );
 
       // 2. Convertir el Blob (imagen comprimida) a Data URL
       const dataUrl = await transformFileToDataUrl(compressedFile);
-      
+
       if (dataUrl) {
         setPhotoURL(dataUrl); // Actualizar el estado con la Data URL
-        setMessage('✅ Imagen lista para guardar. ¡No olvides hacer clic en "Guardar"!');
+        setMessage(
+          '✅ Imagen lista para guardar. ¡No olvides hacer clic en "Guardar"!'
+        );
       } else {
         setMessage('❌ No se pudo procesar la imagen.'); // El alert ya lo mostró transformFileToDataUrl
       }
     } catch (error: any) {
       console.error('Error al procesar la imagen:', error);
-      setMessage(`❌ Error al subir la imagen: ${error.message || 'Intenta de nuevo.'}`);
+      setMessage(
+        `❌ Error al subir la imagen: ${error.message || 'Intenta de nuevo.'}`
+      );
     } finally {
       setLoadingImage(false);
     }
@@ -139,7 +151,7 @@ export const UserProfileEditor = () => {
       // ¡¡LA CLAVE ESTÁ AQUÍ!!
       // NO actualices el photoURL del perfil de Firebase Auth con la Data URL.
       // Firebase Auth tiene un límite muy bajo para photoURL.
-      await updateProfile(auth.currentUser, { 
+      await updateProfile(auth.currentUser, {
         displayName,
         // photoURL: photoURL, // <--- COMENTA o QUITA esta línea si `photoURL` puede ser muy larga
         // Si tienes una photoURL corta (ej. de un Gravatar o una URL de Storage)
@@ -168,7 +180,9 @@ export const UserProfileEditor = () => {
     } catch (err: any) {
       console.error('Error al guardar el perfil:', err);
       if (err.code === 'auth/requires-recent-login') {
-        setMessage('❌ Por favor, vuelve a iniciar sesión para actualizar tu email o contraseña.');
+        setMessage(
+          '❌ Por favor, vuelve a iniciar sesión para actualizar tu email o contraseña.'
+        );
       } else {
         setMessage(`❌ Error al guardar: ${err.message}`);
       }
@@ -177,7 +191,17 @@ export const UserProfileEditor = () => {
 
   return (
     <div className={styles.containerProfile}>
-      {message && <p className={message.startsWith('❌') ? styles.errorMessage : styles.successMessage}>{message}</p>}
+      {message && (
+        <p
+          className={
+            message.startsWith('❌')
+              ? styles.errorMessage
+              : styles.successMessage
+          }
+        >
+          {message}
+        </p>
+      )}
 
       <label className={styles.clickableImg}>
         <img
@@ -257,7 +281,7 @@ export const UserProfileEditor = () => {
             />
           </div>
 
-          <div className={styles.inputTextCardOneLiner}>
+          <div className={styles.inputTextCardName}>
             <div className={styles.leftTopLine}></div>
             <div className={styles.leftBottomLine}></div>
             <div className={styles.rightTopLine}></div>
@@ -277,7 +301,12 @@ export const UserProfileEditor = () => {
         </>
       )}
 
-      <Button color='primary' size='sm' onClick={handleSave} disabled={loadingImage}>
+      <Button
+        color='primary'
+        size='sm'
+        onClick={handleSave}
+        disabled={loadingImage}
+      >
         Guardar
       </Button>
     </div>
