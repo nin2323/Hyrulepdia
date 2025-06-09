@@ -5,11 +5,11 @@ export interface HyruleCardType {
     rarity: 'common' | 'rare' | 'epic';
     image: string;
     description: string;
-    fullDescription: string;
+    fullDescription?: string;
     location: string;
     items: string;
     category: 'creatures' | 'materials' | 'equipment' | 'monsters' | 'treasure';
-    size?: 'default' | 'lg' | 'xl';
+    size?: 'default' | 'lg' | 'xl' | 'sm';
     isFavorite?: boolean;
     disableClick?: boolean;
     isDiscovered?: boolean;

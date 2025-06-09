@@ -73,9 +73,9 @@ export const ChestButton = ({
         <CardContainer className={`chest-button ${isVibrating ? "vibrar" : ""}`} colorClass={displayColorClass(rarity)}>
             <div className='chset-button__contnt'>
                 <h1>
-                    CHEST
-                    <br />
                     {displayRarity(rarity)}
+                    <br />
+                    CHEST
                 </h1>
                 {displayChestType(rarity, isVibrating)}
                 <div className="chest-price__content">

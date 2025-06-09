@@ -39,7 +39,7 @@
     display: flex;
     justify-content: center;
     transition: transform 0.3s ease;
-    font-family: "The Wild Breath of Zelda";
+    font-family: "title";
 }
 
 .button-corner {

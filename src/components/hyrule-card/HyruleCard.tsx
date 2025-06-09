@@ -61,7 +61,8 @@ export const HyruleCard = ({
             ${!isDiscovered ? 'hidden-card' : ''}   
             ${disableClick ? "card--disabled" : ""}
             ${size === "lg" ? "card--lg" : ""} 
-            ${size === "xl" ? "card--xl" : ""}`}>
+            ${size === "xl" ? "card--xl" : ""}
+            ${size === "sm" ? "card--sm" : ""}`}>
             <div className="hyrule-card">
                 <div className="hyrule-card__header">
                     <div className='h2'>{name}</div>

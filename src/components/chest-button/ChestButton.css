@@ -128,3 +128,6 @@
   animation: glitch 0.5s infinite;
   transform: scale(1.2);
 }
+.chest-button__rupia {
+    height: 1.8rem;
+}
