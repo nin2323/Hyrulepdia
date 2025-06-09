@@ -98,7 +98,7 @@ export const ModalCard: FC<ModalCardProps> = ({
           }}
         >
           <div className="zoomed-card-content" onClick={(e) => e.stopPropagation()}>
-            <HyruleCard {...selectedCard}  size="xl" />
+            <HyruleCard {...selectedCard}  size="xl"  isInteractive={true}/>
           </div>
         </div>
       )}
