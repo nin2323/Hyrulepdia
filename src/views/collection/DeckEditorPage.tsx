@@ -2,7 +2,7 @@
 import { useState , useEffect , useRef } from "react";
 import { toast } from "react-toastify";
 import { db } from "../../firebaseConfig/firebaseConfig";
-import { collection, addDoc, doc, updateDoc } from "firebase/firestore";
+import { collection, addDoc, doc, updateDoc, deleteDoc } from "firebase/firestore";
 import { useAuth } from "../../context/authContext";
 import { HyruleCard } from "../../components/hyrule-card/HyruleCard";
 import { useUnlockedCards } from "../../hooks/useUnlockedCards";
@@ -101,6 +101,23 @@ useEffect(() => {
         }
       };
 
+  const handleDeleteDeck = async () => {
+    if (!user || !initialDeck?.id) return;
+
+    const userRef = doc(db,  'users', user.uid);
+    const deckRef = doc(userRef, 'decks', initialDeck.id);
+    
+    try {
+      await deleteDoc(deckRef);
+      toast.success('Deck deleted successfully');
+      if (onDeckUpdated) onDeckUpdated(); //Para refrescar la lista en DecksPage
+      onClose(); //Cierra el modal
+    } catch (err) {
+      console.error('Error deleting deck:', err);
+      toast.error("Error deleting deck");
+    }
+  };
+
   return (
     <div className="deck-editor-modal">
       <div className="deck-editor-form" ref={modalRef}>
@@ -157,9 +174,11 @@ useEffect(() => {
             </div>
           </div>
         )}
-
+        <div className="deck__buttons">
         {/* Botón para crear el mazo */}
-        <Button className='create-deck-button'size="md" onClick={() =>{handleCreateDeck()}} >Save deck</Button>
+          <Button className='create-deck-button'size="md" onClick={() =>{handleCreateDeck()}} >Save deck</Button>
+          <Button className='delete-deck-button'size="md" color="error" onClick={() => {if (confirm("Are you sure you want to delete this deck?")){ handleDeleteDeck();}}}>Delete deck</Button>
+        </div>
       </div>
     </div>
   );
