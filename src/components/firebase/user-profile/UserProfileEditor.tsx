@@ -13,7 +13,7 @@ import styles from './UserProfileEditor.module.css';
 import { Button } from '../../button/button';
 import imageCompression from 'browser-image-compression'; // Asegúrate de que esta librería esté instalada
 
-// Si usas react-toastify, descomenta estas líneas y asegúrate de que esté instalado y configurado.
+// react-toastify, descomentar estas líneas y asegúrate de que esté instalado y configurado.
 // import { toast } from 'react-toastify';
 // Si no, las alertas básicas (`alert()`) se usarán.
 
@@ -312,7 +312,7 @@ export const UserProfileEditor = () => {
               type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder='Contraseña (dejar en blanco para no cambiar)'
+              placeholder='Contraseña nueva'
               className={styles.inputText}
             />
           </div>
