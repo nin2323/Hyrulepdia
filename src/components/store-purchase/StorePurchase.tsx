@@ -41,7 +41,7 @@ export const StorePurchase = ({selectedChest, onOpen}: StorePurchaseProps) => {
         selectedChest.rarity === 'rare' ? 500 : 800;
 
         if (gems < cost) {
-            toast.error("You don't have enough gems!");; //quiero usar lo del toastify para sacar un popup. 
+            toast.error("You don't have enough gems!"); //quiero usar lo del toastify para sacar un popup. 
             return;
         }
 
@@ -51,10 +51,9 @@ export const StorePurchase = ({selectedChest, onOpen}: StorePurchaseProps) => {
 
             await updateDoc(userRef, {gems: newGems});
             setGems(newGems);
-            setMessage(null);
             onOpen();
         } catch (error: any) {
-            setMessage(`Error opening chest: ${error.message}`);
+            toast.error(`Error opening chest: ${error.message}`);
         }
     };
 
