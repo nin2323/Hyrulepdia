@@ -1,14 +1,29 @@
 header {
+  position: sticky;
+  top: 22px;
+  z-index: 9999;
   display: grid;
   grid-template-columns: 1fr 3fr;
   align-items: center;
   padding: 25px 80px;
-  background: rgba(39, 88, 128, 0.1); 
+  background: rgb(14, 40, 61);
   gap: 6px;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  will-change: transform;
+}
+
+.header--visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.header--hidden {
+  transform: translateY(-100%);
+  opacity: 0;
 }
 
 .header-logo {
-  font-size: clamp(1.5rem, 0.9761rem + 1.1191vw, 2.375rem);  
+  font-size: clamp(1.5rem, 0.9761rem + 1.1191vw, 2.375rem);
   text-decoration: none;
   color: #E0CEA0;
 }
@@ -19,7 +34,6 @@ header {
 
 .header-content {
   display: flex;
-  gap: 10px;
   justify-content: end;
   gap: 56px;
 }
@@ -39,7 +53,7 @@ header {
 }
 
 nav a.active {
-  filter: drop-shadow(0 0 10px #FFFFFF );
+  filter: drop-shadow(0 0 10px #FFFFFF);
 }
 
 .user-money {
@@ -53,11 +67,19 @@ nav a.active {
   font-size: 20px;
 }
 
-/* RESPONSIVE */
+/* ---------------- MOBILE STYLES ---------------- */
 
-@media (max-width: 1124px)  {
+@media (max-width: 1124px) {
   header {
+    position: unset;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgb(14, 40, 61);
     padding: 16px 20px;
+    z-index: 10000;
+    transform: none !important;
+    opacity: 1 !important;
   }
 
   .header-logo {
@@ -75,20 +97,11 @@ nav a.active {
     height: 20px;
   }
 
-  .user-money p  {
+  .user-money p {
     font-size: clamp(1.5rem, 0.9761rem + 1.1191vw, 2.375rem);
- }
-
-  .header-nav a {
-    font-size: 18px;
-    flex: 1;
-    text-align: center;
-    font-size: 16px;
-    color: white; /* o tu color de marca */
-    text-decoration: none;
   }
 
-  .header-nav {
+  .header-nav.mobile-nav {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -96,21 +109,13 @@ nav a.active {
     background: rgb(13, 31, 46);
     padding: 10px 0;
     justify-content: space-around;
-    z-index: 1000;
+    z-index: 10000;
     gap: 0;
     height: 42px;
+    display: flex;
   }
 
   html {
-    padding-bottom: 82px;
+    padding-bottom: 52px;
   }
 }
-
-@media (min-width: 1025px) and (max-width: 1440px) {
-  header {
-    padding: 20px 60px;
-  }
-}
-
-
-
