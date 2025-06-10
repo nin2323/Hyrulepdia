@@ -2,13 +2,17 @@ import { useRef, useEffect, useState } from 'react';
 
 export const useCardTilt = () => {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [style, setStyle] = useState<React.CSSProperties>({});
+  const [style, setStyle] = useState<React.CSSProperties>({
+    transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+  });
 
   useEffect(() => {
     const card = cardRef.current;
     if (!card) return;
 
     const glowEl = card.querySelector('.glow') as HTMLElement;
+
+    let animationFrameId: number;
 
     const handleMouseMove = (event: MouseEvent) => {
       const rect = card.getBoundingClientRect();
@@ -26,20 +30,26 @@ export const useCardTilt = () => {
 
       const glow = `radial-gradient(circle at ${50 + glowX}% ${50 + glowY}%, rgba(231, 214, 116, 0.2), transparent 90%)`;
 
-      setStyle({
-        transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-        boxShadow: `${shadowX}px ${shadowY}px 20px rgba(0, 0, 0, 0.71)`,
-      });
+      // Usa requestAnimationFrame para evitar "jumps"
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(() => {
+        setStyle({
+          transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+          boxShadow: `${shadowX}px ${shadowY}px 20px rgba(0, 0, 0, 0.71)`,
+          transition: 'transform 0.1s ease, box-shadow 0.1s ease',
+        });
 
-      if (glowEl) {
-        glowEl.style.background = glow;
-      }
+        if (glowEl) {
+          glowEl.style.background = glow;
+        }
+      });
     };
 
     const handleMouseLeave = () => {
       setStyle({
         transform: `perspective(1000px) rotateX(0deg) rotateY(0deg)`,
         boxShadow: `none`,
+        transition: 'transform 0.4s ease, box-shadow 0.4s ease',
       });
 
       if (glowEl) {
@@ -53,6 +63,7 @@ export const useCardTilt = () => {
     return () => {
       card.removeEventListener('mousemove', handleMouseMove);
       card.removeEventListener('mouseleave', handleMouseLeave);
+      cancelAnimationFrame(animationFrameId);
     };
   }, []);
 

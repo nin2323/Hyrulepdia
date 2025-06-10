@@ -241,4 +241,5 @@
   filter: blur(20px);
   transition: transform 0.05s ease-out;
   z-index: 1;
+
 }
