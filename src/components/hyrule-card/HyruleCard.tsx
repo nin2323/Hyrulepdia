@@ -93,6 +93,7 @@ const combinedStyle: TiltStyle = {
       ref={tilt.cardRef}
       style={combinedStyle}
     >
+       {isInteractive && <div className='glow'></div>}
       <div className='hyrule-card'>
         <div className='hyrule-card__header'>
           <h2>{name}</h2>

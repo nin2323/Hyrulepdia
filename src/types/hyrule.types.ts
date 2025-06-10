@@ -14,6 +14,7 @@ export interface HyruleCardType {
     disableClick?: boolean;
     isDiscovered?: boolean;
     isInteractive?: boolean;
+    className?: string;
 }
 
 
