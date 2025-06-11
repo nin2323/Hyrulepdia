@@ -96,7 +96,7 @@ const combinedStyle: TiltStyle = {
        {isInteractive && <div className='glow'></div>}
       <div className='hyrule-card'>
         <div className='hyrule-card__header'>
-          <h2>{name}</h2>
+          <div className='h2'>{name}</div>
           <div className='hyrule-card__type'>
             <span className='hyrule-card__points'>{points}</span>
             {displayIcon(category)}
