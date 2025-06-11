@@ -6,7 +6,11 @@ import { useAuth } from "../../context/authContext";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
 
-export const Header = () => {
+interface HeaderProps {
+  isAnyModalOpen?: boolean;
+}
+
+export const Header = ({ isAnyModalOpen = false }: HeaderProps) => {
   const { user } = useAuth();
   const [gems, setGems] = useState<number | null>(null);
 
@@ -57,7 +61,7 @@ export const Header = () => {
 
   return (
     <>
-      <header className={`header ${!isMobile ? (showHeader ? "header--visible" : "header--hidden") : ""}`}>
+      <header className={`header ${!isMobile ? (isAnyModalOpen ? "header--hidden" : (showHeader ? "header--visible" : "header--hidden")) : ""}`}>
         <div className="header-logo">
           <NavLink className="header-logo" to="/">HYRULEPEDIA</NavLink>
         </div>

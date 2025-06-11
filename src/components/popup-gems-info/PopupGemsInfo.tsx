@@ -1,5 +1,5 @@
 import './PopupGemsInfo.css'
-import { Button } from '../button/button';
+import { useEffect } from 'react';
 
 interface PopupGems {
     visible: boolean; //un boolean que cambiará de estado según lo que hagamos, será false, y el botón usara setShowPopup para convertir el estado en true
@@ -7,6 +7,8 @@ interface PopupGems {
 }
 
 export const PopupGemsInfo = ({visible, onClose}: PopupGems) => {
+    visible ? document.body.classList.add("modal-open") :  document.body.classList.remove("modal-open");
+
     if(!visible) return null; 
 
     return (

@@ -15,6 +15,7 @@
 .filter-modal-overlay.open {
   opacity: 1;
   pointer-events: auto;
+  z-index: 11;
 }
 
 .filter-modal-panel {
@@ -47,6 +48,10 @@
 
 }
 
+.filter-modal-open {
+  overflow: hidden;
+  height: calc(100vh - 76px);
+}
 
 
 

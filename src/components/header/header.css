@@ -70,6 +70,9 @@ nav a.active {
 /* ---------------- MOBILE STYLES ---------------- */
 
 @media (max-width: 1124px) {
+  #root {
+    margin-bottom: 2rem;
+  }
   header {
     position: unset;
     top: 0;
@@ -109,7 +112,7 @@ nav a.active {
     background: rgb(13, 31, 46);
     padding: 10px 0;
     justify-content: space-around;
-    z-index: 10000;
+    z-index: 2;
     gap: 0;
     height: 42px;
     display: flex;
@@ -118,4 +121,8 @@ nav a.active {
   html {
     padding-bottom: 52px;
   }
+}
+
+.modal-open .header {
+  display: none;
 }

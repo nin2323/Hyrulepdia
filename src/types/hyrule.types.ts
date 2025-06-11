@@ -1,13 +1,12 @@
 export interface HyruleCardType {
     id: number;
-    name: string;
-    points: number;
-    rarity: 'common' | 'rare' | 'epic';
-    image: string;
-    description: string;
-    fullDescription?: string;
-    location: string;
-    items: string;
+    name?: string;
+    points?: number;
+    rarity?: 'common' | 'rare' | 'epic';
+    image?: string;
+    description?: string;
+    location?: string;
+    items?: string;
     category: 'creatures' | 'materials' | 'equipment' | 'monsters' | 'treasure';
     size?: 'default' | 'lg' | 'xl' | 'sm';
     isFavorite?: boolean;

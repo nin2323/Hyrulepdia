@@ -84,7 +84,7 @@ export const ModalCard: FC<ModalCardProps> = ({
           </div>
           <div className="modal-content__text-btn">
             <h1>{selectedCard.name}</h1> 
-            <p className="modal-description">{selectedCard.fullDescription}</p>
+            <p className="modal-description">{selectedCard.description}</p>
             <div className="modal-description">
               <h2>Common Location</h2>
               {selectedCard.location}

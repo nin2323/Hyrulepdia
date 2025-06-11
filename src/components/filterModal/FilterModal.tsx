@@ -1,6 +1,6 @@
 import '../filterModal/filter-modal.css'
 import { Filters } from '../filters/filters';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 
 
 interface FilterModalProps {
@@ -25,7 +25,21 @@ onFavoritesToggle,
 isShowingFavorites
 
 }: FilterModalProps ) => {
+  useEffect(() => {
+  if (open) {
+    document.body.classList.add('filter-modal-open');
+  } else {
+    document.body.classList.remove('filter-modal-open');
+  }
+
+  // Limpieza si el componente se desmonta
+  return () => {
+    document.body.classList.remove('filter-modap-open');
+  };
+}, [open]);
+
   return (
+    
     <div className={`filter-modal-overlay ${open ? 'open' : 'closed'}`}>
       <div className="filter-modal-panel">
         <div className="close-btn__content">
