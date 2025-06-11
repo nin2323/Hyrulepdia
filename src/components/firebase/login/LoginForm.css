@@ -66,6 +66,11 @@ body:has(.register-form-container) {
 
   .input-login {
     width: auto;
+
+  }
+  .input-login input {
+    padding: 10px 0;
+    text-transform: none;
   }
 
   .input-login-container {
