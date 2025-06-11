@@ -153,3 +153,34 @@
   margin-top: 10px;
   color: red
 }
+
+@media (max-width: 768px) {
+  .card-selection {
+    min-height: 500px;
+    min-width: 200px;
+  }
+  
+  .user-card-grid {
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  }
+
+  .card-slot-button {
+    overflow: visible; /* importante para que lo que esté fuera del botón se vea */
+    width: 10rem;
+    aspect-ratio: 9.9 / 14.6; /* proporción similar a las cartas reales */
+    background-color:rgb(14, 23, 40);
+    border: 2px dashed #97DCFF;
+    border-radius: 8px;
+    font-size: 2rem;
+    color: #555;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0.25rem;
+  }
+
+}

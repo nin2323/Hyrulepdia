@@ -92,3 +92,14 @@
 .deck-button:hover img {
     transform: scale(1.1);
 }
+
+/*media query para responsive*/
+
+@media (max-width: 768px) {
+  .collection-page__decks {
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 1rem; /* opcional: añade márgenes internos */
+  }
+}
