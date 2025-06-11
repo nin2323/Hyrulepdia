@@ -14,7 +14,8 @@ export interface HyruleCardType {
     disableClick?: boolean;
     isDiscovered?: boolean;
     className?: string;
-    onClick: () => void;
+    onClick?: () => void;
+    drops?: string[] | null;
 }
 
 

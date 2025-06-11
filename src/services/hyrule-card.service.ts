@@ -70,11 +70,11 @@ export const getRandomHyruleData = async( num : number = 3, chestRarity: 'common
             : 'Unknown';
 
         //para acortar drop items si hay más de 4
-        const trimmedDrops = item.drops && item.drops.length > 0
-            ? item.drops.length > 3
-                ? item.drops.slice(0, 3).join(', ') + ', ...'
-                : item.drops.join(', ')
-            :'None';
+const trimmedItems = item.drops && item.drops.length > 0
+  ? item.drops.join(', ').length > 50
+    ? item.drops.join(', ').slice(0, 47) + '...'
+    : item.drops.join(', ')
+  : 'None';
 
         return {
             id: item.id,
@@ -83,7 +83,7 @@ export const getRandomHyruleData = async( num : number = 3, chestRarity: 'common
             description: trimmedDescription,
             fullDescription: item.description, //es la propiedad que se necesitaba para que el const: selected funcione bien
             location: trimmedLocations, //une las locations, si no hay pone unknown
-            items: trimmedDrops,
+            items: trimmedItems,
             category: item.category as HyruleCardType['category'],
             rarity,
             points: getPointsByRarity(rarity),

@@ -138,6 +138,7 @@
     flex-direction: column;
     padding: 0;
     text-align: center;
+    justify-content: center;
   }
 
   .modal-content__text-btn {

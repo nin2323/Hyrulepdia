@@ -47,15 +47,35 @@ useEffect(() => {
     const allCards = await getAllCards();
 
     if (allCards) {
-      const markedCards = allCards.map(card => {
-        const userCard = userCards.find(c => c.id === card.id);
+ const markedCards = allCards.map(card => {
+  const userCard = userCards.find(c => c.id === card.id);
 
-        return {
-          ...card,
-          isDiscovered: !!userCard,
-          rarity: userCard?.rareza || 'common' // Aquí aplicas la rareza real
-        };
-      });
+  // Recorte de items
+  const itemsString = Array.isArray(card.items) ? card.items.join(', ') : card.items || 'None';
+  const trimmedItems = itemsString.length > 50
+    ? itemsString.slice(0, 47) + '...'
+    : itemsString;
+
+  // Recorte de description
+  const trimmedDescription = card.description.length > 120
+    ? card.description.slice(0, 115) + '...'
+    : card.description;
+
+  // Recorte de location
+  const locationString = Array.isArray(card.location) ? card.location.join(', ') : card.location || 'Unknown';
+  const trimmedLocation = locationString.length > 50
+    ? locationString.slice(0, 47) + '...'
+    : locationString;
+
+  return {
+    ...card,
+    items: trimmedItems,
+    description: trimmedDescription,
+    location: trimmedLocation,
+    isDiscovered: !!userCard,
+    rarity: userCard?.rareza || 'common'
+  };
+});
 
       setCards(markedCards);
     }
