@@ -222,7 +222,7 @@ export const UserProfileEditor = () => {
         size='sm'
         onClick={() => setShowSensitive((prev) => !prev)}
       >
-        {showSensitive ? 'Ocultar' : 'Editar'}
+        {showSensitive ? 'Hide' : 'Edit'}
       </Button>
 
       {showSensitive && (
@@ -241,7 +241,7 @@ export const UserProfileEditor = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className={styles.inputText}
-              placeholder='Correo electrónico'
+              placeholder='Email'
             />
           </div>
 
@@ -258,7 +258,7 @@ export const UserProfileEditor = () => {
               type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder='Contraseña nueva'
+              placeholder='New Password'
               className={styles.inputText}
             />
           </div>
@@ -276,7 +276,7 @@ export const UserProfileEditor = () => {
               type='password'
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
-              placeholder='Contraseña actual'
+              placeholder='Current Password'
               className={styles.inputText}
             />
           </div>
@@ -289,7 +289,7 @@ export const UserProfileEditor = () => {
         onClick={handleSave}
         disabled={loadingImage}
       >
-        Guardar
+        Save
       </Button>
     </div>
   );
