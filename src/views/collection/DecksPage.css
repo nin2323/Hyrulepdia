@@ -87,6 +87,7 @@
     width: 15rem;
     height: 26.5rem;
     transition: transform 0.3s ease-in-out;
+    margin-right: 1.6rem;
 }
 
 .deck-button:hover img {
@@ -106,8 +107,9 @@
   .deck-button img {
     object-fit: contain;
     width: 10.5rem;
-    height: 20rem;
+    height: 2rem;
     transition: transform 0.3s ease-in-out;
+    margin-right: 0rem;
   }
 
   .deck-preview {
