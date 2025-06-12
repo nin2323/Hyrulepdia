@@ -11,10 +11,11 @@ export const useCardTilt = () => {
     if (!card) return;
 
     const glowEl = card.querySelector('.glow') as HTMLElement;
+
     let animationFrameId: number;
 
-    const updateStyle = (x: number, y: number) => {
-      const rect = card.getBoundingClientRect();
+    const updateTilt = (x: number, y: number) => {
+      const rect = card!.getBoundingClientRect();
       const relativeX = x - rect.left;
       const relativeY = y - rect.top;
 
@@ -42,7 +43,7 @@ export const useCardTilt = () => {
       });
     };
 
-    const resetStyle = () => {
+    const resetTilt = () => {
       setStyle({
         transform: `perspective(1000px) rotateX(0deg) rotateY(0deg)`,
         boxShadow: `none`,
@@ -54,27 +55,32 @@ export const useCardTilt = () => {
       }
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      updateStyle(e.clientX, e.clientY);
-    };
+    // Mouse
+    const handleMouseMove = (e: MouseEvent) => updateTilt(e.clientX, e.clientY);
+    const handleMouseLeave = resetTilt;
 
+    // Touch
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
         const touch = e.touches[0];
-        updateStyle(touch.clientX, touch.clientY);
+        updateTilt(touch.clientX, touch.clientY);
       }
     };
 
+    const handleTouchEnd = resetTilt;
+
     card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', resetStyle);
+    card.addEventListener('mouseleave', handleMouseLeave);
     card.addEventListener('touchmove', handleTouchMove);
-    card.addEventListener('touchend', resetStyle);
+    card.addEventListener('touchend', handleTouchEnd);
+    card.addEventListener('touchcancel', handleTouchEnd);
 
     return () => {
       card.removeEventListener('mousemove', handleMouseMove);
-      card.removeEventListener('mouseleave', resetStyle);
+      card.removeEventListener('mouseleave', handleMouseLeave);
       card.removeEventListener('touchmove', handleTouchMove);
-      card.removeEventListener('touchend', resetStyle);
+      card.removeEventListener('touchend', handleTouchEnd);
+      card.removeEventListener('touchcancel', handleTouchEnd);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
