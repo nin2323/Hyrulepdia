@@ -44,7 +44,7 @@
 
     @media (max-width: 764px) {
         .store-page {
-            margin-top: 10rem;
+            margin-top: 5rem;
         }
         .store-main {
             display: flex;

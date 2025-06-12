@@ -15,7 +15,7 @@ export const useCardTilt = () => {
     let animationFrameId: number;
 
     const updateTilt = (x: number, y: number) => {
-      const rect = card!.getBoundingClientRect();
+      const rect = card.getBoundingClientRect();
       const relativeX = x - rect.left;
       const relativeY = y - rect.top;
 
@@ -55,15 +55,27 @@ export const useCardTilt = () => {
       }
     };
 
-    // Mouse
+    // Mouse handlers
     const handleMouseMove = (e: MouseEvent) => updateTilt(e.clientX, e.clientY);
     const handleMouseLeave = resetTilt;
 
-    // Touch
+    // Touch handlers
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
         const touch = e.touches[0];
-        updateTilt(touch.clientX, touch.clientY);
+        const rect = card.getBoundingClientRect();
+
+        // Verifica si el touch está dentro del rectángulo
+        if (
+          touch.clientX >= rect.left &&
+          touch.clientX <= rect.right &&
+          touch.clientY >= rect.top &&
+          touch.clientY <= rect.bottom
+        ) {
+          updateTilt(touch.clientX, touch.clientY);
+        } else {
+          resetTilt();
+        }
       }
     };
 
@@ -71,7 +83,7 @@ export const useCardTilt = () => {
 
     card.addEventListener('mousemove', handleMouseMove);
     card.addEventListener('mouseleave', handleMouseLeave);
-    card.addEventListener('touchmove', handleTouchMove);
+    card.addEventListener('touchmove', handleTouchMove, { passive: true });
     card.addEventListener('touchend', handleTouchEnd);
     card.addEventListener('touchcancel', handleTouchEnd);
 
