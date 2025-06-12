@@ -102,4 +102,20 @@
     margin: 0 auto;
     padding: 0 1rem; /* opcional: añade márgenes internos */
   }
+
+  .deck-button img {
+    object-fit: contain;
+    width: 10.5rem;
+    height: 20rem;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .deck-preview {
+    width: 10rem;
+    height: 16rem;
+  }
+  
+  .collection-page__decks {
+    gap: 1rem;
+  }
 }
