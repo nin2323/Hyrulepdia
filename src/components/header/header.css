@@ -71,7 +71,7 @@ nav a.active {
 
 @media (max-width: 1124px) {
   #root {
-    margin-bottom: 2rem;
+    margin-bottom: 8rem;
   }
   header {
     position: unset;
