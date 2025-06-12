@@ -107,7 +107,7 @@
   .deck-button img {
     object-fit: contain;
     width: 10.5rem;
-    height: 2rem;
+    height: 19rem;
     transition: transform 0.3s ease-in-out;
     margin-right: 0rem;
   }
