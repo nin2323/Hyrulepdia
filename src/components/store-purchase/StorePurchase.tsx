@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../context/authContext";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebaseConfig/firebaseConfig";
-import { toast } from "react-toastify";
 
 type StorePurchaseProps = {
   selectedChest: {

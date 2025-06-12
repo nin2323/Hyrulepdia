@@ -29,7 +29,7 @@ export const useFilters = (
       const matchesCategory =
         filterCategory === "All" || card.category === filterCategory;
       const matchesSearch = searchQuery
-        ? card.name.toLowerCase().includes(searchQuery.toLowerCase())
+        ? card.name?.toLowerCase().includes(searchQuery.toLowerCase())
         : true;
 
       return matchesRarity && matchesCategory && matchesSearch;
