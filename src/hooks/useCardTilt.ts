@@ -11,26 +11,23 @@ export const useCardTilt = () => {
     if (!card) return;
 
     const glowEl = card.querySelector('.glow') as HTMLElement;
-
     let animationFrameId: number;
 
-    const handleMouseMove = (event: MouseEvent) => {
+    const updateStyle = (x: number, y: number) => {
       const rect = card.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
+      const relativeX = x - rect.left;
+      const relativeY = y - rect.top;
 
-      const rotateX = ((y / rect.height) - 0.5) * -60;
-      const rotateY = ((x / rect.width) - 0.5) * 60;
+      const rotateX = ((relativeY / rect.height) - 0.5) * -60;
+      const rotateY = ((relativeX / rect.width) - 0.5) * 60;
 
       const shadowX = -(rotateY / 2);
       const shadowY = rotateX / 2;
-
       const glowX = -(rotateY / 2);
       const glowY = rotateX / 2;
 
       const glow = `radial-gradient(circle at ${50 + glowX}% ${50 + glowY}%, rgba(231, 214, 116, 0.2), transparent 90%)`;
 
-      // Usa requestAnimationFrame para evitar "jumps"
       cancelAnimationFrame(animationFrameId);
       animationFrameId = requestAnimationFrame(() => {
         setStyle({
@@ -45,7 +42,7 @@ export const useCardTilt = () => {
       });
     };
 
-    const handleMouseLeave = () => {
+    const resetStyle = () => {
       setStyle({
         transform: `perspective(1000px) rotateX(0deg) rotateY(0deg)`,
         boxShadow: `none`,
@@ -57,12 +54,27 @@ export const useCardTilt = () => {
       }
     };
 
+    const handleMouseMove = (e: MouseEvent) => {
+      updateStyle(e.clientX, e.clientY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        const touch = e.touches[0];
+        updateStyle(touch.clientX, touch.clientY);
+      }
+    };
+
     card.addEventListener('mousemove', handleMouseMove);
-    card.addEventListener('mouseleave', handleMouseLeave);
+    card.addEventListener('mouseleave', resetStyle);
+    card.addEventListener('touchmove', handleTouchMove);
+    card.addEventListener('touchend', resetStyle);
 
     return () => {
       card.removeEventListener('mousemove', handleMouseMove);
-      card.removeEventListener('mouseleave', handleMouseLeave);
+      card.removeEventListener('mouseleave', resetStyle);
+      card.removeEventListener('touchmove', handleTouchMove);
+      card.removeEventListener('touchend', resetStyle);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
