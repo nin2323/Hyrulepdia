@@ -112,7 +112,7 @@ nav a.active {
     background: rgb(13, 31, 46);
     padding: 10px 0;
     justify-content: space-around;
-    z-index: 2;
+    z-index: 11;
     gap: 0;
     height: 42px;
     display: flex;
