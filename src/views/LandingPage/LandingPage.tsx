@@ -8,7 +8,7 @@ export const LandingPage = () => {
       <header>
         <div className='header-content'>
           <h2 className='name-header'>HYRULEPEDIA</h2>
-          <Button>
+          <Button size='lg'>
             <a href='https://ejemplo.com' className='btn-link-header'>
               LOGIN
             </a>
@@ -17,7 +17,7 @@ export const LandingPage = () => {
       </header>
       <div className='logo-intro-action'>
         <img src={'src/assets/logo-login.svg'} alt='logo' />
-        <Button>
+        <Button size='lg'>
           <a href='https://ejemplo.com' className='btn-link-header'>
             PLAY FREE
           </a>
@@ -46,7 +46,7 @@ export const LandingPage = () => {
               <br />
               <br />
               <br />
-              <Button>
+              <Button size='lg'>
                 <a href='https://ejemplo.com' className='btn-link-header'>
                   START
                 </a>
@@ -85,7 +85,7 @@ export const LandingPage = () => {
               <br />
               <br />
               <br />
-              <Button>
+              <Button size='lg'>
                 <a href='https://ejemplo.com' className='btn-link-header'>
                   START
                 </a>
@@ -112,7 +112,7 @@ export const LandingPage = () => {
               <br />
               <br />
               <br />
-              <Button>
+              <Button size='lg'>
                 <a href='https://ejemplo.com' className='btn-link-header'>
                   START
                 </a>
@@ -156,7 +156,7 @@ export const LandingPage = () => {
             <br />
             <br />
             <br />
-            <Button>
+            <Button size='lg'>
               <a href='https://ejemplo.com' className='btn-link-header'>
                 OPEN NOW
               </a>

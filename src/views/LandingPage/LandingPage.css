@@ -1,3 +1,27 @@
+.logo-intro-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1rem;
+  margin: 3rem auto;
+}
+.infodump-images--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 4rem auto;
+  gap: 2rem;
+}
+
+.indofump-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 /*HEADER*/
 header {
   display: flex;
