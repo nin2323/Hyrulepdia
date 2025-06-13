@@ -55,17 +55,16 @@ export const useCardTilt = () => {
       }
     };
 
-    // Mouse handlers
     const handleMouseMove = (e: MouseEvent) => updateTilt(e.clientX, e.clientY);
     const handleMouseLeave = resetTilt;
 
-    // Touch handlers
     const handleTouchMove = (e: TouchEvent) => {
       if (e.touches.length > 0) {
+        e.preventDefault(); // 🔥 Esto es lo que bloquea el scroll
+
         const touch = e.touches[0];
         const rect = card.getBoundingClientRect();
 
-        // Verifica si el touch está dentro del rectángulo
         if (
           touch.clientX >= rect.left &&
           touch.clientX <= rect.right &&
@@ -83,7 +82,7 @@ export const useCardTilt = () => {
 
     card.addEventListener('mousemove', handleMouseMove);
     card.addEventListener('mouseleave', handleMouseLeave);
-    card.addEventListener('touchmove', handleTouchMove, { passive: true });
+    card.addEventListener('touchmove', handleTouchMove, { passive: false }); // ✅ Fix aquí
     card.addEventListener('touchend', handleTouchEnd);
     card.addEventListener('touchcancel', handleTouchEnd);
 
