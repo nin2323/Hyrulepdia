@@ -80,9 +80,10 @@ nav a.active {
     right: 0;
     background: radial-gradient(circle, #16334b, #000000);
     padding: 16px 20px;
-    z-index: 10000;
+    z-index: 20;
     transform: none !important;
     opacity: 1 !important;
+    margin-top: 10px;
   }
 
   .header-logo {
