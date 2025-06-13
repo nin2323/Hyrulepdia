@@ -27,6 +27,120 @@ export const LandingPage = () => {
           Open chests, collect epic cards, and build the ultimate deck.
         </p>
       </div>
+      <div className='containers-whit--cardContainer'>
+        <CardContainer
+          className='container-callToaction--with-button'
+          colorClass='blue-theme'
+        >
+          <div className='call-to-action-content'>
+            <div className='call-to-action-text'>
+              <h2>
+                <span className='highlight-blue'>CHESTS TO OPEN </span>
+                <span>AND EPIC REWARDS</span>
+              </h2>
+              <p className='card-container-text-blue'>
+                Explore magical chests and discover unique cards from the most
+                iconic heroes and enemies of the Zelda world. Each opening is a
+                new surprise on your journey through Hyrule.
+              </p>
+              <br />
+              <br />
+              <br />
+              <Button>
+                <a href='https://ejemplo.com' className='btn-link-header'>
+                  START
+                </a>
+              </Button>
+            </div>
+            <div className='call-to-action-image-blue'>
+              <img
+                src='dist/assets/chest-rare-Cqgg7ku4.svg'
+                alt='Zelda Chest'
+              />
+            </div>
+          </div>
+        </CardContainer>
+        <CardContainer
+          className='container-callToaction--with-button'
+          colorClass='golden-theme'
+        >
+          <div className='call-to-action-content'>
+            <div className='call-to-action-image-golden'>
+              <img
+                src='dist/assets/chest-common-CPlnIn8-.svg'
+                alt='Zelda Chest'
+              />
+            </div>
+            <div className='call-to-action-text'>
+              <h2>
+                <span>COLLECT </span>
+                <span className='highlight-golden'>UNIQUE AND POWERFUL</span>
+                <span> CARDS</span>
+              </h2>
+              <p className='card-container-text-golden'>
+                Embark on an epic journey to collect unique and powerful cards.
+                Each card you find brings you closer to mastering your deck and
+                conquering new challenges across Hyrule.
+              </p>
+              <br />
+              <br />
+              <br />
+              <Button>
+                <a href='https://ejemplo.com' className='btn-link-header'>
+                  START
+                </a>
+              </Button>
+            </div>
+          </div>
+        </CardContainer>
+        <CardContainer
+          className='container-callToaction--with-button'
+          colorClass='purple-theme'
+        >
+          <div className='call-to-action-content'>
+            <div className='call-to-action-text'>
+              <h2>
+                <span>COLLECT </span>
+                <span className='highlight-purple'>UNIQUE AND POWERFUL</span>
+                <span> CARDS</span>
+              </h2>
+              <p className='card-container-text-purple'>
+                Embark on an epic journey to collect unique and powerful cards.
+                Each card you find brings you closer to mastering your deck and
+                conquering new challenges across Hyrule.
+              </p>
+              <br />
+              <br />
+              <br />
+              <Button>
+                <a href='https://ejemplo.com' className='btn-link-header'>
+                  START
+                </a>
+              </Button>
+            </div>
+            <div className='call-to-action-image-purple'>
+              <img
+                src='dist/assets/chest-epic-CAYVncT6.svg'
+                alt='Zelda Chest'
+              />
+            </div>
+          </div>
+        </CardContainer>
+      </div>
+      <div className='infodump-images--container'>
+        <div className='indofump-image'>
+          <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
+        </div>
+        <div className='indofump-image'>
+          <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
+        </div>
+        <div className='indofump-image'>
+          <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
+        </div>
+        <div className='indofump-image'>
+          <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
+        </div>
+      </div>
     </>
   );
 };
