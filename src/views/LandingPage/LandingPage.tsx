@@ -129,16 +129,13 @@ export const LandingPage = () => {
       </div>
       <div className='infodump-images--container'>
         <div className='indofump-image'>
-          <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
-        </div>
-        <div className='indofump-image'>
-          <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
-        </div>
-        <div className='indofump-image'>
-          <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
-        </div>
-        <div className='indofump-image'>
-          <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
+          <img src='dist/images/Frame 19.png' alt='Zelda Chest' />
+          <br />
+          <br />
+          <br />
+          <div className='indofump-image'>
+            <img src='dist/images/CARDS INFORMACION.png' alt='Zelda Chest' />
+          </div>
         </div>
       </div>
     </>
