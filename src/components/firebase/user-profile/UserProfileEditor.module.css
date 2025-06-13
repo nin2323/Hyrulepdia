@@ -118,6 +118,11 @@ input {
   height: calc(30% - 1px);
 }
 
+.btnlogoutsave {
+  display: flex;
+  gap: 28px;
+}
+
 @media (max-width: 768px) {
   .inputTextCardOneLiner {
     width: 90%;
