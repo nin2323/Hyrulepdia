@@ -20,7 +20,6 @@ export const StorePurchase = ({ selectedChest, onOpen }: StorePurchaseProps) => 
   const navigate = useNavigate();
   const { user } = useAuth();
   const [gems, setGems] = useState(0);
-  const [message, setMessage] = useState<string | null>(null);
   const [isVibrating, setIsVibrating] = useState(false);
 
   useEffect(() => {
@@ -46,7 +45,7 @@ export const StorePurchase = ({ selectedChest, onOpen }: StorePurchaseProps) => 
         : 800;
 
     if (gems < cost) {
-      setMessage("You don't have enough gems"); // Aquí luego puedes usar toastify
+      toast.error("You don't have enough gems"); // Aquí luego puedes usar toastify
       return;
     }
 
@@ -56,7 +55,6 @@ export const StorePurchase = ({ selectedChest, onOpen }: StorePurchaseProps) => 
 
       await updateDoc(userRef, { gems: newGems });
       setGems(newGems);
-      setMessage(null);
 
       // Aquí empieza la vibración
       setIsVibrating(true);
@@ -66,7 +64,7 @@ export const StorePurchase = ({ selectedChest, onOpen }: StorePurchaseProps) => 
         onOpen(); // Mostrar cartas después de la vibración
       }, 2000); // 1000 ms = 1 segundo de vibración
     } catch (error: any) {
-      setMessage(`Error opening chest: ${error.message}`);
+        toast.error(`Error opening chest: ${error.message}`);
     }
   };
 
@@ -82,8 +80,6 @@ export const StorePurchase = ({ selectedChest, onOpen }: StorePurchaseProps) => 
             OPEN
           </Button>
         </div>
-        {message && <p className="store-purchase__message">{message}</p>}
-        {/* Pasamos isVibrating al ChestButton para que anime el cofre */}
         <div className="store-purchase__chest">
           <ChestButton rarity={rarity} price={price} isVibrating={isVibrating} />
         </div>
