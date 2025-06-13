@@ -138,6 +138,35 @@ export const LandingPage = () => {
           </div>
         </div>
       </div>
+      <CardContainer
+        className='container-callToaction--with-button'
+        colorClass='golden-theme'
+      >
+        <div className='call-to-action-content'>
+          <div className='call-to-action-text'>
+            <h2>
+              <span className='highlight-blue'>CLIMB YOUR </span>
+              <span>FREE WELCOME CHEST</span>
+            </h2>
+            <p className='card-container-text-blue'>
+              Unlock your free Welcome Chest and start your adventure with
+              powerful cards. Each chest brings you closer to building the
+              ultimate deck and conquering new challenges.
+            </p>
+            <br />
+            <br />
+            <br />
+            <Button>
+              <a href='https://ejemplo.com' className='btn-link-header'>
+                OPEN NOW
+              </a>
+            </Button>
+          </div>
+          <div className='call-to-action-image-blue'>
+            <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
+          </div>
+        </div>
+      </CardContainer>
     </>
   );
 };
