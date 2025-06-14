@@ -4,11 +4,6 @@ import chuchu from '../../assets/images/chuchu.png';
 import cardFrame from '../../assets/decorations/card-frame.svg';
 import cardFrameBlue from '../../assets/decorations/card-frame-blue.svg';
 import cardFramePurple from '../../assets/decorations/card-frame-purple.svg';
-import monstersIcon from '../../assets/icons/monsters-icon.svg';
-import creaturesIcon from '../../assets/icons/creatures-icon.svg';
-import materialsIcon from '../../assets/icons/materials-icon.svg';
-import treasureIcon from '../../assets/icons/treasure-icon.svg';
-import equipmentIcon from '../../assets/icons/equipment-icon.svg';
 import { useCardTilt } from '../../hooks/useCardTilt';
 import { HyruleCardType } from '../../types/hyrule.types';
 
@@ -21,15 +16,15 @@ type TiltStyle = {
 const displayIcon = (category: HyruleCardType['category']) => {
   switch (category) {
     case 'monsters':
-      return <img className='hyrule-card__icon' src={monstersIcon} alt='monsters icon' />;
+      return <img className='hyrule-card__icon' src='../../../public/monsters-icon.svg' alt='monsters icon' />;
     case 'creatures':
-      return <img className='hyrule-card__icon' src={creaturesIcon} alt='creatures icon' />;
+      return <img className='hyrule-card__icon' src='../../../public/creatures-icon.svg' alt='creatures icon' />;
     case 'materials':
-      return <img className='hyrule-card__icon' src={materialsIcon} alt='materials icon' />;
+      return <img className='hyrule-card__icon' src='../../../public/materials-icon.svg' alt='materials icon' />;
     case 'treasure':
-      return <img className='hyrule-card__icon' src={treasureIcon} alt='treasure icon' />;
+      return <img className='hyrule-card__icon' src='../../../public/treasure-icon.svg' alt='treasure icon' />;
     case 'equipment':
-      return <img className='hyrule-card__icon' src={equipmentIcon} alt='equipment icon' />;
+      return <img className='hyrule-card__icon' src='../../../public/equipment-icon.svg' alt='equipment icon' />;
     default:
       return <span className='hyrule-card__icon'>?</span>;
   }
