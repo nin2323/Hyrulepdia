@@ -16,15 +16,15 @@ type TiltStyle = {
 const displayIcon = (category: HyruleCardType['category']) => {
   switch (category) {
     case 'monsters':
-      return <img className='hyrule-card__icon' src='../../../public/monsters-icon.svg' alt='monsters icon' />;
+      return <img className='hyrule-card__icon' src='/monsters-icon.svg' alt='monsters icon' />;
     case 'creatures':
-      return <img className='hyrule-card__icon' src='../../../public/creatures-icon.svg' alt='creatures icon' />;
+      return <img className='hyrule-card__icon' src='/public/creatures-icon.svg' alt='creatures icon' />;
     case 'materials':
-      return <img className='hyrule-card__icon' src='../../../public/materials-icon.svg' alt='materials icon' />;
+      return <img className='hyrule-card__icon' src='/public/materials-icon.svg' alt='materials icon' />;
     case 'treasure':
-      return <img className='hyrule-card__icon' src='../../../public/treasure-icon.svg' alt='treasure icon' />;
+      return <img className='hyrule-card__icon' src='/public/treasure-icon.svg' alt='treasure icon' />;
     case 'equipment':
-      return <img className='hyrule-card__icon' src='../../../public/equipment-icon.svg' alt='equipment icon' />;
+      return <img className='hyrule-card__icon' src='/public/equipment-icon.svg' alt='equipment icon' />;
     default:
       return <span className='hyrule-card__icon'>?</span>;
   }
