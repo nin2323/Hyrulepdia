@@ -63,11 +63,9 @@ body{
     justify-content: space-between;
 }
 
-@media (min-width: 990px) and (max-width: 1439px) {
-  #root {
-    margin: 0 40px;
-    padding: 0;
-  }
+#root {
+  margin: 0 40px;
+  padding: 0;
 }
 
 @media (min-width: 749px) and (max-width: 989px) {
