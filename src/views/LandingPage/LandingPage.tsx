@@ -1,6 +1,7 @@
 import './LandingPage.css';
 import { Button } from '../../components/button/button';
 import { CardContainer } from '../../components/CardContainer/CardContainer';
+import SVGSpotlight from '../../components/SVGSpotlight/SVGSpotlight';
 
 export const LandingPage = () => {
   return (
@@ -18,7 +19,10 @@ export const LandingPage = () => {
       <div className='logo-intro-action'>
         <img src={'src/assets/logo-login.svg'} alt='logo' />
         <Button size='lg'>
-          <a href='https://ejemplo.com' className='btn-link-header'>
+          <a
+            href='https://hyrulepedia.firebaseapp.com/register'
+            className='btn-link-header'
+          >
             PLAY FREE
           </a>
         </Button>
@@ -29,7 +33,6 @@ export const LandingPage = () => {
       </div>
       <div className='containers-whit--cardContainer'>
         <div className='container-blue--position'>
-          {' '}
           <CardContainer
             className='container-callToaction--with-button'
             colorClass='blue-theme'
@@ -48,11 +51,16 @@ export const LandingPage = () => {
                 <br />
                 <br />
                 <br />
-                <Button size='lg'>
-                  <a href='https://ejemplo.com' className='btn-link-header'>
-                    START
-                  </a>
-                </Button>
+                <div className='btn-placement'>
+                  <Button size='lg'>
+                    <a
+                      href='https://hyrulepedia.firebaseapp.com/register'
+                      className='btn-link-header'
+                    >
+                      START
+                    </a>
+                  </Button>
+                </div>
               </div>
               <div className='call-to-action-image-blue'>
                 <img
@@ -90,11 +98,16 @@ export const LandingPage = () => {
                 <br />
                 <br />
                 <br />
-                <Button size='lg'>
-                  <a href='https://ejemplo.com' className='btn-link-header'>
-                    START
-                  </a>
-                </Button>
+                <div className='btn-placement'>
+                  <Button size='lg'>
+                    <a
+                      href='https://hyrulepedia.firebaseapp.com/register'
+                      className='btn-link-header'
+                    >
+                      START
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </CardContainer>
@@ -120,11 +133,16 @@ export const LandingPage = () => {
                 <br />
                 <br />
                 <br />
-                <Button size='lg'>
-                  <a href='https://ejemplo.com' className='btn-link-header'>
-                    START
-                  </a>
-                </Button>
+                <div className='btn-placement'>
+                  <Button size='lg'>
+                    <a
+                      href='https://hyrulepedia.firebaseapp.com/register'
+                      className='btn-link-header'
+                    >
+                      START
+                    </a>
+                  </Button>
+                </div>
               </div>
               <div className='call-to-action-image-purple'>
                 <img
@@ -165,17 +183,23 @@ export const LandingPage = () => {
             <br />
             <br />
             <br />
-            <Button size='lg'>
-              <a href='https://ejemplo.com' className='btn-link-header'>
-                OPEN NOW
-              </a>
-            </Button>
+            <div className='btn-placement'>
+              <Button size='lg'>
+                <a
+                  href='https://hyrulepedia.firebaseapp.com/register'
+                  className='btn-link-header'
+                >
+                  OPEN NOW
+                </a>
+              </Button>
+            </div>
           </div>
           <div className='call-to-action-image-blue'>
             <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
           </div>
         </div>
       </CardContainer>
+      <SVGSpotlight />
     </>
   );
 };

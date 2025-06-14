@@ -51,11 +51,14 @@ header {
   font-weight: bold;
   color: #e0cea0;
 }
+.btn-link-header {
+  color: #ffffff;
+}
 .btn-link-header:visited {
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
-  color: #f5f5f5;
+  color: #ffffff;
 }
 /*ZONA DEL LOGO*/
 .description-logo-landing {
@@ -110,21 +113,30 @@ header {
   box-sizing: border-box;
 }
 
+.btn-placement {
+  padding-left: 130px;
+}
+
 .call-to-action-text {
   max-width: 500px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start; /* ← importante: texto alineado al inicio */
+  text-align: left;
+  gap: 16px;
   box-sizing: border-box;
+  padding-left: 30px;
 }
 
 .call-to-action-text h2 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 0.3rem 0;
-  white-space: nowrap;
+  font-size: 40px;
+  font-weight: 400;
+  font-family: 'The Wild Breath of Zelda', sans-serif;
+  margin: 0;
+  line-height: 1.2;
+  white-space: normal; /* ← ¡esto arregla el overflow! */
+  word-break: break-word; /* ← por si hay palabras largas */
 }
 
 .call-to-action-text h2 span {
@@ -198,4 +210,69 @@ header {
   line-height: 130%;
   width: 501px;
   height: 104px;
+}
+
+@media (max-width: 768px) {
+  .container-callToaction--with-button {
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    padding: 2rem 1rem;
+  }
+
+  .call-to-action-content {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    padding: 0;
+  }
+
+  .call-to-action-text {
+    padding-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .call-to-action-text h2 {
+    text-align: center;
+  }
+
+  .btn-placement {
+    padding-left: 0;
+  }
+
+  .card-container-text-blue,
+  .card-container-text-golden,
+  .card-container-text-purple {
+    width: 100%;
+    text-align: center;
+  }
+
+  .call-to-action-image-blue img,
+  .call-to-action-image-golden img,
+  .call-to-action-image-purple img {
+    max-width: 100%;
+    margin-top: 2rem;
+  }
+
+  .description-logo-landing {
+    width: 100%;
+    font-size: 18px;
+    padding: 0 1rem;
+  }
+
+  .logo-intro-action {
+    padding: 48px 16px;
+    text-align: center;
+  }
+
+  .container-golden--blue,
+  .container-golden--position,
+  .container-golden--purple {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
 }
