@@ -1,3 +1,8 @@
+.texto--img--padding {
+  padding-top: 30px;
+  font-size: 30px;
+}
+
 .logo-intro-action {
   display: flex;
   flex-direction: column;
@@ -5,7 +10,9 @@
   justify-content: center;
   text-align: center;
   gap: 1rem;
-  margin: 3rem auto;
+  /*margin: 3rem auto;*/
+  padding-top: 96px;
+  padding-bottom: 96px;
 }
 .infodump-images--container {
   display: flex;
@@ -40,7 +47,7 @@ header {
   transform: translateX(-50%);
 }
 .name-header {
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   color: #e0cea0;
 }
@@ -62,6 +69,18 @@ header {
   line-height: 120%; /* 24px */
 }
 /*CONTENEDORES*/
+.container-golden--blue {
+  padding-right: 300px;
+}
+.container-golden--position {
+  padding-left: 300px;
+  padding-bottom: 96px;
+  padding-top: 96px;
+}
+.container-golden--purple {
+  padding-right: 300px;
+  padding-bottom: 96px;
+}
 .container-callToaction--with-button {
   overflow: visible;
   width: 1154px;
