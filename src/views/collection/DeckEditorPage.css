@@ -10,6 +10,9 @@
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: manipulation; /* evita gestos inesperados */
   }
   
   /* Formulario principal del editor */
@@ -186,6 +189,12 @@
 
   .card-slot-grid {
     gap: 2rem;
+  }
+
+   .card-slot-button,
+  .user-card {
+    min-width: 48px;
+    min-height: 48px;
   }
 
 }
