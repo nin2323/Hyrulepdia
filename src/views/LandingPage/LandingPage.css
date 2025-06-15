@@ -1,3 +1,9 @@
+@font-face {
+  font-family: 'The Wild Breath of Zelda';
+  src: url('src/fonts/the-wild-breath-of-zelda.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
 .texto--img--padding {
   padding-top: 30px;
   font-size: 30px;
@@ -132,11 +138,11 @@ header {
 .call-to-action-text h2 {
   font-size: 40px;
   font-weight: 400;
-  font-family: 'The Wild Breath of Zelda', sans-serif;
+  font-family: 'The Wild Breath of Zelda', serif;
   margin: 0;
   line-height: 1.2;
-  white-space: normal; /* ← ¡esto arregla el overflow! */
-  word-break: break-word; /* ← por si hay palabras largas */
+  white-space: normal;
+  word-break: break-word;
 }
 
 .call-to-action-text h2 span {
@@ -275,4 +281,11 @@ header {
     padding-top: 48px;
     padding-bottom: 48px;
   }
+}
+
+/*ESENCIAL PARA QUE EL FOOTER FUNCIONE BIEN*/
+.display-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }

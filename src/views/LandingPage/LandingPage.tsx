@@ -2,6 +2,7 @@ import './LandingPage.css';
 import { Button } from '../../components/button/button';
 import { CardContainer } from '../../components/CardContainer/CardContainer';
 import SVGSpotlight from '../../components/SVGSpotlight/SVGSpotlight';
+import { Footer } from '../../components/footer/footer';
 
 export const LandingPage = () => {
   return (
@@ -200,6 +201,9 @@ export const LandingPage = () => {
         </div>
       </CardContainer>
       <SVGSpotlight />
+      <div className='display-wrapper'>
+        <Footer />
+      </div>
     </>
   );
 };
