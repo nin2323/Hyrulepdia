@@ -7,11 +7,14 @@ import { Footer } from '../../components/footer/footer';
 export const LandingPage = () => {
   return (
     <>
-      <header>
+      <header className='header-landing'>
         <div className='header-content'>
           <h2 className='name-header'>HYRULEPEDIA</h2>
           <Button size='lg'>
-            <a href='https://ejemplo.com' className='btn-link-header'>
+            <a
+              href='https://hyrulepedia.firebaseapp.com/register'
+              className='btn-link-header'
+            >
               LOGIN
             </a>
           </Button>
