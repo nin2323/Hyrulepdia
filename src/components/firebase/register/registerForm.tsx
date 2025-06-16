@@ -46,7 +46,7 @@ export const RegisterForm: FC = () => {
   return (
     <div className='register-form-container'>
       <form className='register-form' onSubmit={handleSubmit}>
-        <img src={logo} alt="logo"/>
+        <img className='register-logo__img' src={logo} alt="logo"/>
       <div className='register-input-content'>
         <div className=''>
           <SearchBar
