@@ -168,129 +168,150 @@ export const UserProfileEditor = () => {
   };
 
   return (
-    <div className={styles.containerProfile}>
-      <label className={styles.clickableImg}>
-        <img src={photoURL || 'src/assets/black 1.png'} alt='Foto de perfil' />
-        <input
-          type='file'
-          accept='image/webp, image/jpeg, image/png'
-          style={{ display: 'none' }}
-          onChange={handleImageUpload}
+    <div className='display-wrapper'>
+      <div className={styles.containerProfile}>
+        <label className={styles.clickableImg}>
+          <img
+            src={photoURL || 'src/assets/black 1.png'}
+            alt='Foto de perfil'
+          />
+          <input
+            type='file'
+            accept='image/webp, image/jpeg, image/png'
+            style={{ display: 'none' }}
+            onChange={handleImageUpload}
+            disabled={loadingImage}
+          />
+          {loadingImage && <p>Cargando imagen...</p>}
+        </label>
+
+        <div className={styles.inputTextCardName}>
+          {/* líneas decorativas */}
+          <div className={styles.leftTopLine}></div>
+          <div className={styles.leftBottomLine}></div>
+          <div className={styles.rightTopLine}></div>
+          <div className={styles.rightBottomLine}></div>
+          <div className={styles.topLeftLine}></div>
+          <div className={styles.topRightLine}></div>
+          <div className={styles.bottomLeftLine}></div>
+          <div className={styles.bottomRightLine}></div>
+
+          <input
+            className={styles.inputText}
+            placeholder='NAME'
+            type='text'
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+          />
+        </div>
+
+        <div className={styles.inputTextCardOneLiner}>
+          {/* líneas decorativas */}
+          <div className={styles.leftTopLine}></div>
+          <div className={styles.leftBottomLine}></div>
+          <div className={styles.rightTopLine}></div>
+          <div className={styles.rightBottomLine}></div>
+          <div className={styles.topLeftLine}></div>
+          <div className={styles.topRightLine}></div>
+          <div className={styles.bottomLeftLine}></div>
+          <div className={styles.bottomRightLine}></div>
+
+          <input
+            className={styles.inputText}
+            placeholder='ONE LINER'
+            type='text'
+            value={oneLiner}
+            onChange={(e) => setOneLiner(e.target.value)}
+          />
+        </div>
+
+        <Button
+          color='primary'
+          size='sm'
+          onClick={() => setShowSensitive((prev) => !prev)}
+        >
+          {showSensitive ? 'Ocultar' : 'Editar'}
+        </Button>
+
+        {showSensitive && (
+          <>
+            <div className={styles.inputTextCardOneLiner}>
+              {/* líneas decorativas */}
+              <div className={styles.leftTopLine}></div>
+              <div className={styles.leftBottomLine}></div>
+              <div className={styles.rightTopLine}></div>
+              <div className={styles.rightBottomLine}></div>
+              <div className={styles.topLeftLine}></div>
+              <div className={styles.topRightLine}></div>
+              <div className={styles.bottomLeftLine}></div>
+              <div className={styles.bottomRightLine}></div>
+
+              <input
+                type='email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className={styles.inputText}
+                placeholder='Correo electrónico'
+              />
+            </div>
+
+            <div className={styles.inputTextCardName}>
+              {/* líneas decorativas */}
+              <div className={styles.leftTopLine}></div>
+              <div className={styles.leftBottomLine}></div>
+              <div className={styles.rightTopLine}></div>
+              <div className={styles.rightBottomLine}></div>
+              <div className={styles.topLeftLine}></div>
+              <div className={styles.topRightLine}></div>
+              <div className={styles.bottomLeftLine}></div>
+              <div className={styles.bottomRightLine}></div>
+
+              <input
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder='Contraseña nueva'
+                className={styles.inputText}
+              />
+            </div>
+
+            <div className={styles.inputTextCardName}>
+              {/* líneas decorativas */}
+              <div className={styles.leftTopLine}></div>
+              <div className={styles.leftBottomLine}></div>
+              <div className={styles.rightTopLine}></div>
+              <div className={styles.rightBottomLine}></div>
+              <div className={styles.topLeftLine}></div>
+              <div className={styles.topRightLine}></div>
+              <div className={styles.bottomLeftLine}></div>
+              <div className={styles.bottomRightLine}></div>
+
+              <input
+                type='password'
+                value={currentPassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                placeholder='Contraseña actual'
+                className={styles.inputText}
+              />
+            </div>
+          </>
+        )}
+
+        <Button
+          color='primary'
+          size='sm'
+          onClick={handleSave}
           disabled={loadingImage}
-        />
-        {loadingImage && <p>Cargando imagen...</p>}
-      </label>
-
-      <div className={styles.inputTextCardName}>
-        <div className={styles.leftTopLine}></div>
-        <div className={styles.leftBottomLine}></div>
-        <div className={styles.rightTopLine}></div>
-        <div className={styles.rightBottomLine}></div>
-        <div className={styles.topLeftLine}></div>
-        <div className={styles.topRightLine}></div>
-        <div className={styles.bottomLeftLine}></div>
-        <div className={styles.bottomRightLine}></div>
-        <input
-          className={styles.inputText}
-          placeholder='NAME'
-          type='text'
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-        />
+        >
+          Guardar
+        </Button>
+        <a href='https://hyrulepedia.firebaseapp.com/register'>
+          {' '}
+          <Button color='error' size='md'>
+            Logout
+          </Button>
+        </a>
       </div>
-
-      <div className={styles.inputTextCardOneLiner}>
-        <div className={styles.leftTopLine}></div>
-        <div className={styles.leftBottomLine}></div>
-        <div className={styles.rightTopLine}></div>
-        <div className={styles.rightBottomLine}></div>
-        <div className={styles.topLeftLine}></div>
-        <div className={styles.topRightLine}></div>
-        <div className={styles.bottomLeftLine}></div>
-        <div className={styles.bottomRightLine}></div>
-        <input
-          className={styles.inputText}
-          placeholder='ONE LINER'
-          type='text'
-          value={oneLiner}
-          onChange={(e) => setOneLiner(e.target.value)}
-        />
-      </div>
-
-      <Button
-        color='primary'
-        size='sm'
-        onClick={() => setShowSensitive((prev) => !prev)}
-      >
-        {showSensitive ? 'Ocultar' : 'Editar'}
-      </Button>
-
-      {showSensitive && (
-        <>
-          <div className={styles.inputTextCardOneLiner}>
-            <div className={styles.leftTopLine}></div>
-            <div className={styles.leftBottomLine}></div>
-            <div className={styles.rightTopLine}></div>
-            <div className={styles.rightBottomLine}></div>
-            <div className={styles.topLeftLine}></div>
-            <div className={styles.topRightLine}></div>
-            <div className={styles.bottomLeftLine}></div>
-            <div className={styles.bottomRightLine}></div>
-            <input
-              type='email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className={styles.inputText}
-              placeholder='Correo electrónico'
-            />
-          </div>
-
-          <div className={styles.inputTextCardName}>
-            <div className={styles.leftTopLine}></div>
-            <div className={styles.leftBottomLine}></div>
-            <div className={styles.rightTopLine}></div>
-            <div className={styles.rightBottomLine}></div>
-            <div className={styles.topLeftLine}></div>
-            <div className={styles.topRightLine}></div>
-            <div className={styles.bottomLeftLine}></div>
-            <div className={styles.bottomRightLine}></div>
-            <input
-              type='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder='Contraseña nueva'
-              className={styles.inputText}
-            />
-          </div>
-
-          <div className={styles.inputTextCardName}>
-            <div className={styles.leftTopLine}></div>
-            <div className={styles.leftBottomLine}></div>
-            <div className={styles.rightTopLine}></div>
-            <div className={styles.rightBottomLine}></div>
-            <div className={styles.topLeftLine}></div>
-            <div className={styles.topRightLine}></div>
-            <div className={styles.bottomLeftLine}></div>
-            <div className={styles.bottomRightLine}></div>
-            <input
-              type='password'
-              value={currentPassword}
-              onChange={(e) => setCurrentPassword(e.target.value)}
-              placeholder='Contraseña actual'
-              className={styles.inputText}
-            />
-          </div>
-        </>
-      )}
-
-      <Button
-        color='primary'
-        size='sm'
-        onClick={handleSave}
-        disabled={loadingImage}
-      >
-        Guardar
-      </Button>
     </div>
   );
 };
