@@ -3,12 +3,19 @@ import { Button } from '../../components/button/button';
 import { CardContainer } from '../../components/CardContainer/CardContainer';
 import SVGSpotlight from '../../components/SVGSpotlight/SVGSpotlight';
 import { Footer } from '../../components/footer/footer';
+import chestRare from '../../../dist/assets/chest-rare-landing.png'
+import chestRare2 from '../../../dist/assets/chest-rare-landing2.png'
+import chestRare3 from '../../../dist/assets/chest-rare-landing3.png'
+import { PeopleIcon } from '../../components/iconsCards/PeopleIcon';
+import { TrophyIcon } from '../../components/iconsCards/TrophyIcon';
+import { TreasureChestIcon } from '../../components/iconsCards/TreasureChestIcon';
+import { CardsIcon } from '../../components/iconsCards/CardsIcons';
 
 export const LandingPage = () => {
   return (
     <>
       <header className='header-landing'>
-        <div className='header-content'>
+        <div className='header-content-landing'>
           <h2 className='name-header'>HYRULEPEDIA</h2>
           <Button size='lg'>
             <a
@@ -36,7 +43,7 @@ export const LandingPage = () => {
         </p>
       </div>
       <div className='containers-whit--cardContainer'>
-        <div className='container-blue--position'>
+        <div className='container--position'>
           <CardContainer
             className='container-callToaction--with-button'
             colorClass='blue-theme'
@@ -47,15 +54,12 @@ export const LandingPage = () => {
                   <span className='highlight-blue'>CHESTS TO OPEN </span>
                   <span>AND EPIC REWARDS</span>
                 </h2>
-                <p className='card-container-text-blue'>
+                <p className='card-container-text blue'>
                   Explore magical chests and discover unique cards from the most
                   iconic heroes and enemies of the Zelda world. Each opening is
                   a new surprise on your journey through Hyrule.
                 </p>
-                <br />
-                <br />
-                <br />
-                <div className='btn-placement'>
+                <div>
                   <Button size='lg'>
                     <a
                       href='https://hyrulepedia.firebaseapp.com/register'
@@ -66,9 +70,9 @@ export const LandingPage = () => {
                   </Button>
                 </div>
               </div>
-              <div className='call-to-action-image-blue'>
+              <div className='call-to-action-image'>
                 <img
-                  src='dist/assets/chest-rare-Cqgg7ku4.svg'
+                  src={ chestRare }
                   alt='Zelda Chest'
                 />
               </div>
@@ -76,15 +80,15 @@ export const LandingPage = () => {
           </CardContainer>
         </div>
 
-        <div className='container-golden--position'>
+        <div className='container--position right'>
           <CardContainer
             className='container-callToaction--with-button'
             colorClass='golden-theme'
           >
             <div className='call-to-action-content'>
-              <div className='call-to-action-image-golden'>
+              <div className='call-to-action-image golden'>
                 <img
-                  src='dist/assets/chest-common-CPlnIn8-.svg'
+                  src={ chestRare2 }
                   alt='Zelda Chest'
                 />
               </div>
@@ -94,16 +98,13 @@ export const LandingPage = () => {
                   <span className='highlight-golden'>UNIQUE AND POWERFUL</span>
                   <span> CARDS</span>
                 </h2>
-                <p className='card-container-text-golden'>
+                <p className='card-container-text golden'>
                   Embark on an epic journey to collect unique and powerful
                   cards. Each card you find brings you closer to mastering your
                   deck and conquering new challenges across Hyrule.
                 </p>
-                <br />
-                <br />
-                <br />
-                <div className='btn-placement'>
-                  <Button size='lg'>
+                <div>
+                  <Button size='lg' color='secondary'>
                     <a
                       href='https://hyrulepedia.firebaseapp.com/register'
                       className='btn-link-header'
@@ -117,7 +118,7 @@ export const LandingPage = () => {
           </CardContainer>
         </div>
 
-        <div className='container-purple--position'>
+        <div className='container--position'>
           <CardContainer
             className='container-callToaction--with-button'
             colorClass='purple-theme'
@@ -129,15 +130,12 @@ export const LandingPage = () => {
                   <span className='highlight-purple'>UNIQUE AND POWERFUL</span>
                   <span> CARDS</span>
                 </h2>
-                <p className='card-container-text-purple'>
+                <p className='card-container-text'>
                   Embark on an epic journey to collect unique and powerful
                   cards. Each card you find brings you closer to mastering your
                   deck and conquering new challenges across Hyrule.
                 </p>
-                <br />
-                <br />
-                <br />
-                <div className='btn-placement'>
+                <div>
                   <Button size='lg'>
                     <a
                       href='https://hyrulepedia.firebaseapp.com/register'
@@ -148,9 +146,9 @@ export const LandingPage = () => {
                   </Button>
                 </div>
               </div>
-              <div className='call-to-action-image-purple'>
+              <div className='call-to-action-image purple'>
                 <img
-                  src='dist/assets/chest-epic-CAYVncT6.svg'
+                  src={ chestRare3 }
                   alt='Zelda Chest'
                 />
               </div>
@@ -158,17 +156,53 @@ export const LandingPage = () => {
           </CardContainer>
         </div>
       </div>
-      <div className='infodump-images--container'>
-        <div className='indofump-image'>
-          <img src='dist/images/Frame 19.png' alt='Zelda Chest' />
-          <br />
-          <br />
-          <br />
-          <div className='indofump-image'>
-            <img src='dist/images/CARDS INFORMACION.png' alt='Zelda Chest' />
+      <div className='landing-banner'>
+        <div className='banner-item golden'>
+          <div className='heading'>
+            <div className='banner-item--icon'>
+              <CardsIcon />
+            </div>
+            <h3>CARDS</h3>
+          </div>
+          <div className='content'>
+            <p>Over 300 cards to discover.</p>
+          </div>
+        </div>
+        <div className='banner-item'>
+          <div className='heading'>
+            <div className='banner-item--icon'>
+              <TreasureChestIcon />
+            </div>
+            <h3>CHEST</h3>
+          </div>
+          <div className='content'>
+            <p>Chests of different rarities</p>
+          </div>
+        </div>
+        <div className='banner-item'>
+          <div className='heading'>
+            <div className='banner-item--icon'>
+              <TrophyIcon />
+            </div>
+            <h3>ACHIEVEMENTS</h3>
+          </div>
+          <div className='content'>
+            <p>Level up, unlock special cards...</p>
+          </div>
+        </div>
+        <div className='banner-item'>
+          <div className='heading'>
+            <div className='banner-item--icon'>
+              <PeopleIcon />
+            </div>
+            <h3>FRIENDS</h3>
+          </div>
+          <div className='content'>
+            <p>Compare and enjoy with friends.</p>
           </div>
         </div>
       </div>
+      
       <CardContainer
         className='container-callToaction--with-button'
         colorClass='golden-theme'
@@ -179,15 +213,12 @@ export const LandingPage = () => {
               <span className='highlight-blue'>CLIMB YOUR </span>
               <span>FREE WELCOME CHEST</span>
             </h2>
-            <p className='card-container-text-blue'>
+            <p className='card-container-text blue'>
               Unlock your free Welcome Chest and start your adventure with
               powerful cards. Each chest brings you closer to building the
               ultimate deck and conquering new challenges.
             </p>
-            <br />
-            <br />
-            <br />
-            <div className='btn-placement'>
+            <div>
               <Button size='lg'>
                 <a
                   href='https://hyrulepedia.firebaseapp.com/register'
@@ -198,15 +229,13 @@ export const LandingPage = () => {
               </Button>
             </div>
           </div>
-          <div className='call-to-action-image-blue'>
+          <div className='call-to-action-image'>
             <img src='dist/assets/chest-rare-Cqgg7ku4.svg' alt='Zelda Chest' />
           </div>
         </div>
       </CardContainer>
       <SVGSpotlight />
-      <div className='display-wrapper'>
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 };
