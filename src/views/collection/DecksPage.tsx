@@ -50,7 +50,7 @@ useEffect(() => {
                 <Button size="lg" onClick={() => navigate("/collection/library")}>Library</Button>
             </div>
             <div className="collection-page__decks">
-                <button className="deck-button" onClick={() => setIsCreating(true)}>
+                <button className="deck-button" onClick={() => setIsCreating(true)} onTouchStart={() => setIsCreating(true)} >
                     <img src={deckButton} alt='deck button'  />
                 </button>
                 {decks.map(deck => {
@@ -63,6 +63,7 @@ useEffect(() => {
                             key={deck.id}
                             className="deck-preview"
                             onClick={() => setSelectedDeck(deck)}
+                            onTouchStart={() => setSelectedDeck(deck)}
                             style={{
                                 backgroundImage: firstCard ? `url(${firstCard.image})` : 'none',
                                 backgroundSize: 'cover',
