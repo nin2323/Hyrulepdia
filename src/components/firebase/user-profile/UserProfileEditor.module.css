@@ -1,10 +1,11 @@
 /*===CONTENEDOR DE LA PAGINA==*/
 .containerProfile {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 48px; /* distancia desde el header */
-  gap: 20px; /* separación general entre bloques si lo deseas */
+  padding-top: 48px;
+  gap: 20px;
   bottom: 0;
   left: 0;
 }
@@ -118,11 +119,6 @@ input {
   height: calc(30% - 1px);
 }
 
-.btnlogoutsave {
-  display: flex;
-  gap: 28px;
-}
-
 @media (max-width: 768px) {
   .inputTextCardOneLiner {
     width: 90%;
@@ -161,4 +157,15 @@ input {
   input {
     font-size: 13px;
   }
+}
+/*ESENCIAL PARA QUE EL FOOTER FUNCIONE BIEN*/
+.display-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.btnlogoutsave {
+  display: flex;
+  gap: 28px;
 }

@@ -123,6 +123,10 @@ nav a.active {
   html {
     padding-bottom: 52px;
   }
+
+  nav a.active {
+    filter: none; 
+  }
 }
 
 .modal-open .header {
