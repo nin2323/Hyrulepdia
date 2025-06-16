@@ -53,6 +53,8 @@
     gap: 1.2rem;
     width: 100%;
     max-width: 100%;
+    margin: 0 auto;
+    justify-content: center;
   }
   
   /* Botón de slot individual */
@@ -198,3 +200,12 @@
   }
 
 }
+
+@media (max-width: 378px) {
+  .card-slot-grid {
+    justify-content: center;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
