@@ -13,7 +13,6 @@ import styles from './UserProfileEditor.module.css';
 import { Button } from '../../button/button';
 import imageCompression from 'browser-image-compression';
 import { toast } from 'react-toastify';
-import { Footer } from '../../footer/footer';
 
 export const UserProfileEditor = () => {
   const { user } = useAuth();
@@ -306,9 +305,13 @@ export const UserProfileEditor = () => {
         >
           Guardar
         </Button>
+        <a href='https://hyrulepedia.firebaseapp.com/register'>
+          {' '}
+          <Button color='error' size='md'>
+            Logout
+          </Button>
+        </a>
       </div>
-
-      <Footer />
     </div>
   );
 };

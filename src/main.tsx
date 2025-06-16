@@ -1,7 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import './index.css';
 import { App } from './App.tsx';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
 import { CollectionPage } from './views/collection/CollectionPage.tsx';
 import { PorfilePage } from './views/ProfilePage.tsx';
 import { ShopPage } from './views/StorePage/ShopPage.tsx';
@@ -15,22 +15,16 @@ import { PrivateRoute } from './components/firebase/privateRoute/privateRoute.ts
 import { DecksPage } from './views/collection/DecksPage.tsx';
 import { LibraryPage } from './views/collection/LibraryPage.tsx';
 import { LandingPage } from './views/LandingPage/LandingPage.tsx';
-import { InitialRedirect } from './InitialRedirect.tsx';
 
 createRoot(document.getElementById('root')!).render(
   <AuthProvider>
     <BrowserRouter>
       <Routes>
-        {/* Redirección raíz condicional */}
-        <Route path='/' element={<InitialRedirect />} />
-
-        {/* Rutas públicas */}
         <Route path='/landing' element={<LandingPage />} />
-        <Route path='/login' element={<LoginForm />} />
         <Route path='/register' element={<RegisterForm />} />
+        <Route path='/login' element={<LoginForm />} />
 
-        {/* Rutas privadas dentro de /app */}
-        <Route path='/app' element={<App />}>
+        <Route path='/' element={<App />}>
           <Route
             index
             element={
@@ -66,6 +60,8 @@ createRoot(document.getElementById('root')!).render(
               </PrivateRoute>
             }
           />
+
+          {/*Nuevas rutas para la tienda */}
           <Route
             path='purchase'
             element={
@@ -83,8 +79,6 @@ createRoot(document.getElementById('root')!).render(
             }
           />
         </Route>
-
-        {/* Catch-all → login */}
         <Route path='*' element={<Navigate to='/login' />} />
       </Routes>
     </BrowserRouter>
