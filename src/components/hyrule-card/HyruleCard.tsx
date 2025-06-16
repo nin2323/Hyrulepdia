@@ -5,6 +5,11 @@ import cardFrame from '../../assets/decorations/card-frame.svg';
 import cardFrameBlue from '../../assets/decorations/card-frame-blue.svg';
 import cardFramePurple from '../../assets/decorations/card-frame-purple.svg';
 import { useCardTilt } from '../../hooks/useCardTilt';
+import monstersIcon from '../../assets/icons/monsters-icon.svg';
+import creaturesIcon from '../../assets/icons/creatures-icon.svg';
+import materialsIcon from '../../assets/icons/materials-icon.svg';
+import treasureIcon from '../../assets/icons/treasure-icon.svg';
+import equipmentIcon from '../../assets/icons/equipment-icon.svg';
 import { HyruleCardType } from '../../types/hyrule.types';
 
 type TiltStyle = {
@@ -14,20 +19,20 @@ type TiltStyle = {
 };
 
 const displayIcon = (category: HyruleCardType['category']) => {
-  switch (category) {
-    case 'monsters':
-      return <img className='hyrule-card__icon' src='/monsters-icon.svg' alt='monsters icon' />;
-    case 'creatures':
-      return <img className='hyrule-card__icon' src='/creatures-icon.svg' alt='creatures icon' />;
-    case 'materials':
-      return <img className='hyrule-card__icon' src='/materials-icon.svg' alt='materials icon' />;
-    case 'treasure':
-      return <img className='hyrule-card__icon' src='/treasure-icon.svg' alt='treasure icon' />;
-    case 'equipment':
-      return <img className='hyrule-card__icon' src='/equipment-icon.svg' alt='equipment icon' />;
-    default:
-      return <span className='hyrule-card__icon'>?</span>;
-  }
+    switch (category) {
+        case 'monsters':
+            return <img className='hyrule-card__icon' src={monstersIcon} alt='monsters icon' />;
+        case 'creatures':
+            return <img className='hyrule-card__icon' src={creaturesIcon} alt='creatures icon' />;
+        case 'materials':
+            return <img className='hyrule-card__icon' src={materialsIcon} alt='materials icon' />;
+        case 'treasure':
+            return <img className='hyrule-card__icon' src={treasureIcon} alt='treasure icon' />;
+        case 'equipment':
+            return <img className='hyrule-card__icon' src={equipmentIcon} alt='equipment icon' />;
+        default:
+            return <span className='hyrule-card__icon'>?</span>;
+    }
 };
 
 const rarityFrame = (rarity: HyruleCardType['rarity']) => {
