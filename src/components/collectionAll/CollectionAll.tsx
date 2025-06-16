@@ -28,9 +28,9 @@ export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
   const [favoriteCards, setFavoriteCards] = useState<HyruleCardType[]>([]);
   const [isShowingFavorites, setIsShowingFavorites] = useState(false);
   const [selectedCard, setSelectedCard] = useState<HyruleCardType | null>(null);
-  const [isPageReady, setIsPageReady] = useState(false);
+  const [isPageReady] = useState(false);
   const [loadingCards, setLoadingCards] = useState(true);
-  const [hasAttemptedLoad, setHasAttemptedLoad] = useState(false);
+  const [hasAttemptedLoad] = useState(false);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   const { userCards, loading: loadingUserCards, error: userCardsError } = useUserCollection();
