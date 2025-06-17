@@ -9,13 +9,16 @@ import {
 import { doc, updateDoc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../../../firebaseConfig/firebaseConfig';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './UserProfileEditor.module.css';
 import { Button } from '../../button/button';
 import imageCompression from 'browser-image-compression';
 import { toast } from 'react-toastify';
 
+
 export const UserProfileEditor = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   const [currentPassword, setCurrentPassword] = useState('');
   const [displayName, setDisplayName] = useState('');
@@ -58,9 +61,7 @@ export const UserProfileEditor = () => {
     }
 
     if (file.size > 550 * 1024) {
-      toast.error(
-        'La imagen no debe exceder los 550 KB después de la compresión.'
-      );
+      toast.error('La imagen no debe exceder los 550 KB después de la compresión.');
       return Promise.resolve(null);
     }
 
@@ -73,9 +74,7 @@ export const UserProfileEditor = () => {
 
       reader.onerror = () => {
         console.error('Error al leer el archivo con FileReader.');
-        toast.error(
-          'Ocurrió un error al cargar la imagen. Inténtalo de nuevo.'
-        );
+        toast.error('Ocurrió un error al cargar la imagen. Inténtalo de nuevo.');
         resolve(null);
       };
 
@@ -83,9 +82,7 @@ export const UserProfileEditor = () => {
     });
   };
 
-  const handleImageUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const imageFile = event.target.files?.[0];
     if (!imageFile) return;
 
@@ -103,17 +100,13 @@ export const UserProfileEditor = () => {
 
       if (dataUrl) {
         setPhotoURL(dataUrl);
-        toast.success(
-          '✅ Imagen lista para guardar. ¡No olvides hacer clic en "Guardar"!'
-        );
+        toast.success('✅ Imagen lista para guardar. ¡No olvides hacer clic en "Guardar"!');
       } else {
         toast.error('❌ No se pudo procesar la imagen.');
       }
     } catch (error: any) {
       console.error('Error al procesar la imagen:', error);
-      toast.error(
-        `❌ Error al subir la imagen: ${error.message || 'Intenta de nuevo.'}`
-      );
+      toast.error(`❌ Error al subir la imagen: ${error.message || 'Intenta de nuevo.'}`);
     } finally {
       setLoadingImage(false);
     }
@@ -138,10 +131,7 @@ export const UserProfileEditor = () => {
           return;
         }
 
-        const credential = EmailAuthProvider.credential(
-          user.email!,
-          currentPassword
-        );
+        const credential = EmailAuthProvider.credential(user.email!, currentPassword);
         await reauthenticateWithCredential(auth.currentUser, credential);
         await updatePassword(auth.currentUser, password);
       }
@@ -158,159 +148,156 @@ export const UserProfileEditor = () => {
     } catch (err: any) {
       console.error('Error al guardar el perfil:', err);
       if (err.code === 'auth/requires-recent-login') {
-        toast.error(
-          '❌ Por favor, vuelve a iniciar sesión para actualizar tu email o contraseña.'
-        );
+        toast.error('❌ Por favor, vuelve a iniciar sesión para actualizar tu email o contraseña.');
       } else {
         toast.error(`❌ Error al guardar: ${err.message}`);
       }
     }
   };
 
+const handleLogout = async () => {
+  try {
+    // `logout` ahora devuelve una promesa que solo resuelve si el usuario confirma
+    await logout();
+    // Si el usuario confirma, navegamos a la ruta '/'
+    navigate('/');
+  } catch (error) {
+    console.error('Error al cerrar sesión:', error);
+  }
+};
+
   return (
-    <div className='display-wrapper'>
-      <div className={styles.containerProfile}>
-        <label className={styles.clickableImg}>
-          <img
-            src={photoURL || 'src/assets/black 1.png'}
-            alt='Foto de perfil'
-          />
-          <input
-            type='file'
-            accept='image/webp, image/jpeg, image/png'
-            style={{ display: 'none' }}
-            onChange={handleImageUpload}
-            disabled={loadingImage}
-          />
-          {loadingImage && <p>Cargando imagen...</p>}
-        </label>
-
-        <div className={styles.inputTextCardName}>
-          {/* líneas decorativas */}
-          <div className={styles.leftTopLine}></div>
-          <div className={styles.leftBottomLine}></div>
-          <div className={styles.rightTopLine}></div>
-          <div className={styles.rightBottomLine}></div>
-          <div className={styles.topLeftLine}></div>
-          <div className={styles.topRightLine}></div>
-          <div className={styles.bottomLeftLine}></div>
-          <div className={styles.bottomRightLine}></div>
-
-          <input
-            className={styles.inputText}
-            placeholder='NAME'
-            type='text'
-            value={displayName}
-            onChange={(e) => setDisplayName(e.target.value)}
-          />
-        </div>
-
-        <div className={styles.inputTextCardOneLiner}>
-          {/* líneas decorativas */}
-          <div className={styles.leftTopLine}></div>
-          <div className={styles.leftBottomLine}></div>
-          <div className={styles.rightTopLine}></div>
-          <div className={styles.rightBottomLine}></div>
-          <div className={styles.topLeftLine}></div>
-          <div className={styles.topRightLine}></div>
-          <div className={styles.bottomLeftLine}></div>
-          <div className={styles.bottomRightLine}></div>
-
-          <input
-            className={styles.inputText}
-            placeholder='ONE LINER'
-            type='text'
-            value={oneLiner}
-            onChange={(e) => setOneLiner(e.target.value)}
-          />
-        </div>
-
-        <Button
-          color='primary'
-          size='sm'
-          onClick={() => setShowSensitive((prev) => !prev)}
-        >
-          {showSensitive ? 'Ocultar' : 'Editar'}
-        </Button>
-
-        {showSensitive && (
-          <>
-            <div className={styles.inputTextCardOneLiner}>
-              {/* líneas decorativas */}
-              <div className={styles.leftTopLine}></div>
-              <div className={styles.leftBottomLine}></div>
-              <div className={styles.rightTopLine}></div>
-              <div className={styles.rightBottomLine}></div>
-              <div className={styles.topLeftLine}></div>
-              <div className={styles.topRightLine}></div>
-              <div className={styles.bottomLeftLine}></div>
-              <div className={styles.bottomRightLine}></div>
-
-              <input
-                type='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className={styles.inputText}
-                placeholder='Correo electrónico'
-              />
-            </div>
-
-            <div className={styles.inputTextCardName}>
-              {/* líneas decorativas */}
-              <div className={styles.leftTopLine}></div>
-              <div className={styles.leftBottomLine}></div>
-              <div className={styles.rightTopLine}></div>
-              <div className={styles.rightBottomLine}></div>
-              <div className={styles.topLeftLine}></div>
-              <div className={styles.topRightLine}></div>
-              <div className={styles.bottomLeftLine}></div>
-              <div className={styles.bottomRightLine}></div>
-
-              <input
-                type='password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder='Contraseña nueva'
-                className={styles.inputText}
-              />
-            </div>
-
-            <div className={styles.inputTextCardName}>
-              {/* líneas decorativas */}
-              <div className={styles.leftTopLine}></div>
-              <div className={styles.leftBottomLine}></div>
-              <div className={styles.rightTopLine}></div>
-              <div className={styles.rightBottomLine}></div>
-              <div className={styles.topLeftLine}></div>
-              <div className={styles.topRightLine}></div>
-              <div className={styles.bottomLeftLine}></div>
-              <div className={styles.bottomRightLine}></div>
-
-              <input
-                type='password'
-                value={currentPassword}
-                onChange={(e) => setCurrentPassword(e.target.value)}
-                placeholder='Contraseña actual'
-                className={styles.inputText}
-              />
-            </div>
-          </>
-        )}
-
-        <Button
-          color='primary'
-          size='sm'
-          onClick={handleSave}
+    <div className={styles.containerProfile}>
+      <label className={styles.clickableImg}>
+        <img src={photoURL || 'src/assets/black 1.png'} alt='Foto de perfil' />
+        <input
+          type='file'
+          accept='image/webp, image/jpeg, image/png'
+          style={{ display: 'none' }}
+          onChange={handleImageUpload}
           disabled={loadingImage}
-        >
-          Guardar
-        </Button>
-        <a href='https://hyrulepedia.firebaseapp.com/register'>
-          {' '}
-          <Button color='error' size='md'>
-            Logout
-          </Button>
-        </a>
+        />
+        {loadingImage && <p>Cargando imagen...</p>}
+      </label>
+
+      <div className={styles.inputTextCardName}>
+        <div className={styles.leftTopLine}></div>
+        <div className={styles.leftBottomLine}></div>
+        <div className={styles.rightTopLine}></div>
+        <div className={styles.rightBottomLine}></div>
+        <div className={styles.topLeftLine}></div>
+        <div className={styles.topRightLine}></div>
+        <div className={styles.bottomLeftLine}></div>
+        <div className={styles.bottomRightLine}></div>
+        <input
+          className={styles.inputText}
+          placeholder='NAME'
+          type='text'
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+        />
+      </div>
+
+      <div className={styles.inputTextCardOneLiner}>
+        <div className={styles.leftTopLine}></div>
+        <div className={styles.leftBottomLine}></div>
+        <div className={styles.rightTopLine}></div>
+        <div className={styles.rightBottomLine}></div>
+        <div className={styles.topLeftLine}></div>
+        <div className={styles.topRightLine}></div>
+        <div className={styles.bottomLeftLine}></div>
+        <div className={styles.bottomRightLine}></div>
+        <input
+          className={styles.inputText}
+          placeholder='ONE LINER'
+          type='text'
+          value={oneLiner}
+          onChange={(e) => setOneLiner(e.target.value)}
+        />
+      </div>
+
+      <Button
+        color='primary'
+        size='md'
+        onClick={() => setShowSensitive((prev) => !prev)}
+      >
+        {showSensitive ? 'Hide' : 'Edit'}
+      </Button>
+
+      {showSensitive && (
+        <>
+          <div className={styles.inputTextCardOneLiner}>
+            <div className={styles.leftTopLine}></div>
+            <div className={styles.leftBottomLine}></div>
+            <div className={styles.rightTopLine}></div>
+            <div className={styles.rightBottomLine}></div>
+            <div className={styles.topLeftLine}></div>
+            <div className={styles.topRightLine}></div>
+            <div className={styles.bottomLeftLine}></div>
+            <div className={styles.bottomRightLine}></div>
+            <input
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={styles.inputText}
+              placeholder='Email'
+            />
+          </div>
+
+          <div className={styles.inputTextCardName}>
+            <div className={styles.leftTopLine}></div>
+            <div className={styles.leftBottomLine}></div>
+            <div className={styles.rightTopLine}></div>
+            <div className={styles.rightBottomLine}></div>
+            <div className={styles.topLeftLine}></div>
+            <div className={styles.topRightLine}></div>
+            <div className={styles.bottomLeftLine}></div>
+            <div className={styles.bottomRightLine}></div>
+            <input
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder='New Password'
+              className={styles.inputText}
+            />
+          </div>
+
+          <div className={styles.inputTextCardName}>
+            <div className={styles.leftTopLine}></div>
+            <div className={styles.leftBottomLine}></div>
+            <div className={styles.rightTopLine}></div>
+            <div className={styles.rightBottomLine}></div>
+            <div className={styles.topLeftLine}></div>
+            <div className={styles.topRightLine}></div>
+            <div className={styles.bottomLeftLine}></div>
+            <div className={styles.bottomRightLine}></div>
+            <input
+              type='password'
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+              placeholder='Current Password'
+              className={styles.inputText}
+            />
+          </div>
+        </>
+      )}
+      <div className={styles.btnlogoutsave}>
+      <Button
+        color='primary'
+        size='md'
+        onClick={handleSave}
+        disabled={loadingImage}
+      >
+        Save
+      </Button>
+
+      <Button
+        color='error'
+        size='md'
+        onClick={handleLogout}
+      >
+        Logout
+      </Button>
       </div>
     </div>
   );

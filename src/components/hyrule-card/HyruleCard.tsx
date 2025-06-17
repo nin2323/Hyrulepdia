@@ -5,12 +5,12 @@ import cardFrame from '../../assets/decorations/card-frame.svg';
 import cardFrameBlue from '../../assets/decorations/card-frame-blue.svg';
 import cardFramePurple from '../../assets/decorations/card-frame-purple.svg';
 import { useCardTilt } from '../../hooks/useCardTilt';
-import monstersIcon from '../../assets/icons/monsters-icon.svg';
-import creaturesIcon from '../../assets/icons/creatures-icon.svg';
-import materialsIcon from '../../assets/icons/materials-icon.svg';
-import treasureIcon from '../../assets/icons/treasure-icon.svg';
-import equipmentIcon from '../../assets/icons/equipment-icon.svg';
 import { HyruleCardType } from '../../types/hyrule.types';
+import { MonstersIcon } from '../iconsCards/MonstersIcon';
+import { CreaturesIcon } from '../iconsCards/CreaturesIcon';
+import { MaterialsIcon } from '../iconsCards/MaterialsIcon';
+import { TreasureIcon } from '../iconsCards/TreasureIcon';
+import { EquipmentIcon } from '../iconsCards/EquipmentIcons';
 
 type TiltStyle = {
   transform?: string;
@@ -21,15 +21,15 @@ type TiltStyle = {
 const displayIcon = (category: HyruleCardType['category']) => {
     switch (category) {
         case 'monsters':
-            return <img className='hyrule-card__icon' src={monstersIcon} alt='monsters icon' />;
+            return <MonstersIcon className="hyrule-card__icon" />;
         case 'creatures':
-            return <img className='hyrule-card__icon' src={creaturesIcon} alt='creatures icon' />;
+            return <CreaturesIcon className="hyrule-card__icon" />;
         case 'materials':
-            return <img className='hyrule-card__icon' src={materialsIcon} alt='materials icon' />;
+            return <MaterialsIcon className="hyrule-card__icon" />;
         case 'treasure':
-            return <img className='hyrule-card__icon' src={treasureIcon} alt='treasure icon' />;
+            return <TreasureIcon className="hyrule-card__icon" />;
         case 'equipment':
-            return <img className='hyrule-card__icon' src={equipmentIcon} alt='equipment icon' />;
+            return <EquipmentIcon className="hyrule-card__icon" />;
         default:
             return <span className='hyrule-card__icon'>?</span>;
     }

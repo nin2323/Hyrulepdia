@@ -1,14 +1,13 @@
 .footer {
   width: 100%;
-  padding: 25px 4vw 20px;
-
+  padding: 80px 4vw 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-
   box-sizing: border-box;
   margin-top: auto;
+  font-size: 12px;
 }
 
 .copyRight {
@@ -22,7 +21,6 @@
 }
 
 .footerLink {
-  font-size: 16px;
   text-decoration: none;
   color: white;
   transition: color 0.3s;
@@ -33,7 +31,6 @@
 }
 
 .copyRight {
-  font-size: 16px;
   margin-bottom: 10px;
 }
 

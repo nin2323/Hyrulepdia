@@ -10,7 +10,8 @@ import { Button } from "../button/button.tsx";
 import { useNavigate } from "react-router-dom";
 import { CollectionFavorites } from "../../hooks/useCollectionFavorites.ts";
 import { useUserCollection } from "../../hooks/useUserCollection";
-import loadingGif from '../../assets/gif-zelda-loading.webp'
+import loadingGif from '../../assets/gif-zelda-loading.webp';
+import noCardsImage from '../../../public/no-cards-link.webp';
 import { FilterModal } from "../filterModal/FilterModal.tsx";
 
 import '../hyrule-card/hyruleCard.css';
@@ -30,7 +31,7 @@ export const CollectionAll = ({ variant = 'default' }: CollectionAllProps) => {
   const [selectedCard, setSelectedCard] = useState<HyruleCardType | null>(null);
   const [isPageReady] = useState(false);
   const [loadingCards, setLoadingCards] = useState(true);
-  const [hasAttemptedLoad] = useState(false);
+  const [hasAttemptedLoad, setHasAttemptedLoad] = useState(false);
   const [isFilterModalOpen, setIsFilterModalOpen] = useState(false);
 
   const { userCards, loading: loadingUserCards, error: userCardsError } = useUserCollection();
@@ -60,7 +61,7 @@ useEffect(() => {
       setCards(markedCards);
     }
     setLoadingCards(false);
-    
+    setHasAttemptedLoad(true);
   };
 
   if (userCards.length >= 0) {
@@ -161,7 +162,8 @@ const {
                 </div>
               ) : cardsToDisplay.length === 0 && hasAttemptedLoad ? (
                 <div className="no-cards-message">
-                  <p>Looks like Link forgot to pick up your cards. Typical.</p>
+                  <img src={noCardsImage} alt="No cards available" className="no-cards-image" />
+                  <p>Looks like Link forgot to pick up your cards. <br/>Typical.</p>
                 </div>
               ) : (
             cardsToDisplay.map((card) => (
