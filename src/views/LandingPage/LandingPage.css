@@ -411,7 +411,7 @@
 }
 
 .float-card-3 {
-  animation: floatRotate3 5s ease-in-out infinite;
+  animation: floatRotate3 3.5s ease-in-out infinite;
 }
 
 @keyframes floatRotate1 {
