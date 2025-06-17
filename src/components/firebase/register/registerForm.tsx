@@ -46,7 +46,7 @@ export const RegisterForm: FC = () => {
   return (
     <div className='register-form-container'>
       <form className='register-form' onSubmit={handleSubmit}>
-        <img className='register-logo__img' src={logo} alt="logo"/>
+        <img src={logo} alt="logo"/>
       <div className='register-input-content'>
         <div className=''>
           <SearchBar
@@ -88,7 +88,7 @@ export const RegisterForm: FC = () => {
         {error && <p className='error-message'>{error}</p>}
 
         <Button className='button-register' type='submit' disabled={isSubmitting}>
-          {isSubmitting ? 'Creando cuenta...' : 'Crear cuenta'}
+          {isSubmitting ? 'Creating account...' : 'Create account'}
         </Button>
           <p className="switch-form">Already have an account?
           <Link to="/login">Go back to login</Link>
