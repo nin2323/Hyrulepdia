@@ -47,7 +47,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         email: email,
         nombreUsuario: '',
         oneliner: '',
-        gems: 0,
+        gems: 10000,
         photoURL: '',
       });
     } catch (error: any) {
