@@ -25,7 +25,7 @@ export const LandingPage = () => {
         <div className='header-content-landing'>
           <h2 className='name-header'>HYRULEPEDIA</h2>
         <Link to="/login">
-          <Button size="md" className="btn-link-header">LOGIN</Button>
+          <Button size="sm" className="btn-link-header">JOIN NOW!</Button>
         </Link>
         </div>
       </header>
@@ -139,7 +139,7 @@ export const LandingPage = () => {
                 </p>
                 <div>
                 <Link to="/login">
-                  <Button size="md" className="btn-link-header">
+                  <Button size="md" className="btn-link-header purple">
                     START
                   </Button>
                 </Link>
@@ -157,10 +157,10 @@ export const LandingPage = () => {
       </div>
       <div className='landing-banner'>
         <div className='banner-item golden'>
+          <div className='banner-item--icon'>
+            <CardsIcon />
+          </div>
           <div className='heading'>
-            <div className='banner-item--icon'>
-              <CardsIcon />
-            </div>
             <h3>CARDS</h3>
           </div>
           <div className='content'>
@@ -168,10 +168,10 @@ export const LandingPage = () => {
           </div>
         </div>
         <div className='banner-item'>
+          <div className='banner-item--icon'>
+            <TreasureChestIcon />
+          </div>
           <div className='heading'>
-            <div className='banner-item--icon'>
-              <TreasureChestIcon />
-            </div>
             <h3>CHEST</h3>
           </div>
           <div className='content'>
@@ -179,10 +179,10 @@ export const LandingPage = () => {
           </div>
         </div>
         <div className='banner-item'>
+          <div className='banner-item--icon'>
+            <TrophyIcon />
+          </div>
           <div className='heading'>
-            <div className='banner-item--icon'>
-              <TrophyIcon />
-            </div>
             <h3>ACHIEVEMENTS</h3>
           </div>
           <div className='content'>
@@ -190,10 +190,10 @@ export const LandingPage = () => {
           </div>
         </div>
         <div className='banner-item'>
+          <div className='banner-item--icon'>
+            <PeopleIcon />
+          </div>
           <div className='heading'>
-            <div className='banner-item--icon'>
-              <PeopleIcon />
-            </div>
             <h3>FRIENDS</h3>
           </div>
           <div className='content'>

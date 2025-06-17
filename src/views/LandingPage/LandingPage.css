@@ -41,21 +41,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px;
   background-color: #f5f5f5;
   position: relative;
-  padding: 16px 70px;
+  padding: 16px 40px;
 }
 .header-content-landing {
+  width: 100%;
   display: flex;
   align-items: center;
-  gap: 40px; /* espacio entre logo y botón */
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-content: space-between;
 }
 .name-header {
-  font-size: 32px;
+  font-size: 20px;
   font-weight: bold;
   color: #e0cea0;
 }
@@ -71,13 +68,12 @@
 /*ZONA DEL LOGO*/
 .description-logo-landing {
   color: #7cd2ff;
-  width: 400px;
   text-align: center;
   font-family: Geist;
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
-  line-height: 120%; /* 24px */
+  line-height: 120%;
 }
 /*CONTENEDORES*/
 
@@ -215,6 +211,78 @@
     color: #e0cea0;
   }
 
+.landing-banner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 1024px;
+  margin: 9.8rem auto;
+  column-gap: 92px;
+}
+
+.banner-item {
+  display: grid;
+  grid-template-columns: auto auto; 
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 5rem 0;
+} 
+
+.banner-item .heading {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.banner-item .heading h3 {
+  font-size: 4.6rem;
+  color: white;
+  text-shadow: 0px 0px 15.1px rgba(0, 168, 255, 0.87);
+}
+
+.banner-item .content {
+  font-size: 3rem;
+  color: #7CD2FF;
+}
+.banner-item.golden .content {
+  color: #E0CEA0;
+}
+
+.banner-item--icon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  background-color: #275880;
+  border: 1px solid #7CD2FF;
+  box-shadow: 0px 0px 18.9px 0px rgba(0, 168, 255, 0.70);
+}
+  .banner-item--icon svg {
+    margin: auto;
+  }
+
+.banner-item.golden .banner-item--icon {
+  background-color: #B99F65;
+  border: 1px solid #E0CEA0;
+  box-shadow: 0px 0px 18.9px 0px #F3D077;
+}
+
+.banner-item--icon {
+  margin-left: auto;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.banner-item .heading {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.banner-item .content {
+  grid-column: 1 / span 2; 
+  grid-row: 2;
+  text-align: center;
+}
+
 .banner-item .heading h3 {
   font-size: 2.6rem;
 }
@@ -241,6 +309,7 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -314,6 +383,21 @@
   gap: 5rem;
 }
 
+.btn-link-header.purple.button.primary {
+  background-image: linear-gradient(45deg, transparent 0%, #ba6ed5 0% calc(100% - var(--cut-size)), transparent calc(100% - var(--cut-size)));
+}
+
+.btn-link-header.purple.button.primary {
+  &::before {
+    background-image: linear-gradient(45deg, transparent 0%, #5c2c6d  0% calc(100% - var(--cut-size)), transparent calc(100% - var(--cut-size)));
+  }
+  & .button-corner {
+      color: #ba6ed5;
+  }
+}
+
+
+
 .card-img {
   display: flex;
 }
@@ -348,66 +432,124 @@
   100% { transform: translateY(0px) rotate(0deg); }
 }
 
-@media (max-width: 768px) {
-  .container-callToaction--with-button {
-    flex-direction: column;
-    height: auto;
-    width: 100%;
-    padding: 2rem 1rem;
-  }
 
-  .call-to-action-content {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: auto;
-    padding: 0;
-  }
-
-  .call-to-action-text {
-    padding-left: 0;
-    align-items: center;
-    text-align: center;
-  }
-
-  .card-container-text-blue,
-  .card-container-text-golden,
-  .card-container-text-purple {
-    width: 100%;
-    text-align: center;
-  }
-
-  .call-to-action-image-blue img,
-  .call-to-action-image-golden img,
-  .call-to-action-image-purple img {
-    max-width: 100%;
-    margin-top: 2rem;
-  }
-
-  .description-logo-landing {
-    width: 100%;
-    font-size: 18px;
-    padding: 0 1rem;
-  }
-
-  .logo-intro-action {
-    padding: 48px 16px;
-    text-align: center;
-  }
-
-  .container-golden--blue,
-  .container-golden--position,
-  .container-golden--purple {
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 48px;
-    padding-bottom: 48px;
-  }
-}
 
 /*ESENCIAL PARA QUE EL FOOTER FUNCIONE BIEN*/
 .display-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+@media (max-width: 749px) {
+  .header-landing {
+    height: unset;
+    padding: 12px 16px;
+  }
+  .name-header {
+    font-size: 16px;
+  }
+
+  .banner-first {
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 7rem;
+    gap: 4rem;
+  }
+
+  .logo-intro-action {
+    padding-top: 20px;
+    padding-bottom: 0;
+  }
+  .logo-intro-action a {
+    display: none;
+  }
+  .logo-intro-action img {
+    width: 70%;
+    height: 100%;
+  }
+  .texto--img--padding {
+    font-size: 22px;
+    padding-top: 1rem;
+  }
+  .description-logo-landing {
+    font-size: 10px;
+  }
+
+  .container--position,
+  .container--position.right {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .card.container-callToaction--with-button .card-content {
+    height: unset;
+    padding: 7.5rem 3rem 6.5rem 3rem;  
+  }
+  .container--position.right .call-to-action-content {
+    flex-direction: column;
+  }
+  .call-to-action-content {
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    gap: 6rem;
+  }
+  .call-to-action-image, .call-to-action-text {
+    width: 100%;
+  }
+
+  .call-to-action-text p {
+    font-size: 14px;
+  }
+
+  .card-landing {
+    width: 100px;
+  }
+
+  .cards-img {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3rem;
+  }
+  .cards-img-column {
+    flex-direction: row;
+    gap: 7rem;
+  }
+  .card-img {
+    justify-content: center;
+  }
+
+  .landing-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .banner-item {
+    padding: 3rem 0;
+    row-gap: 0;
+  }
+  .banner-item--icon {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+  .banner-item .heading {
+    grid-column: 2;
+    grid-row: 1;
+  }
+    .banner-item .heading h3 {
+      font-size: 2rem;
+    }
+  .banner-item .content {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: left;
+  }
+    .text-banner {
+      font-size: 15px;
+    }
+
+  .two-column-cardcontainer {
+    flex-direction: column;
+    align-items: center;
+  }
 }
