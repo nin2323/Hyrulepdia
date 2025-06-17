@@ -3,9 +3,9 @@ import { Button } from '../../components/button/button';
 import { CardContainer } from '../../components/CardContainer/CardContainer';
 import SVGSpotlight from '../../components/SVGSpotlight/SVGSpotlight';
 import { Footer } from '../../components/footer/footer';
-import chestRare from '../../../assets/chest-rare-landing.png'
-import chestRare2 from '../../../assets/chest-rare-landing2.png'
-import chestRare3 from '../../../assets/chest-rare-landing3.png'
+import chestRare from '../../../public/chest-rare-landing.png'
+import chestRare2 from '../../../public/chest-rare-landing2.png'
+import chestRare3 from '../../../public/chest-rare-landing3.png'
 import { PeopleIcon } from '../../components/iconsCards/PeopleIcon';
 import { TrophyIcon } from '../../components/iconsCards/TrophyIcon';
 import { TreasureChestIcon } from '../../components/iconsCards/TreasureChestIcon';
@@ -13,10 +13,10 @@ import { CardsIcon } from '../../components/iconsCards/CardsIcons';
 import { Link } from 'react-router-dom';
 import { TrebolIcon } from '../../components/iconsCards/TrebolIcon';
 import { CompetitionIcon } from '../../components/iconsCards/CompetitionIcon';
-import card from '../../../dist/assets/card-landing-5Nr2QnNB.png';
-import card2 from '../../../dist/assets/card-landing-2-BwijBL2M.png';
-import card3 from '../../../dist/assets/card-landing-3-Bg_jPBQF.png';
-import logo from '../../../dist/assets/logo-login-6Gy6cNu1.svg'
+import card from '../../../public/card-landing-1.png'
+import card2 from '../../../public/card-landing-2.png'
+import card3 from '../../../public/card-landing-3.png'
+import logo from '../../../public/logo-login.svg'
 
 export const LandingPage = () => {
   return (
