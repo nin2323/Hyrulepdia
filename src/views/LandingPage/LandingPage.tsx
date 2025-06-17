@@ -3,9 +3,9 @@ import { Button } from '../../components/button/button';
 import { CardContainer } from '../../components/CardContainer/CardContainer';
 import SVGSpotlight from '../../components/SVGSpotlight/SVGSpotlight';
 import { Footer } from '../../components/footer/footer';
-import chestRare from '../../../dist/assets/chest-rare-landing-CLBeTiFZ.png'
-import chestRare2 from '../../../dist/assets/chest-rare-landing2-BR2Y_qFQ.png'
-import chestRare3 from '../../../dist/assets/chest-rare-landing3-hEIVKz1E.png'
+import chestRare from '../../../assets/chest-rare-landing.png'
+import chestRare2 from '../../../assets/chest-rare-landing2.png'
+import chestRare3 from '../../../assets/chest-rare-landing3.png'
 import { PeopleIcon } from '../../components/iconsCards/PeopleIcon';
 import { TrophyIcon } from '../../components/iconsCards/TrophyIcon';
 import { TreasureChestIcon } from '../../components/iconsCards/TreasureChestIcon';
