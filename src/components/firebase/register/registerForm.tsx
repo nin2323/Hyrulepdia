@@ -5,7 +5,7 @@ import { Button } from '../../button/button';
 import { useAuth } from '../../../context/authContext';
 import { SearchBar } from '../../searchBar/SearchBar';
 import logo from '../../../assets/logo-login.svg';
-import SVGSpotlight from '../../SVGSpotlight/SVGSpotlight';
+
 
 export const RegisterForm: FC = () => {
   const [email, setEmail] = useState<string>('');
@@ -100,7 +100,6 @@ export const RegisterForm: FC = () => {
           <Link to='/login'>Go back to login</Link>
         </p>
       </form>
-      <SVGSpotlight />
     </div>
   );
 };

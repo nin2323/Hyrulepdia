@@ -6,7 +6,6 @@ import './StoreMain.css';
 import { ChestButtonType } from '../../types/hyrule.types';
 import { PopupGemsInfo } from '../popup-gems-info/PopupGemsInfo';
 import { useHorizontalScroll } from '../../hooks/useHorizontalScroll';
-import SVGSpotlight from '../SVGSpotlight/SVGSpotlight';
 
 export const StoreMain = () => {
   const [showPopup, setShowPopup] = useState(false);
@@ -64,7 +63,6 @@ export const StoreMain = () => {
         </div>
       </div>
       <PopupGemsInfo visible={showPopup} onClose={() => setShowPopup(false)} />
-      <SVGSpotlight />
     </div>
   );
 };

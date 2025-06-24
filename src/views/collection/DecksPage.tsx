@@ -10,7 +10,6 @@ import { DeckEditorPage } from './DeckEditorPage';
 import deckButton from '../../assets/backgrounds/deck-button.png';
 import './DecksPage.css';
 import { useUnlockedCards } from '../../hooks/useUnlockedCards';
-import SVGSpotlight from '../../components/SVGSpotlight/SVGSpotlight';
 
 export const DecksPage = () => {
   const navigate = useNavigate(); //use navigate para redirigir
@@ -109,7 +108,6 @@ export const DecksPage = () => {
           />
         )}
       </div>
-      <SVGSpotlight />
     </>
   );
 };

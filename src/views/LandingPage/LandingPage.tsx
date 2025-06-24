@@ -1,7 +1,6 @@
 import './LandingPage.css';
 import { Button } from '../../components/button/button';
 import { CardContainer } from '../../components/CardContainer/CardContainer';
-import SVGSpotlight from '../../components/SVGSpotlight/SVGSpotlight';
 import { Footer } from '../../components/footer/footer';
 import chestRare from '../../../public/chest-rare-landing.png'
 import chestRare2 from '../../../public/chest-rare-landing2.png'
@@ -257,7 +256,6 @@ export const LandingPage = () => {
               </div>
         </div>
       </CardContainer>
-      <SVGSpotlight />
       <Footer />
     </>
   );
